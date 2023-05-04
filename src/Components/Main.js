@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import Profile from './Profile';
-import Login from './Login';
-import Logout from './Logout';
+import HeaderLoggedin from "./Header-Footer/Header-loggedin.js"
+import HeaderLoggedout from "./Header-Footer/Header-loggedout.js"
 
 const Main = () => {
 
@@ -9,7 +9,13 @@ const Main = () => {
   return (
     <div>
         {isAuthenticated ? 
-        <div><Profile/><Logout/></div> : <Login/>
+        <div>
+            <HeaderLoggedin/>
+            <Profile/>
+        </div> : 
+        <div>
+            <HeaderLoggedout/>
+        </div>
         }
     </div>
   )
