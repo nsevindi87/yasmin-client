@@ -1,31 +1,28 @@
 import React, { useContext, useEffect } from 'react';
-import { Container,Row,Col,Table, Button} from 'react-bootstrap';
-import Header from "../Header-Footer/Header";
-import {wordsContext} from "../../Context/wordsListContext"
+import { Container, Row, Col, Table, Button } from 'react-bootstrap';
+import { wordsContext } from "../../Context/wordsListContext"
+import AsideComponent from '../RightSide/AsideComponent';
 
 const YellowList = () => {
 
   const { yellowList, getYellowList, allWordsList, handleDelete } = useContext(wordsContext)
 
-  useEffect(()=>{
+  useEffect(() => {
     getYellowList()
   }, [yellowList])
 
   return (
     <>
-    <Header/>
-    <Container fluid>
-    <Row className='mt-5'>
-          <Col lg="10" className='d-flex justify-content-between'>
-            <h1>Yellow List</h1>
-            <div>
-            <Button className='btn-dark text-warning mx-3'>Training</Button>
-            <Button className='btn-dark text-warning'>Test Yourself</Button>
+      <Container fluid>
+        <Row className='mt-5'>
+          <Col lg="9">
+            <h1 className='text-center'>Yellow List</h1>
+            <div  className='mb-1 text-center'>
+              <Button className='btn-dark text-warning mx-3'>Training</Button>
+              <Button className='btn-dark text-warning'>Test Yourself</Button>
             </div>
           </Col>
-        </Row>
-      <Row>
-        <Col lg="10">
+          <Col lg="9">
             <Table striped bordered hover variant="warning">
               <thead>
                 <tr>
@@ -40,7 +37,7 @@ const YellowList = () => {
                 </tr>
               </thead>
               <tbody>
-              {yellowList.map((word,value) => (
+                {yellowList.map((word, value) => (
                   <tr key={value}>
                     <td>{value + 1}</td>
                     <td>{word.firstValue}</td>
@@ -49,7 +46,7 @@ const YellowList = () => {
                     <td>{word.note}</td>
                     <td>
                       <Button variant="warning me-2">Edit</Button>
-                      <Button onClick={()=> handleDelete(word.id, word.listGroup)} variant="danger">Delete</Button>
+                      <Button onClick={() => handleDelete(word.id, word.listGroup)} variant="danger">Delete</Button>
                     </td>
                     <td> <Button variant={word.listGroup}></Button></td>
                     <td>
@@ -58,15 +55,15 @@ const YellowList = () => {
                       <Button variant="danger"></Button>
                     </td>
                   </tr>
-
                 ))}
-                
               </tbody>
             </Table>
-        </Col>
-        <Col lg="3"></Col>
-      </Row>
-    </Container>
+          </Col>
+          <Col lg="3">
+            <AsideComponent />
+          </Col>
+        </Row>
+      </Container>
     </>
   )
 }

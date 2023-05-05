@@ -1,30 +1,27 @@
 import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col, Table, Button } from 'react-bootstrap';
-import Header from "../Header-Footer/Header";
-import {wordsContext} from "../../Context/wordsListContext"
+import { wordsContext } from "../../Context/wordsListContext"
+import AsideComponent from '../RightSide/AsideComponent';
 
 
 const GreenList = () => {
-  const { greenList,getGreenList,allWordsList,handleDelete } = useContext(wordsContext)
+  const { greenList, getGreenList, allWordsList, handleDelete } = useContext(wordsContext)
 
-  useEffect(()=>{
+  useEffect(() => {
     getGreenList()
   }, [greenList])
   return (
     <>
-      <Header />
       <Container fluid>
         <Row className='mt-5'>
-          <Col lg="10" className='d-flex justify-content-between'>
-            <h1>Green List</h1>
-            <div>
+          <Col lg="9">
+            <h1 className='text-center'>Green List</h1>
+            <div className='mb-1 text-center'>
               <Button className='btn-dark text-warning mx-3'>Training</Button>
               <Button className='btn-dark text-warning'>Test Yourself</Button>
             </div>
           </Col>
-        </Row>
-        <Row>
-          <Col lg="10">
+          <Col lg="9">
             <Table striped bordered hover variant="success">
               <thead>
                 <tr>
@@ -39,7 +36,7 @@ const GreenList = () => {
                 </tr>
               </thead>
               <tbody>
-                {greenList.map((word,value) => (
+                {greenList.map((word, value) => (
                   <tr key={value}>
                     <td>{value + 1}</td>
                     <td>{word.firstValue}</td>
@@ -48,7 +45,7 @@ const GreenList = () => {
                     <td>{word.note}</td>
                     <td>
                       <Button variant="warning me-2">Edit</Button>
-                      <Button onClick={()=> handleDelete(word.id, word.listGroup)} variant="danger">Delete</Button>
+                      <Button onClick={() => handleDelete(word.id, word.listGroup)} variant="danger">Delete</Button>
                     </td>
                     <td> <Button variant={word.listGroup}></Button></td>
                     <td>
@@ -57,14 +54,13 @@ const GreenList = () => {
                       <Button variant="danger"></Button>
                     </td>
                   </tr>
-
                 ))}
-
-
               </tbody>
             </Table>
           </Col>
-          <Col lg="3"></Col>
+          <Col lg="3">
+            <AsideComponent />
+          </Col>   
         </Row>
       </Container>
     </>

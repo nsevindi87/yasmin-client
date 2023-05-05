@@ -1,25 +1,28 @@
 import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col, Table, Button, ListGroup } from 'react-bootstrap';
-import Header from "../Header-Footer/Header";
-import {wordsContext} from "../../Context/wordsListContext"
+import { wordsContext } from "../../Context/wordsListContext";
+import AsideComponent from '../RightSide/AsideComponent';
+
 
 const GeneralList = () => {
- const { getWordsList, allWordsList,handleDelete } = useContext(wordsContext)
- 
+  const { getWordsList, allWordsList, handleDelete } = useContext(wordsContext)
 
-
-
-  useEffect(()=>{
+  useEffect(() => {
     getWordsList()
   }, [allWordsList])
 
   return (
     <>
-      <Header />
       <Container fluid>
         <Row>
-          <Col lg="10">
+          <Col lg="9">
             <h1 className='mt-5 text-center'>All Word List</h1>
+            <div>
+              <Button className='btn-dark text-warning mx-3'>Training</Button>
+              <Button className='btn-dark text-warning'>Test Yourself</Button>
+            </div>
+            </Col>
+          <Col lg="9">
             <Table striped bordered hover variant="dark">
               <thead>
                 <tr>
@@ -34,7 +37,7 @@ const GeneralList = () => {
                 </tr>
               </thead>
               <tbody>
-                {allWordsList.map((word,value) => (
+                {allWordsList.map((word, value) => (
                   <tr key={value}>
                     <td>{value + 1}</td>
                     <td>{word.firstValue}</td>
@@ -43,7 +46,7 @@ const GeneralList = () => {
                     <td>{word.note}</td>
                     <td>
                       <Button variant="warning me-2">Edit</Button>
-                      <Button onClick={()=> handleDelete(word.id, word.listGroup)} variant="danger">Danger</Button>
+                      <Button onClick={() => handleDelete(word.id, word.listGroup)} variant="danger">Danger</Button>
                     </td>
                     <td> <Button variant={word.listGroup}></Button></td>
                     <td>
@@ -57,7 +60,9 @@ const GeneralList = () => {
               </tbody>
             </Table>
           </Col>
-          <Col lg="3"></Col>
+          <Col lg="3">
+            <AsideComponent />
+          </Col>
         </Row>
       </Container>
     </>
