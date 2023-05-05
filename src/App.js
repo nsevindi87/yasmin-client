@@ -1,11 +1,14 @@
-import './App.css';
+import Header from "./Components/Header-Footer/Header.js"
+
 
 function App() {
-  return (
-    <div className="App">
-      <h1>New App</h1>
+
+  return(
+    <div>
+      <Header/>
     </div>
-  );
+  )
+
 }
 
 export default App;
