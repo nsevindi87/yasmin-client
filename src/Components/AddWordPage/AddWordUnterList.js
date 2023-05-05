@@ -1,13 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col, Table, Button, ListGroup } from 'react-bootstrap';
-import Header from "../Header-Footer/Header";
 import {wordsContext} from "../../Context/wordsListContext"
 
-const GeneralList = () => {
+const AddWordUnterList = () => {
  const { getWordsList, allWordsList,handleDelete } = useContext(wordsContext)
  
-
-
 
   useEffect(()=>{
     getWordsList()
@@ -15,11 +12,9 @@ const GeneralList = () => {
 
   return (
     <>
-      <Header />
       <Container fluid>
         <Row>
-          <Col lg="10">
-            <h1 className='mt-5 text-center'>All Word List</h1>
+          <Col lg="12">
             <Table striped bordered hover variant="dark">
               <thead>
                 <tr>
@@ -43,7 +38,7 @@ const GeneralList = () => {
                     <td>{word.note}</td>
                     <td>
                       <Button variant="warning me-2">Edit</Button>
-                      <Button onClick={()=> handleDelete(word.id, word.listGroup)} variant="danger">Danger</Button>
+                      <Button onClick={()=> handleDelete(word.id, word.listGroup)} variant="danger">Delete</Button>
                     </td>
                     <td> <Button variant={word.listGroup}></Button></td>
                     <td>
@@ -52,7 +47,7 @@ const GeneralList = () => {
                       <Button variant="danger"></Button>
                     </td>
                   </tr>
-                ))}
+                )).reverse().slice(0,5)}
 
               </tbody>
             </Table>
@@ -64,4 +59,4 @@ const GeneralList = () => {
   )
 }
 
-export default GeneralList
+export default AddWordUnterList

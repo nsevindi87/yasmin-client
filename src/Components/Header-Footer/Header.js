@@ -1,15 +1,15 @@
 import { Form, Button, Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { useAuth0 } from '@auth0/auth0-react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import AddWord from "../AddWord.js"
-import Translate from "../Translate.js";
+import AddWord from "../AddWordPage/AddWord.js"
+import Translate from "../TranslatePage/Translate.js";
 import AllList from '../Lists/AllList';
 import YellowList from '../Lists/YellowList';
 import GreenList from '../Lists/GreenList';
 import RedList from '../Lists/RedList';
-import Home from '../Home';
-import Todo from "../Todo.js";
-import Profile from "../Profile.js";
+import Home from '../MainPage/Home';
+import Todo from "../ToDoPage/ToDoMain.js";
+import Profile from "../ProfilePage/Profile.js";
 
 const HeaderLoggedin = () => {
 
