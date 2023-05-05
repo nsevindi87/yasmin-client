@@ -8,8 +8,8 @@ import ToDoList from './ToDoList';
 const ToDoMain = () => {
     return (
         <div>
-            <Container>
-                <Row>
+            <Container fluid>
+                <Row className='mt-5'>
                     <Col lg="9">
                         <InputForm />
                         <ToDoList />

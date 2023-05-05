@@ -20,8 +20,6 @@ const GreenList = () => {
               <Button className='btn-dark text-warning mx-3'>Training</Button>
               <Button className='btn-dark text-warning'>Test Yourself</Button>
             </div>
-          </Col>
-          <Col lg="9">
             <Table striped bordered hover variant="success">
               <thead>
                 <tr>

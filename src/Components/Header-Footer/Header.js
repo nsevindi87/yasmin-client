@@ -99,15 +99,6 @@ const HeaderLoggedin = () => {
                                         <Nav>
                                             <Nav.Link to="logout" onClick={() => loginWithRedirect()} >Log in</Nav.Link>
                                         </Nav>
-                                        <Form className="d-flex ">
-                                            <Form.Control
-                                                type="search"
-                                                placeholder="Search"
-                                                className="me-2"
-                                                aria-label="Search"
-                                            />
-                                            <Button variant="outline-success" className='w-50'>Search Bar</Button>
-                                        </Form>
                                     </Navbar.Collapse>
                                 </Container>
                             </Navbar>

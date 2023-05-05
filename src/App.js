@@ -1,14 +1,16 @@
 import Header from "./Components/Header-Footer/Header.js"
+import AsideComponent from "./Components/RightSide/AsideComponent.js";
+import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 
 
 function App() {
 
-  return(
+  return (
     <div>
-      <Header/>
+      <Header />
+      
     </div>
   )
-
 }
 
 export default App;

@@ -6,7 +6,7 @@ const inputForm = () => {
             <Container>
                 <Row>
                     <Col>
-                        <h1 className='text-center mt-5'>Add Your Plans</h1>
+                        <h1 className='text-center'>Add Your Plans</h1>
                         <InputGroup>
                             <Form.Control
                                 placeholder="Write your plans"

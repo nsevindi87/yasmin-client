@@ -14,15 +14,13 @@ const GeneralList = () => {
   return (
     <>
       <Container fluid>
-        <Row>
+        <Row className='mt-5'>
           <Col lg="9">
-            <h1 className='mt-5 text-center'>All Word List</h1>
-            <div>
+            <h1 className='text-center'>All Word List</h1>
+            <div className='mb-1 text-center'>
               <Button className='btn-dark text-warning mx-3'>Training</Button>
               <Button className='btn-dark text-warning'>Test Yourself</Button>
             </div>
-            </Col>
-          <Col lg="9">
             <Table striped bordered hover variant="dark">
               <thead>
                 <tr>
