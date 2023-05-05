@@ -1,11 +1,14 @@
-import Main from "./Components/Main";
+import Header from "./Components/Header-Footer/Header.js"
+
 
 function App() {
-  return (
-    <div className="App">
-      <Main/>
+
+  return(
+    <div>
+      <Header/>
     </div>
-  );
+  )
+
 }
 
 export default App;
