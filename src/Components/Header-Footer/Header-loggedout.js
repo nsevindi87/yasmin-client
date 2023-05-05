@@ -1,22 +1,26 @@
 import { Form, Button, Navbar, Container,Nav, NavDropdown } from "react-bootstrap";
 import { useAuth0 } from '@auth0/auth0-react'
+import { BrowserRouter,Routes, Route, Link } from 'react-router-dom';
+import Translate from "../Translate.js"
+import Home from "../Home.js";
 
 
 const HeaderLoggedout = () => {
     const {loginWithRedirect} = useAuth0()
 
     return (
+        <BrowserRouter>
         <div>
             <Navbar bg="dark" expand="lg" variant="dark" >
                 <Container>
-                    <Navbar.Brand href="#">Learning App</Navbar.Brand>
+                    <Navbar.Brand as={Link} to="/">Learning App</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className="m-auto my-1 my-lg-0"
                             style={{ maxHeight: '100px' }}
                             navbarScroll>
-                            <Nav.Link href="/">Home</Nav.Link>
-                            <Nav.Link href="/translate" className='mx-5'>Translate</Nav.Link>
+                            <Nav.Link as={Link} to="/">Home</Nav.Link>
+                            <Nav.Link as={Link} to="/translate" className='mx-5'>Translate</Nav.Link>
                         </Nav>
                         <Nav>
                             <Nav.Link to="logout" onClick={()=>loginWithRedirect()} >Log in</Nav.Link>
@@ -33,7 +37,14 @@ const HeaderLoggedout = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+            <div>
+                    <Routes>
+                        <Route path="/translate" element={<Translate/>}/>
+                        <Route path="/" element={<Home/>}/>
+                    </Routes>
+                </div>
         </div>
+        </BrowserRouter>
     )
 }
 
