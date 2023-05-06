@@ -1,4 +1,4 @@
-import { Form, Button, Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Form, Button, Navbar, Container, Nav, NavDropdown, Col, Row } from "react-bootstrap";
 import { useAuth0 } from '@auth0/auth0-react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import AddWord from "../AddWordPage/AddWord.js"
@@ -10,10 +10,20 @@ import RedList from '../Lists/RedList';
 import Home from '../MainPage/Home';
 import Todo from "../ToDoPage/ToDoMain.js";
 import Profile from "../ProfilePage/Profile.js";
+import About from "../About Page/About.js"
+import Contact from "../Contact Page/Contact.js"
+import AsideComponent from "../RightSide/AsideComponent.js";
+import { useState } from "react";
+
 
 const HeaderLoggedin = () => {
 
     const { logout, loginWithRedirect, isAuthenticated } = useAuth0()
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
 
     return (
         <div className="App">
@@ -31,8 +41,8 @@ const HeaderLoggedin = () => {
                                                 style={{ maxHeight: '100px' }}
                                                 navbarScroll>
                                                 <Nav.Link as={Link} to="/">Home</Nav.Link>
-                                                <Nav.Link as={Link} to="/addword" className='mx-5'>Add Word</Nav.Link>
-                                                <Nav.Link as={Link} to="/translate" className='mx-5'>Translate</Nav.Link>
+                                                <Nav.Link as={Link} to="/addword">Add Word</Nav.Link>
+                                                <Nav.Link as={Link} to="/translate">Translate</Nav.Link>
                                                 <NavDropdown title="All Lists" id="navbarScrollingDropdown">
                                                     <NavDropdown.Item as={Link} to="/greenlist">Green List</NavDropdown.Item>
                                                     <NavDropdown.Item as={Link} to="/yellowlist">
@@ -47,9 +57,11 @@ const HeaderLoggedin = () => {
                                                     </NavDropdown.Item>
                                                 </NavDropdown>
 
-                                                <Nav.Link as={Link} to="/todo" className='mx-5'>ToDo</Nav.Link>
+                                                <Nav.Link as={Link} to="/todo">ToDo</Nav.Link>
                                             </Nav>
                                             <Nav>
+                                                <Nav.Link as={Link} to="/about">About</Nav.Link>
+                                                <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
                                                 <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
                                                 <Nav.Link as={Link} to="logout" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} >Log out</Nav.Link>
                                             </Nav>
@@ -65,23 +77,33 @@ const HeaderLoggedin = () => {
                                         </Navbar.Collapse>
                                     </Container>
                                 </Navbar>
+                                <Container >
+                                    <Row>
+                                        <Col lg="8" className="me-auto">
+                                            <Routes>
+                                                <Route path="/" element={<Home />} />
+                                                <Route path="/addword" element={<AddWord />} />
+                                                <Route path="/translate" element={<Translate />} />
+                                                <Route path="/addword" element={<AddWord />} />
+                                                <Route path="/todo" element={<Todo />} />
+                                                <Route path="/alllist" element={<AllList />} />
+                                                <Route path="/yellowlist" element={<YellowList />} />
+                                                <Route path="/greenlist" element={<GreenList />} />
+                                                <Route path="/redlist" element={<RedList />} />
+                                                <Route path="/profile" element={<Profile />} />
+                                                <Route path="/about" element={<About />} />
+                                                <Route path="/contact" element={<Contact />} />
+                                            </Routes>
+                                        </Col>
+                                        <Col lg="3" className="ms-auto" >
+                                            <AsideComponent />
+                                        </Col>
+                                    </Row>
+                                </Container>
                             </>
                             <div>
-                                <Routes>
-                                    <Route path="/" element={<Home />} />
-                                    <Route path="/addword" element={<AddWord />} />
-                                    <Route path="/translate" element={<Translate />} />
-                                    <Route path="/addword" element={<AddWord />} />
-                                    <Route path="/todo" element={<Todo />} />
-                                    <Route path="/alllist" element={<AllList />} />
-                                    <Route path="/yellowlist" element={<YellowList />} />
-                                    <Route path="/greenlist" element={<GreenList />} />
-                                    <Route path="/redlist" element={<RedList />} />
-                                    <Route path="/profile" element={<Profile />} />
-                                </Routes>
                             </div>
                         </div>
-
                     </BrowserRouter> :
                     <BrowserRouter>
                         <div>
@@ -94,10 +116,12 @@ const HeaderLoggedin = () => {
                                             style={{ maxHeight: '100px' }}
                                             navbarScroll>
                                             <Nav.Link as={Link} to="/">Home</Nav.Link>
-                                            <Nav.Link as={Link} to="/translate" className='mx-5'>Translate</Nav.Link>
+                                            <Nav.Link as={Link} to="/translate">Translate</Nav.Link>
+                                            <Nav.Link as={Link} to="/about">About</Nav.Link>
+                                            <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
                                         </Nav>
                                         <Nav>
-                                            <Nav.Link to="logout" onClick={() => loginWithRedirect()} >Log in</Nav.Link>
+                                            <Nav.Link to="logout" onClick={() => loginWithRedirect()} >Log in / Sign up</Nav.Link>
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Container>
@@ -106,6 +130,8 @@ const HeaderLoggedin = () => {
                                 <Routes>
                                     <Route path="/translate" element={<Translate />} />
                                     <Route path="/" element={<Home />} />
+                                    <Route path="/about" element={<About />} />
+                                    <Route path="/contact" element={<Contact />} />
                                 </Routes>
                             </div>
                         </div>

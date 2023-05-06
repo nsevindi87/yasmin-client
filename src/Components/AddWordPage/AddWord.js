@@ -13,18 +13,18 @@ const AddWord = () => {
     <>
       <Container fluid className='bg-light' style={{height:"100vh"}}>
         <Row>
-          <Col lg="9">
+          <Col>
             <h1 className='mt-2 text-center'>Add New Data</h1>
 
-            <FloatingLabel label="First Value" className="my-3">
+            <FloatingLabel label="First Value">
               <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='firstValue' placeholder="Write your first value" />
             </FloatingLabel>
 
-            <FloatingLabel label="Second Value" className="my-3">
+            <FloatingLabel label="Second Value">
               <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='secondValue' placeholder="Write your second value" />
             </FloatingLabel>
 
-            <FloatingLabel label="Second Value" className="my-3">
+            <FloatingLabel label="Second Value" >
               <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='thirdValue' placeholder="Write your third value" />
             </FloatingLabel>
 
@@ -40,13 +40,7 @@ const AddWord = () => {
             <h1 className='mt-2 text-center'>Recently Added</h1>
             <AddWordUnterList/>
           </Col>
-          
-          <Col style={{ padding: "-100px" }}>
-            <AsideComponent/>
-          </Col>
-
         </Row>
-
       </Container>
 
     </>
