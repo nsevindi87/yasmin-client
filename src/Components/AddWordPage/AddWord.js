@@ -17,19 +17,19 @@ const AddWord = () => {
             <h1 className='mt-2 text-center'>Add New Data</h1>
 
             <FloatingLabel label="First Value">
-              <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='firstValue' placeholder="Write your first value" />
+              <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='firstValue' value={inputValue.firstValue} />
             </FloatingLabel>
 
             <FloatingLabel label="Second Value">
-              <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='secondValue' placeholder="Write your second value" />
+              <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='secondValue' value={inputValue.secondValue} />
             </FloatingLabel>
 
             <FloatingLabel label="Second Value" >
-              <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='thirdValue' placeholder="Write your third value" />
+              <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='thirdValue' value={inputValue.thirdValue} />
             </FloatingLabel>
 
-            <FloatingLabel  label="Write your notes">
-              <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} as="textarea" id='note' placeholder="Leave a comment here" style={{ height: '100px' }}/>
+            <FloatingLabel  label="Notes">
+              <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} as="textarea" id='note' value={inputValue.note} style={{ height: '100px' }}/>
             </FloatingLabel>
 
             <div className='mt-4'>

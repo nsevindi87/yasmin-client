@@ -85,32 +85,35 @@ const getRedList = async () => {
 
 //ADD NEW WORD=====================================
 const handleNewWord = async () => {
-  try {
-    console.log(inputValue)
-    
-    const response = await fetch(`${BASE_URL}/words`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(inputValue),
-    });
-    console.log(response)
-    if (!response.ok) {
-      throw new Error("Failed to create post");
+  if(inputValue.firstValue.length == 0 && inputValue.secondValue.length == 0 && inputValue.thirdValue.length == 0 && inputValue.note.length == 0){
+    alert("Lütfen en az bir bölümü doldurun")
+  }else{
+    try {
+      const response = await fetch(`${BASE_URL}/words`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputValue),
+      });
+      console.log(response)
+      if (!response.ok) {
+        throw new Error("Failed to create post");
+      }
+      const data = await response.json();
+      setInputValue({
+        firstValue: "",
+        secondValue: "",
+        thirdValue: "",
+        note: "",
+        listGroup: ""
+      })
+    } catch (error) {
+      console.error(error);
     }
-    const data = await response.json();
-    console.log(data)
-  } catch (error) {
-    console.error(error);
+    
   }
-  setInputValue({
-    firstValue: "",
-    secondValue: "",
-    thirdValue: "",
-    note: "",
-    listGroup: ""
-  })
+  
 };
 
 
