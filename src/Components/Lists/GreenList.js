@@ -12,9 +12,9 @@ const GreenList = () => {
   }, [greenList])
   return (
     <>
-      <Container fluid>
+      <Container>
         <Row className='mt-5'>
-          <Col lg="9">
+          <Col>
             <h1 className='text-center'>Green List</h1>
             <div className='mb-1 text-center'>
               <Button className='btn-dark text-warning mx-3'>Training</Button>
@@ -56,9 +56,9 @@ const GreenList = () => {
               </tbody>
             </Table>
           </Col>
-          <Col lg="3">
+          {/* <Col lg="3">
             <AsideComponent />
-          </Col>   
+          </Col>   */} 
         </Row>
       </Container>
     </>

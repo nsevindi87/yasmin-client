@@ -30,9 +30,9 @@ const HeaderLoggedin = () => {
             <div>
                 {isAuthenticated ?
                     <BrowserRouter>
-                        <div>
+                        <div >
                             <>
-                                <Navbar bg="dark" expand="lg" variant="dark" >
+                                <Navbar bg="dark" fluid variant="dark" sticky="top">
                                     <Container>
                                         <Navbar.Brand as={Link} to="/">Learning App</Navbar.Brand>
                                         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -76,9 +76,9 @@ const HeaderLoggedin = () => {
                                         </Navbar.Collapse>
                                     </Container>
                                 </Navbar>
-                                <Container >
+                                <Container style={{maxWidth: 1500}}>
                                     <Row>
-                                        <Col lg="8" className="me-auto">
+                                        <Col lg="9"  className="me-auto">
                                             <Routes>
                                                 <Route path="/addword" element={<AddWord />} />
                                                 <Route path="/translate" element={<Translate />} />
@@ -93,7 +93,7 @@ const HeaderLoggedin = () => {
                                                 <Route path="/contact" element={<Contact />} />
                                             </Routes>
                                         </Col>
-                                        <Col lg="3" className="ms-auto" >
+                                        <Col className="mt-5" sticky="top">
                                             <AsideComponent />
                                         </Col>
                                     </Row>

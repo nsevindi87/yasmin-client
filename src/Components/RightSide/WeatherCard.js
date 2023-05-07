@@ -26,7 +26,7 @@ function WeatherCard() {
   },[])
 
   return (
-    <Card className="bg-dark text-white mt-1">
+    <Card className="bg-dark text-white mt-1" >
       <Card.Img className='pb-0' src={image} style={{opacity:"20%"}} alt="Card image" />
       <Card.ImgOverlay>
         <Card.Title>{weather?.name}</Card.Title>

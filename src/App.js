@@ -6,9 +6,8 @@ import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 function App() {
 
   return (
-    <div>
+    <div >
       <Header />
-      
     </div>
   )
 }

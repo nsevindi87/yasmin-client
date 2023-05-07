@@ -14,8 +14,8 @@ const GeneralList = () => {
   return (
     <>
       <Container fluid>
-        <Row className='mt-5'>
-          <Col lg="9">
+        <Row className='mt-5' >
+          <Col >
             <h1 className='text-center'>All Word List</h1>
             <div className='mb-1 text-center'>
               <Button className='btn-dark text-warning mx-3'>Training</Button>
@@ -44,7 +44,7 @@ const GeneralList = () => {
                     <td>{word.note}</td>
                     <td>
                       <Button variant="warning me-2">Edit</Button>
-                      <Button onClick={() => handleDelete(word.id, word.listGroup)} variant="danger">Danger</Button>
+                      <Button onClick={() => handleDelete(word.id, word.listGroup)} variant="danger">Delete</Button>
                     </td>
                     <td> <Button variant={word.listGroup}></Button></td>
                     <td>
@@ -57,9 +57,6 @@ const GeneralList = () => {
 
               </tbody>
             </Table>
-          </Col>
-          <Col lg="3">
-            <AsideComponent />
           </Col>
         </Row>
       </Container>

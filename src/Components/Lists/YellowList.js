@@ -15,7 +15,7 @@ const YellowList = () => {
     <>
       <Container fluid>
         <Row className='mt-5'>
-          <Col lg="9">
+          <Col>
             <h1 className='text-center'>Yellow List</h1>
             <div  className='mb-1 text-center'>
               <Button className='btn-dark text-warning mx-3'>Training</Button>
@@ -56,9 +56,6 @@ const YellowList = () => {
                 ))}
               </tbody>
             </Table>
-          </Col>
-          <Col lg="3">
-            <AsideComponent />
           </Col>
         </Row>
       </Container>

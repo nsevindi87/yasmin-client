@@ -14,17 +14,17 @@ const AddWord = () => {
       <Container fluid className='bg-light' style={{height:"100vh"}}>
         <Row>
           <Col>
-            <h1 className='mt-2 text-center'>Add New Data</h1>
+            <h1 className='mt-5 text-center'>Add New Data</h1>
 
             <FloatingLabel label="First Value">
               <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='firstValue' value={inputValue.firstValue} />
             </FloatingLabel>
 
             <FloatingLabel label="Second Value">
-              <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='secondValue' value={inputValue.secondValue} />
+              <Form.Control className='mt-4' onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='secondValue' value={inputValue.secondValue} />
             </FloatingLabel>
 
-            <FloatingLabel label="Second Value" >
+            <FloatingLabel className='my-4' label="Third Value" >
               <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='thirdValue' value={inputValue.thirdValue} />
             </FloatingLabel>
 
