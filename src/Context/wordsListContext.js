@@ -20,7 +20,7 @@ const WordsListContextProvider = ({children}) => {
 })
 
 //BASE URL
-const BASE_URL = "http://localhost:8000"
+const BASE_URL = "http://localhost:8080"
 
 //GET ALL DATAS=====================================
 const getWordsList = async () => {
@@ -50,6 +50,7 @@ const getGreenList = async () => {
     console.error(error);
     throw new Error("Failed to fetch posts")
   }
+  
 };
 
 //GET YELLOW DATAS=====================================

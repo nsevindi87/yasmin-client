@@ -40,7 +40,6 @@ const HeaderLoggedin = () => {
                                             <Nav className="m-auto my-1 my-lg-0"
                                                 style={{ maxHeight: '100px' }}
                                                 navbarScroll>
-                                                <Nav.Link as={Link} to="/">Home</Nav.Link>
                                                 <Nav.Link as={Link} to="/addword">Add Word</Nav.Link>
                                                 <Nav.Link as={Link} to="/translate">Translate</Nav.Link>
                                                 <NavDropdown title="All Lists" id="navbarScrollingDropdown">
@@ -81,7 +80,6 @@ const HeaderLoggedin = () => {
                                     <Row>
                                         <Col lg="8" className="me-auto">
                                             <Routes>
-                                                <Route path="/" element={<Home />} />
                                                 <Route path="/addword" element={<AddWord />} />
                                                 <Route path="/translate" element={<Translate />} />
                                                 <Route path="/addword" element={<AddWord />} />

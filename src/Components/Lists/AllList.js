@@ -35,7 +35,7 @@ const GeneralList = () => {
                 </tr>
               </thead>
               <tbody>
-                {allWordsList.map((word, value) => (
+                {allWordsList?.map((word, value) => (
                   <tr key={value}>
                     <td>{value + 1}</td>
                     <td>{word.firstValue}</td>

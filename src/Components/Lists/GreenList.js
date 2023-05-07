@@ -34,7 +34,7 @@ const GreenList = () => {
                 </tr>
               </thead>
               <tbody>
-                {greenList.map((word, value) => (
+                {greenList?.map((word, value) => (
                   <tr key={value}>
                     <td>{value + 1}</td>
                     <td>{word.firstValue}</td>
