@@ -80,6 +80,7 @@ const HeaderLoggedin = () => {
                                     <Row>
                                         <Col lg="9"  className="me-auto">
                                             <Routes>
+                                                <Route path="/" element={<Home />} />
                                                 <Route path="/addword" element={<AddWord />} />
                                                 <Route path="/translate" element={<Translate />} />
                                                 <Route path="/addword" element={<AddWord />} />

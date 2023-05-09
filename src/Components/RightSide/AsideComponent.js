@@ -15,7 +15,6 @@ const AsideComponent = () => {
             type="switch"
             id="inline-radio-1"
             label="Weather"
-            checked="true"
           />
           <Form.Check
             type="switch"

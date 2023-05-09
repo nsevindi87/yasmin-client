@@ -10,12 +10,9 @@ const ToDoMain = () => {
         <div>
             <Container fluid>
                 <Row className='mt-5'>
-                    <Col lg="9">
+                    <Col>
                         <InputForm />
                         <ToDoList />
-                    </Col>
-                    <Col lg="3">
-                        <AsideComponent />
                     </Col>
                 </Row>
             </Container>

@@ -85,7 +85,7 @@ const getRedList = async () => {
 
 //ADD NEW WORD=====================================
 const handleNewWord = async () => {
-  if(inputValue.firstValue.length == 0 && inputValue.secondValue.length == 0 && inputValue.thirdValue.length == 0 && inputValue.note.length == 0){
+  if(inputValue.firstValue.length === 0 && inputValue.secondValue.length === 0 && inputValue.thirdValue.length === 0 && inputValue.note.length === 0){
     alert("Lütfen en az bir bölümü doldurun")
   }else{
     try {
@@ -100,7 +100,6 @@ const handleNewWord = async () => {
       if (!response.ok) {
         throw new Error("Failed to create post");
       }
-      const data = await response.json();
       setInputValue({
         firstValue: "",
         secondValue: "",
@@ -113,10 +112,7 @@ const handleNewWord = async () => {
     }
     
   }
-  
 };
-
-
 
 //DELETE WORD
 const handleDelete = async(pId, pList) =>{
