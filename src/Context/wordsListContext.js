@@ -9,9 +9,10 @@ const WordsListContextProvider = ({ children }) => {
   const [greenList, setGreenList] = useState([]);
   const [yellowList, setYellowList] = useState([]);
   const [redList, setRedList] = useState([]);
-  const [typing, setTyping] = useState(false);
+  const [show, setShow] = useState(false);
 
   const [inputValue, setInputValue] = useState({
+    id: "",
     word: "",
     wordMeaning: "",
     wordSecondMeaning: "",
@@ -78,7 +79,7 @@ const WordsListContextProvider = ({ children }) => {
   //DELETE WORD  =====================================================================================================
   const handleDelete = async (pId) => {
     try {
-      const response = await fetch(`${BASE_URL}/words/${pId}`, {
+      await fetch(`${BASE_URL}/words/${pId}`, {
         method: "DELETE"
       })
     } catch (error) {
@@ -87,9 +88,44 @@ const WordsListContextProvider = ({ children }) => {
   }
 
   //UPDATE WORD  ==================================================================================================
+  //Edit tiklandiginda forma eski bilgiler gelir
+  const handleEdit = async (pPost) => {
+    setShow(true)
+    setInputValue({
+      id: pPost.id,
+      word: pPost.word,
+      wordMeaning: pPost.wordMeaning,
+      wordSecondMeaning: pPost.wordSecondMeaning,
+      wordNote: pPost.wordNote,
+      wordCategory: pPost.wordCategory
+    })
+  }
+  //Acilir sayfayi kapatir
+  const handleClose = () => setShow(false)
 
-  const handleUpdate = async (pId) =>{
-    
+  //Gerekli degisikliklerden sonra yeni bilgiler DB ye kaydedilir.
+  const handleUpdate = async () => {
+    try {
+      await fetch(`${BASE_URL}/words/${inputValue.id}`, {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputValue)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+    setShow(false)
+    setInputValue({
+      id: null,
+      word: "",
+      wordMeaning: "",
+      wordSecondMeaning: "",
+      wordNote: "",
+      wordCategory: ""
+    })
   }
 
 
@@ -98,13 +134,14 @@ const WordsListContextProvider = ({ children }) => {
 
   return (
     <wordsContext.Provider value={{
-      typing, setTyping,
       getWordsList, allWordsList, setAllWordsList,
       greenList, setGreenList,
       yellowList, setYellowList,
       redList, setRedList,
       inputValue, setInputValue,
-      handleDelete, handleNewWord
+      handleDelete, handleNewWord,
+      handleEdit, handleUpdate, show, setShow,
+      handleClose
     }}>
       {children}
     </wordsContext.Provider>
