@@ -10,16 +10,19 @@ const Practice = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const shuffledData = [...allWordsList].sort(() => Math.random() - 0.5);
+
+
     useEffect(() => {
         getWordsList()
-    }, [allWordsList])
+    }, [])
 
     return (
         <div>
             <h1 className='text-center my-3'>Practice All Words</h1>
             <div style={{ display: 'flex', flexWrap: "wrap", gap: "50px" }}>
 
-                {allWordsList.map((word) => (
+                {shuffledData.map((word) => (
                     <Card border="dark" style={{ width: '12rem' }}>
                         
                         <Card.Header style={{ backgroundColor: 'SeaGreen' }} className='py-3'>
