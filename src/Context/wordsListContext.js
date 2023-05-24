@@ -12,7 +12,7 @@ const WordsListContextProvider = ({ children }) => {
   const [show, setShow] = useState(false);
 
   const [inputValue, setInputValue] = useState({
-    id: "",
+    id: null,
     word: "",
     wordMeaning: "",
     wordSecondMeaning: "",

@@ -20,12 +20,14 @@ const Practice = () => {
             <div style={{ display: 'flex', flexWrap: "wrap", gap: "50px" }}>
 
                 {allWordsList.map((word) => (
-                    <Card border="secondary" style={{ width: '12rem' }}>
-                        <Card.Body className='pb-0 px-0'>
-                            <Card.Title >{word.word}</Card.Title>
+                    <Card border="dark" style={{ width: '12rem' }}>
+                        
+                        <Card.Header style={{ backgroundColor: 'SeaGreen' }} className='py-3'>
 
-                            <Button variant="secondary w-100" onClick={handleShow}>
-                                Learn it
+                        </Card.Header>
+                        <Card.Body>
+                        <Button variant="info w-100" onClick={handleShow}>
+                            {word.wordSecondMeaning}
                             </Button>
 
                         </Card.Body>

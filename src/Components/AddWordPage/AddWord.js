@@ -1,9 +1,7 @@
-import React, { useContext, useEffect } from 'react';
-import { Container, FloatingLabel, Form, Button,Table,Row,Col} from 'react-bootstrap';
-import AsideComponent from '../RightSide/AsideComponent';
+import React, { useContext } from 'react';
+import { Container, FloatingLabel, Form, Button,Row,Col} from 'react-bootstrap';
 import AddWordUnterList from './AddWordUnterList';
 import {wordsContext} from "../../Context/wordsListContext"
-
 
 const AddWord = () => {
   const { inputValue, setInputValue, handleNewWord } = useContext(wordsContext)
@@ -41,7 +39,6 @@ const AddWord = () => {
           </Col>
         </Row>
       </Container>
-
     </>
   )
 }

@@ -21,6 +21,7 @@ import { useState } from "react";
 const HeaderLoggedin = () => {
 
     const { logout, loginWithRedirect, isAuthenticated } = useAuth0()
+    
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
