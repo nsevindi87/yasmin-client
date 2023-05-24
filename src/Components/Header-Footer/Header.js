@@ -13,6 +13,8 @@ import Profile from "../ProfilePage/Profile.js";
 import About from "../About Page/About.js"
 import Contact from "../Contact Page/Contact.js"
 import AsideComponent from "../RightSide/AsideComponent.js";
+import Practice from "../Practice.js";
+import QuizPage from "../QuizPage.js";
 import { useState } from "react";
 
 
@@ -92,6 +94,8 @@ const HeaderLoggedin = () => {
                                                 <Route path="/profile" element={<Profile />} />
                                                 <Route path="/about" element={<About />} />
                                                 <Route path="/contact" element={<Contact />} />
+                                                <Route path="/practice" element={<Practice />} />
+                                                <Route path="/quiz" element={<QuizPage />} />
                                             </Routes>
                                         </Col>
                                         <Col className="mt-5" sticky="top">
