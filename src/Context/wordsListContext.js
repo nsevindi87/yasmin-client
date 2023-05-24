@@ -20,9 +20,9 @@ const WordsListContextProvider = ({children}) => {
 })
 
 //BASE URL
-const BASE_URL = "http://localhost:8080"
+const BASE_URL = "http://localhost:3302"
 
-//GET ALL DATAS=====================================
+//GET ALL DATAS=====================================================================================================
 const getWordsList = async () => {
   try {
     const response = await fetch(`${BASE_URL}/words`);
@@ -30,60 +30,23 @@ const getWordsList = async () => {
       throw new Error("Failed to fetch posts");
     }
     const data = await response.json();
+    const dataGreen = data.filter((word) => word.wordCategory === "success")
+    const dataYellow = data.filter((word) => word.wordCategory === "warning")
+    const dataRed = data.filter((word) => word.wordCategory === "danger")
     setAllWordsList(data)
+    setGreenList(dataGreen)
+    setYellowList(dataYellow)
+    setRedList(dataRed)
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch posts")
   }
 };
 
-//GET GREEN DATAS=====================================
-const getGreenList = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/words/success`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch posts");
-    }
-    const data = await response.json();
-    setGreenList(data)
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch posts")
-  }
-  
-};
 
-//GET YELLOW DATAS=====================================
-const getYellowList = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/words/warning`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch posts");
-    }
-    const data = await response.json();
-    setYellowList(data)
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch posts")
-  }
-};
 
-//GET RED DATAS=====================================
-const getRedList = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/words/danger`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch posts");
-    }
-    const data = await response.json();
-    setRedList(data)
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch posts")
-  }
-};
 
-//ADD NEW WORD=====================================
+//ADD NEW WORD=====================================================================================================
 const handleNewWord = async () => {
   if(inputValue.firstValue.length === 0 && inputValue.secondValue.length === 0 && inputValue.thirdValue.length === 0 && inputValue.note.length === 0){
     alert("Lütfen en az bir bölümü doldurun")
@@ -114,6 +77,10 @@ const handleNewWord = async () => {
   }
 };
 
+
+
+
+
 //DELETE WORD
 const handleDelete = async(pId, pList) =>{
   try {
@@ -128,9 +95,9 @@ const handleDelete = async(pId, pList) =>{
       <wordsContext.Provider value={{
         typing, setTyping,
         getWordsList, allWordsList, setAllWordsList,
-        getGreenList, greenList, setGreenList,
-        yellowList, setYellowList,getYellowList,
-        getRedList, redList, setRedList,
+         greenList, setGreenList,
+        yellowList, setYellowList,
+         redList, setRedList,
         inputValue, setInputValue,
         handleDelete,handleNewWord
         }}>

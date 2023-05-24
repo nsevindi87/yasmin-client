@@ -5,10 +5,10 @@ import AsideComponent from '../RightSide/AsideComponent';
 
 const YellowList = () => {
 
-  const { yellowList, getYellowList, allWordsList, handleDelete } = useContext(wordsContext)
+  const { yellowList, getWordsList, handleDelete } = useContext(wordsContext)
 
   useEffect(() => {
-    getYellowList()
+    getWordsList()
   }, [yellowList])
 
   return (

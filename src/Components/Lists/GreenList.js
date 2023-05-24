@@ -5,10 +5,10 @@ import AsideComponent from '../RightSide/AsideComponent';
 
 
 const GreenList = () => {
-  const { greenList, getGreenList, allWordsList, handleDelete } = useContext(wordsContext)
+  const { greenList,getWordsList, handleDelete } = useContext(wordsContext)
 
   useEffect(() => {
-    getGreenList()
+    getWordsList()
   }, [greenList])
   return (
     <>
@@ -37,10 +37,10 @@ const GreenList = () => {
                 {greenList?.map((word, value) => (
                   <tr key={value}>
                     <td>{value + 1}</td>
-                    <td>{word.firstValue}</td>
-                    <td>{word.secondValue}</td>
-                    <td>{word.thirdValue}</td>
-                    <td>{word.note}</td>
+                    <td>{word.word}</td>
+                    <td>{word.wordMeaning}</td>
+                    <td>{word.wordSecondMeaning}</td>
+                    <td>{word.wordNote}</td>
                     <td>
                       <Button variant="warning me-2">Edit</Button>
                       <Button onClick={() => handleDelete(word.id, word.listGroup)} variant="danger">Delete</Button>

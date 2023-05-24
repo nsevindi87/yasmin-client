@@ -20,14 +20,12 @@ const AsideComponent = () => {
             type="switch"
             id="custom-switch"
             label="Exercise"
-            checked="true"
             className='mx-2'
           />
           <Form.Check
             type="switch"
             id="custom-switch"
             label="Currency"
-            checked="true"
           />
         </div>
       </Form>
