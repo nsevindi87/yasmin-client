@@ -75,20 +75,26 @@ const WordsListContextProvider = ({ children }) => {
     }
   };
 
-
-
-
-
-  //DELETE WORD
-  const handleDelete = async (pId, pList) => {
+  //DELETE WORD  =====================================================================================================
+  const handleDelete = async (pId) => {
     try {
-      const response = await fetch(`${BASE_URL}/words/${pList}/${pId}`, {
+      const response = await fetch(`${BASE_URL}/words/${pId}`, {
         method: "DELETE"
       })
     } catch (error) {
       console.log(error);
     }
   }
+
+  //UPDATE WORD  ==================================================================================================
+
+  const handleUpdate = async (pId) =>{
+    
+  }
+
+
+
+
 
   return (
     <wordsContext.Provider value={{

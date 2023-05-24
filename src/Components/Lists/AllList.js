@@ -44,7 +44,7 @@ const GeneralList = () => {
                     <td>{word.wordNote}</td>
                     <td>
                       <Button variant="warning me-1">Edit</Button>
-                      <Button onClick={() => handleDelete(word.id, word.listGroup)} variant="danger xs">Delete</Button>
+                      <Button onClick={() => handleDelete(word.id)} variant="danger">Delete</Button>
                     </td>
                     <td> {word.wordCategory ? <Button variant={word.wordCategory}></Button> : null}</td>
                     <td>
