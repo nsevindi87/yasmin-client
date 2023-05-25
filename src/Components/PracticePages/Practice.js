@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { wordsContext } from "../Context/wordsListContext";
+import { wordsContext } from "../../Context/wordsListContext";
 import { Button, Modal, Card } from 'react-bootstrap';
 
 
 const Practice = () => {
-    const { yellowList, getWordsList } = useContext(wordsContext)
+    const { allWordsList, getWordsList } = useContext(wordsContext)
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const shuffledData = [...yellowList].sort(() => Math.random() - 0.5);
+    const shuffledData = [...allWordsList].sort(() => Math.random() - 0.5);
 
 
     useEffect(() => {
@@ -25,11 +25,11 @@ const Practice = () => {
                 {shuffledData.map((word) => (
                     <Card border="dark" style={{ width: '12rem' }}>
                         
-                        <Card.Header className='py-3 bg-warning p-2 text-dark bg-opacity-75'>
+                        <Card.Header style={{ backgroundColor: 'SeaGreen' }} className='py-3'>
 
                         </Card.Header>
                         <Card.Body>
-                        <Button className="bg-warning w-100 text-dark bg-opacity-25 border-0"  onClick={handleShow}>
+                        <Button variant="info w-100" onClick={handleShow}>
                             {word.wordSecondMeaning}
                             </Button>
 
@@ -62,6 +62,8 @@ const Practice = () => {
                     </Card>
                 ))}
             </div>
+
+
         </div>
     )
 }
