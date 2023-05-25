@@ -25,11 +25,11 @@ const Practice = () => {
                 {shuffledData.map((word) => (
                     <Card border="dark" style={{ width: '12rem' }}>
                         
-                        <Card.Header style={{ backgroundColor: 'SeaGreen' }} className='py-3'>
+                        <Card.Header className='py-3 bg-warning p-2 text-dark bg-opacity-75'>
 
                         </Card.Header>
                         <Card.Body>
-                        <Button variant="info w-100" onClick={handleShow}>
+                        <Button className="bg-warning w-100 text-dark bg-opacity-25 border-0"  onClick={handleShow}>
                             {word.wordSecondMeaning}
                             </Button>
 
