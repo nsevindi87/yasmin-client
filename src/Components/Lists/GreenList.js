@@ -46,11 +46,15 @@ const GreenList = () => {
                     <Button onClick={() => handleEdit(word)} variant="warning me-1">Edit</Button>
                       <Button onClick={() => handleDelete(word.id, word.listGroup)} variant="danger">Delete</Button>
                     </td>
-                    <td> <Button variant={word.listGroup}></Button></td>
+                    <td> {word.wordCategory ? <Button variant={word.wordCategory}></Button> : null}</td>
                     <td>
-                      <Button variant="success"></Button>
-                      <Button variant="warning" className='mx-2'></Button>
-                      <Button variant="danger"></Button>
+                    {word.wordCategory ? null :
+                        <div>
+                          <Button variant="success" ></Button>
+                          <Button variant="warning" className='mx-2'></Button>
+                          <Button variant="danger"></Button>
+                        </div>
+                      }
                     </td>
                   </tr>
                 ))}

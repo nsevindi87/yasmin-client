@@ -13,10 +13,10 @@ import Profile from "../ProfilePage/Profile.js";
 import About from "../About Page/About.js"
 import Contact from "../Contact Page/Contact.js"
 import AsideComponent from "../RightSide/AsideComponent.js";
-import Practice from "../Practice.js";
-import PracticeGreenList from "../PracticeGreenList.js"
-import PracticeYellowList from "../PracticeYellowList.js"
-import PracticeRedList from "../PracticeRedList.js"
+import Practice from "../PracticePages/Practice";
+import PracticeGreenList from "../PracticePages/PracticeGreenList.js"
+import PracticeYellowList from "../PracticePages/PracticeYellowList.js"
+import PracticeRedList from "../PracticePages/PracticeRedList.js"
 import QuizPage from "../QuizPage.js";
 import { useState } from "react";
 
