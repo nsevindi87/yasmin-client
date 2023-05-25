@@ -15,6 +15,7 @@ import Contact from "../Contact Page/Contact.js"
 import AsideComponent from "../RightSide/AsideComponent.js";
 import Practice from "../Practice.js";
 import PracticeGreenList from "../PracticeGreenList.js"
+import PracticeYellowList from "../PracticeYellowList.js"
 import QuizPage from "../QuizPage.js";
 import { useState } from "react";
 
@@ -98,6 +99,7 @@ const HeaderLoggedin = () => {
                                                 <Route path="/contact" element={<Contact />} />
                                                 <Route path="/practice" element={<Practice />} />
                                                 <Route path="//practice-greenList" element={<PracticeGreenList />} />
+                                                <Route path="//practice-yellowList" element={<PracticeYellowList />} />
                                                 <Route path="/quiz" element={<QuizPage />} />
                                             </Routes>
                                         </Col>

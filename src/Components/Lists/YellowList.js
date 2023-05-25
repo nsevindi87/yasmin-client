@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-import { Container, Row, Col, Table, Button } from 'react-bootstrap';
-import { wordsContext } from "../../Context/wordsListContext"
-import AsideComponent from '../RightSide/AsideComponent';
+import { Container, Row, Col, Table, Button,Nav } from 'react-bootstrap';
+import { wordsContext } from "../../Context/wordsListContext";
+import {  Link } from 'react-router-dom';
+
 
 const YellowList = () => {
 
@@ -18,8 +19,8 @@ const YellowList = () => {
           <Col>
             <h1 className='text-center'>Yellow List</h1>
             <div  className='mb-1 text-center'>
-              <Button className='btn-dark text-warning mx-3'>Training</Button>
-              <Button className='btn-dark text-warning'>Test Yourself</Button>
+            <Button className='btn-dark text-warning mx-3'><Nav.Link as={Link} to="/practice-yellowList">Training</Nav.Link></Button>
+              <Button className='btn-dark text-warning'><Nav.Link as={Link} to="/quiz">Test Yourself</Nav.Link></Button>
             </div>
             <Table striped bordered hover variant="warning">
               <thead>

@@ -4,13 +4,13 @@ import { Button, Modal, Card } from 'react-bootstrap';
 
 
 const Practice = () => {
-    const { greenList, getWordsList } = useContext(wordsContext)
+    const { yellowList, getWordsList } = useContext(wordsContext)
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const shuffledData = [...greenList].sort(() => Math.random() - 0.5);
+    const shuffledData = [...yellowList].sort(() => Math.random() - 0.5);
 
 
     useEffect(() => {
