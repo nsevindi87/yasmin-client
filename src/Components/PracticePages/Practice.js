@@ -34,7 +34,7 @@ const Practice = () => {
             label="Activate to change cards"
             checked={isChecked}
             onChange={() => setIsChecked(!isChecked)}
-            className="mb-3"
+            className="mb-3 p-0 size-xl"
           />
            
             <div style={{ display: 'flex', flexWrap: "wrap", gap: "50px" }}>
