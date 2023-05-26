@@ -6,7 +6,7 @@ import { PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
 
 
 const AddWordUnterList = () => {
-  const { getWordsList, allWordsList, handleDelete,handleEdit,handleClose, show, setInputValue,inputValue, handleUpdate } = useContext(wordsContext)
+  const { getWordsList, allWordsList, handleDelete,handleEdit,handleClose, show, setInputValue,inputValue, handleUpdate, handleEditList,handleDeleteList  } = useContext(wordsContext)
 
 
   useEffect(() => {
@@ -43,13 +43,13 @@ const AddWordUnterList = () => {
                     <Button onClick={() => handleEdit(word)} variant="warning me-1" className='p-2'><PencilSquare/></Button>
                     <Button onClick={() => handleDelete(word.id, word.listGroup)} variant="danger" className='p-2'><Trash3Fill/></Button>
                     </td>
-                    <td> {word.wordCategory ? <Button variant={word.wordCategory}></Button> : null}</td>
+                    <td> {word.wordCategory ? <Button variant={word.wordCategory} onClick={()=> handleDeleteList(word.id)} className='p-2'></Button> : null}</td>
                     <td>
                       {word.wordCategory ? null :
                         <div>
-                          <Button variant="success" ></Button>
-                          <Button variant="warning" className='mx-2'></Button>
-                          <Button variant="danger"></Button>
+                          <Button variant="success" onClick={() => handleEditList("success", word.id)} className='p-2'></Button>
+                          <Button variant="warning" onClick={() => handleEditList("warning", word.id)} className='p-2 mx-1'></Button>
+                          <Button variant="danger" onClick={() => handleEditList("danger", word.id)} className='p-2'></Button>
                         </div>
                       }
                     </td>

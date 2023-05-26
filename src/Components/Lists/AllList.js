@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect,useState } from 'react';
 import { Container, Row, Col, Table, Button, Modal, Form, FloatingLabel,Nav } from 'react-bootstrap';
 import { wordsContext } from "../../Context/wordsListContext";
 import {  Link } from 'react-router-dom';
@@ -8,7 +8,9 @@ import { PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
 
 
 const GeneralList = () => {
-  const { getWordsList, allWordsList, handleDelete, handleEdit, handleClose, show, setInputValue, inputValue, handleUpdate } = useContext(wordsContext)
+  const { getWordsList, allWordsList, handleDelete, handleEdit, handleClose, show, setInputValue, inputValue, handleUpdate,
+    wordList, setWordList,handleEditList,handleDeleteList } = useContext(wordsContext)
+
 
   useEffect(() => {
     getWordsList()
@@ -49,13 +51,13 @@ const GeneralList = () => {
                       <Button onClick={() => handleEdit(word)} variant="warning me-1" size='sm'><PencilSquare/></Button>
                       <Button onClick={() => handleDelete(word.id)} variant="danger" size='sm'><Trash3Fill/> </Button>
                     </td>
-                    <td> {word.wordCategory ? <Button variant={word.wordCategory} className='p-2'></Button> : null}</td>
+                    <td> {word.wordCategory ? <Button variant={word.wordCategory} onClick={()=> handleDeleteList(word.id)} className='p-2'></Button> : null}</td>
                     <td>
                       {word.wordCategory ? null :
                         <div>
-                          <Button variant="success" className='p-2'></Button>
-                          <Button variant="warning" className='p-2 mx-1'></Button>
-                          <Button variant="danger" className='p-2'></Button>
+                          <Button variant="success" onClick={() => handleEditList("success", word.id)} className='p-2'></Button>
+                          <Button variant="warning" onClick={() => handleEditList("warning",word.id)} className='p-2 mx-1'></Button>
+                          <Button variant="danger" onClick={() => handleEditList("danger",word.id)} className='p-2'></Button>
                         </div>
                       }
                     </td>

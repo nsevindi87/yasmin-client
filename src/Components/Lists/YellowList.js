@@ -8,7 +8,7 @@ import { PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
 
 const YellowList = () => {
 
-  const { yellowList, getWordsList, handleDelete, handleEdit, handleClose, show, setInputValue, inputValue, handleUpdate } = useContext(wordsContext)
+  const { yellowList, getWordsList, handleDelete, handleEdit, handleClose, show, setInputValue, inputValue, handleUpdate, handleDeleteList } = useContext(wordsContext)
 
   useEffect(() => {
     getWordsList()
@@ -48,7 +48,7 @@ const YellowList = () => {
                       <Button onClick={() => handleEdit(word)} variant="warning me-1" className='p-2'><PencilSquare/></Button>
                       <Button onClick={() => handleDelete(word.id, word.listGroup)} variant="danger" className='p-2'><Trash3Fill/></Button>
                     </td>
-                    <td> {word.wordCategory ? <Button variant={word.wordCategory} className='p-2'></Button> : null}</td>
+                    <td> {word.wordCategory ? <Button variant={word.wordCategory} onClick={()=> handleDeleteList(word.id)} className='p-2'></Button> : null}</td>
                     
                   </tr>
                 ))}

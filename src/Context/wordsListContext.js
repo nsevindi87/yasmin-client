@@ -12,6 +12,8 @@ const WordsListContextProvider = ({ children }) => {
   const [show, setShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
+  const [wordList, setWordList] = useState('');
+
 
   const [inputValue, setInputValue] = useState({
     id: null,
@@ -102,6 +104,17 @@ const WordsListContextProvider = ({ children }) => {
       wordCategory: pPost.wordCategory
     })
   }
+
+  //FORMU SIFIRLA
+  const handleCancel = async()=>{
+    setInputValue({
+      word: "",
+      wordMeaning: "",
+      wordSecondMeaning: "",
+      wordNote: "",
+      wordCategory: ""
+    })
+  }
   //Acilir sayfayi kapatir
   const handleClose = () => setShow(false)
 
@@ -141,6 +154,49 @@ const handleModalClose = () => {
 };
 
 
+//Change the List of Word
+const handleEditList = async (pListName, pId)=>{
+  try {
+    const response = await fetch(`${BASE_URL}/wordtolist` , {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ pListName, pId }),
+    });
+
+    if (response.ok) {
+      console.log('Kelime listeye eklendi');
+    } else {
+      console.error('Hata:1', response.statusText);
+    }
+  } catch (error) {
+    console.error('Hata:2', error);
+  }
+  
+}
+
+const handleDeleteList = async(pId)=>{
+  try {
+    const response = await fetch(`${BASE_URL}/delwordfromlist` , {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ pId }),
+    });
+
+    if (response.ok) {
+      console.log('Kelime listeden silindi');
+    } else {
+      console.error('Hata:1', response.statusText);
+    }
+  } catch (error) {
+    console.error('Hata:2', error);
+  }
+  
+}
+
 
   return (
     <wordsContext.Provider value={{
@@ -152,7 +208,8 @@ const handleModalClose = () => {
       handleDelete, handleNewWord,
       handleEdit, handleUpdate, show, setShow,
       handleClose, handleModalOpen, handleModalClose,
-      showModal,modalContent
+      showModal,modalContent,handleEditList,handleDeleteList,
+      handleCancel
     }}>
       {children}
     </wordsContext.Provider>
