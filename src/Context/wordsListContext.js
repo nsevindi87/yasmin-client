@@ -10,6 +10,8 @@ const WordsListContextProvider = ({ children }) => {
   const [yellowList, setYellowList] = useState([]);
   const [redList, setRedList] = useState([]);
   const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState('');
 
   const [inputValue, setInputValue] = useState({
     id: null,
@@ -129,6 +131,14 @@ const WordsListContextProvider = ({ children }) => {
   }
 
 
+  //OPEN - CLOSE MODELS IN PRACTICE PAGES
+  const handleModalOpen = (content) => {
+    setModalContent(content);
+    setShowModal(true);
+};
+const handleModalClose = () => {
+    setShowModal(false);
+};
 
 
 
@@ -141,7 +151,8 @@ const WordsListContextProvider = ({ children }) => {
       inputValue, setInputValue,
       handleDelete, handleNewWord,
       handleEdit, handleUpdate, show, setShow,
-      handleClose
+      handleClose, handleModalOpen, handleModalClose,
+      showModal,modalContent
     }}>
       {children}
     </wordsContext.Provider>

@@ -4,21 +4,11 @@ import { Button, Modal, Card, Form } from 'react-bootstrap';
 
 
 const Practice = () => {
-    const { allWordsList, getWordsList } = useContext(wordsContext)
-    const [showModal, setShowModal] = useState(false);
-    const [modalContent, setModalContent] = useState('');
+    const { allWordsList, getWordsList, handleModalOpen, handleModalClose, modalContent, showModal } = useContext(wordsContext)
     const [isChecked, setIsChecked] = useState(false);
 
 
-    const handleModalOpen = (content) => {
-        setModalContent(content);
-        setShowModal(true);
-    };
-    const handleModalClose = () => {
-        setShowModal(false);
-    };
-
-    //Kelimeleri karistir
+    //Change the words place
     const shuffledData = [...allWordsList].sort(() => Math.random() - 0.5);
 
 
@@ -30,33 +20,33 @@ const Practice = () => {
         <div>
             <h1 className='text-center my-3'>Practice All Words</h1>
             <Form.Check
-            type="switch"
-            label="Activate to change cards"
-            checked={isChecked}
-            onChange={() => setIsChecked(!isChecked)}
-            className="mb-3 p-0 size-xl"
-          />
-           
+                type="switch"
+                label="Activate to change cards"
+                checked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
+                className="mb-3"
+            />
+
             <div style={{ display: 'flex', flexWrap: "wrap", gap: "50px" }}>
 
-                { isChecked ? shuffledData.map((word) => (
-                        <Card border="dark" style={{ width: '12rem' }}>
-                            <Card.Header className='py-3 bg-dark p-2 text-dark bg-opacity-75' />
-                            <Card.Body>
-                                <Button className="bg-primary w-100 text-dark bg-opacity-25 border-0" onClick={() => handleModalOpen(word)}>
-                                    {word.wordSecondMeaning}
-                                </Button>
-                            </Card.Body>
-                        </Card>
-                    )) : allWordsList.map((word) => (
-                        <Card border="dark" style={{ width: '12rem' }}>
-                            <Card.Header className='py-3 bg-dark p-2 text-dark bg-opacity-75' />
-                            <Card.Body>
-                                <Button className="bg-primary w-100 text-dark bg-opacity-25 border-0" onClick={() => handleModalOpen(word)}>
-                                    {word.wordSecondMeaning}
-                                </Button>
-                            </Card.Body>
-                        </Card>))
+                {isChecked ? shuffledData.map((word) => (
+                    <Card border="dark" style={{ width: '12rem' }}>
+                        <Card.Header className='py-3 bg-dark p-2 text-dark bg-opacity-75' />
+                        <Card.Body>
+                            <Button className="bg-primary w-100 text-dark bg-opacity-25 border-0" onClick={() => handleModalOpen(word)}>
+                                {word.wordSecondMeaning}
+                            </Button>
+                        </Card.Body>
+                    </Card>
+                )) : allWordsList.map((word) => (
+                    <Card border="dark" style={{ width: '12rem' }}>
+                        <Card.Header className='py-3 bg-dark p-2 text-dark bg-opacity-75' />
+                        <Card.Body>
+                            <Button className="bg-primary w-100 text-dark bg-opacity-25 border-0" onClick={() => handleModalOpen(word)}>
+                                {word.wordSecondMeaning}
+                            </Button>
+                        </Card.Body>
+                    </Card>))
                 }
 
                 < Modal show={showModal} onHide={handleModalClose}>

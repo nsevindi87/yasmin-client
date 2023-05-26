@@ -18,8 +18,8 @@ const RedList = () => {
         <Row className='mt-5'>
           <Col>
           <h1 className='text-center'>Red List</h1>
-            <div className='mb-1 text-center'>
-            <Button className='btn-dark text-warning mx-3'><Nav.Link as={Link} to="/practice-redList">Training</Nav.Link></Button>
+            <div className='mb-2 text-center'>
+              <Button className='btn-dark text-warning mx-3'><Nav.Link as={Link} to="/practice-redList">Training</Nav.Link></Button>
               <Button className='btn-dark text-warning'><Nav.Link as={Link} to="/quiz">Test Yourself</Nav.Link></Button>
             </div>
             <Table striped bordered hover variant="danger">

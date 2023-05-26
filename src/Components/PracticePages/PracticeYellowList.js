@@ -1,15 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { wordsContext } from "../../Context/wordsListContext";
-import { Button, Modal, Card } from 'react-bootstrap';
+import { Button, Modal, Card, Form } from 'react-bootstrap';
 
 
 const Practice = () => {
-    const { yellowList, getWordsList } = useContext(wordsContext)
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
+    const { yellowList, getWordsList, handleModalOpen, handleModalClose, modalContent,showModal  } = useContext(wordsContext)
+    const [isChecked, setIsChecked] = useState(false);
+;
+    //Change the words place
     const shuffledData = [...yellowList].sort(() => Math.random() - 0.5);
 
 
@@ -20,47 +18,56 @@ const Practice = () => {
     return (
         <div>
             <h1 className='text-center my-3'>Practice Yellow List</h1>
+            <Form.Check
+                type="switch"
+                label="Activate to change cards"
+                checked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
+                className="mb-3"
+            />
             <div style={{ display: 'flex', flexWrap: "wrap", gap: "50px" }}>
 
-                {shuffledData.map((word) => (
-                    <Card border="dark" style={{ width: '12rem' }}>
-                        
-                        <Card.Header className='py-3 bg-warning p-2 text-dark bg-opacity-75'>
-
-                        </Card.Header>
+                {isChecked ? shuffledData.map((word) => (
+                    <Card border="warning" style={{ width: '12rem' }}>
+                        <Card.Header className='py-3 bg-warning p-2 text-dark bg-opacity-75' />
                         <Card.Body>
-                        <Button className="bg-warning w-100 text-dark bg-opacity-25 border-0"  onClick={handleShow}>
-                            {word.wordSecondMeaning}
+                            <Button className="bg-warning w-100 text-dark bg-opacity-25 border-0" onClick={() => handleModalOpen(word)}>
+                                {word.wordSecondMeaning}
                             </Button>
-
                         </Card.Body>
-
-                        <Modal show={show} onHide={handleClose}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Modal heading</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Card.Text>
-                                    {word.wordMeaning}
-                                </Card.Text>
-                                <Card.Text>
-                                    {word.wordSecondMeaning}
-                                </Card.Text>
-                                <Card.Text>
-                                    {word.wordNote}
-                                </Card.Text>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>
-                                    Close
-                                </Button>
-                                <Button variant="primary" onClick={handleClose}>
-                                    Save Changes
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
                     </Card>
-                ))}
+                )) : yellowList.map((word) => (
+                    <Card border="dark" style={{ width: '12rem' }}>
+                        <Card.Header className='py-3 bg-warning p-2 text-dark bg-opacity-50' />
+                        <Card.Body>
+                            <Button className="bg-warning w-100 text-dark bg-opacity-25 border-0" onClick={() => handleModalOpen(word)}>
+                                {word.wordSecondMeaning}
+                            </Button>
+                        </Card.Body>
+                    </Card>))
+                }
+
+                < Modal show={showModal} onHide={handleModalClose}>
+                    <Modal.Header>
+                        <Modal.Title>{modalContent.word}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Card.Text>
+                            {modalContent.wordMeaning}
+                        </Card.Text>
+                        <Card.Text>
+                            {modalContent.wordSecondMeaning}
+                        </Card.Text>
+                        <Card.Text>
+                            {modalContent.wordNote}
+                        </Card.Text>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleModalClose}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         </div>
     )
