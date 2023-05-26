@@ -3,7 +3,7 @@ import image from "../../Images/contentImg.png"
 
 const Home = () => {
   return (
-    <div className='container-fluid'>
+    <div>
       <div className="row h-100" >
         <div className="col-6 ps-5" style={{height:"100vh",paddingTop:"15rem", backgroundColor:"#5fafff"}} >
           <h1>Don't work hard </h1>

@@ -38,7 +38,7 @@ const HeaderLoggedin = () => {
                     <BrowserRouter>
                         <div >
                             <>
-                                <Navbar bg="dark" fluid variant="dark" sticky="top">
+                                <Navbar bg="dark" variant="dark" sticky="top">
                                     <Container>
                                         <Navbar.Brand as={Link} to="/">Learning App</Navbar.Brand>
                                         <Navbar.Toggle aria-controls="navbarScroll" />

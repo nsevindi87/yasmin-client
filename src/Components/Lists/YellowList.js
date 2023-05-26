@@ -14,7 +14,7 @@ const YellowList = () => {
 
   return (
     <>
-      <Container fluid>
+      <Container>
         <Row className='mt-5'>
           <Col>
             <h1 className='text-center'>Yellow List</h1>

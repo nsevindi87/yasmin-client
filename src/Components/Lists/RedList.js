@@ -13,7 +13,7 @@ const RedList = () => {
   }, [redList])
   return (
     <>
-      <Container fluid>
+      <Container>
         <Row className='mt-5'>
           <Col>
           <h1 className='text-center'>Red List</h1>

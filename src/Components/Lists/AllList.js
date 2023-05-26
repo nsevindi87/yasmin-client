@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col, Table, Button, Modal, Form, FloatingLabel,Nav } from 'react-bootstrap';
 import { wordsContext } from "../../Context/wordsListContext";
 import {  Link } from 'react-router-dom';
+import { CheckCircle, PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
+
 
 
 
@@ -14,7 +16,7 @@ const GeneralList = () => {
 
   return (
     <>
-      <Container fluid>
+      <Container>
         <Row className='mt-5' >
           <Col >
             <h1 className='text-center'>All Word List</h1>
@@ -24,7 +26,7 @@ const GeneralList = () => {
             </div>
             <Table striped bordered hover variant="dark">
               <thead>
-                <tr>
+                <tr className='text-center'>
                   <th>#</th>
                   <th>Value 1</th>
                   <th>Value 2</th>
@@ -32,20 +34,20 @@ const GeneralList = () => {
                   <th>Notes</th>
                   <th>Actions </th>
                   <th>List </th>
-                  <th>New List </th>
+                  <th >New List </th>
                 </tr>
               </thead>
               <tbody>
                 {allWordsList?.map((word, value) => (
-                  <tr key={value}>
+                  <tr key={value} className='text-center'>
                     <td>{value + 1}</td>
                     <td>{word.word}</td>
                     <td>{word.wordMeaning}</td>
                     <td>{word.wordSecondMeaning}</td>
                     <td>{word.wordNote}</td>
                     <td>
-                      <Button onClick={() => handleEdit(word)} variant="warning me-1">Edit</Button>
-                      <Button onClick={() => handleDelete(word.id)} variant="danger">Delete</Button>
+                      <Button onClick={() => handleEdit(word)} variant="warning me-1"><PencilSquare/></Button>
+                      <Button onClick={() => handleDelete(word.id)} variant="danger"><Trash3Fill/> </Button>
                     </td>
                     <td> {word.wordCategory ? <Button variant={word.wordCategory}></Button> : null}</td>
                     <td>

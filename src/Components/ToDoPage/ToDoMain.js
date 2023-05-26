@@ -8,7 +8,7 @@ import ToDoList from './ToDoList';
 const ToDoMain = () => {
     return (
         <div>
-            <Container fluid>
+            <Container>
                 <Row className='mt-5'>
                     <Col>
                         <InputForm />

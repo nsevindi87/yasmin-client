@@ -8,7 +8,7 @@ const AddWord = () => {
 
   return (
     <>
-      <Container fluid className='bg-light' style={{height:"100vh"}}>
+      <Container className='bg-light' style={{height:"100vh"}}>
         <Row>
           <Col>
             <h1 className='mt-5 text-center'>Add New Data</h1>
