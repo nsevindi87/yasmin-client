@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
-import AsideComponent from '../RightSide/AsideComponent';
+import AsideComponent from '../SideBar/AsideComponent';
 import InputForm from "./InputForm"
 import ToDoList from './ToDoList';
 

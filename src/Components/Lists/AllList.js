@@ -49,7 +49,7 @@ const GeneralList = () => {
                       <Button onClick={() => handleEdit(word)} variant="warning me-1" size='sm'><PencilSquare/></Button>
                       <Button onClick={() => handleDelete(word.id)} variant="danger" size='sm'><Trash3Fill/> </Button>
                     </td>
-                    <td> {word.wordCategory ? <Button variant={word.wordCategory} size='sm' className='p-2'></Button> : null}</td>
+                    <td> {word.wordCategory ? <Button variant={word.wordCategory} className='p-2'></Button> : null}</td>
                     <td>
                       {word.wordCategory ? null :
                         <div>

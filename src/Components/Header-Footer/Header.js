@@ -12,25 +12,18 @@ import Todo from "../ToDoPage/ToDoMain.js";
 import Profile from "../ProfilePage/Profile.js";
 import About from "../About Page/About.js"
 import Contact from "../Contact Page/Contact.js"
-import AsideComponent from "../RightSide/AsideComponent.js";
+import AsideComponent from "../SideBar/AsideComponent.js";
 import Practice from "../PracticePages/Practice";
 import PracticeGreenList from "../PracticePages/PracticeGreenList.js"
 import PracticeYellowList from "../PracticePages/PracticeYellowList.js"
 import PracticeRedList from "../PracticePages/PracticeRedList.js"
 import QuizPage from "../QuizPage.js";
-import { useState } from "react";
 
 
 const HeaderLoggedin = () => {
 
     const { logout, loginWithRedirect, isAuthenticated } = useAuth0()
     
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-
     return (
         <div className="App">
             <div>
