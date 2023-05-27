@@ -29,6 +29,7 @@ const QuizPage = () => {
   const [resultColor, setResultColor] = useState('');
   const [isLastQuestion, setIsLastQuestion] = useState(false);
 
+  //When answer is selected!
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
     setResultColor('orange');
@@ -46,6 +47,7 @@ const QuizPage = () => {
     return () => clearTimeout(control);
   };
 
+  //To new question
   const handleNextQuestion = () => {
     if (currentQuestion < questions.length) {
       setCurrentQuestion(currentQuestion + 1);
@@ -54,7 +56,8 @@ const QuizPage = () => {
     }
   };
 
-  const cevapReaksiyon = () => {
+//Say something about answer
+  const reactAnswer = () => {
     let rightAnswer = questions[currentQuestion].correctAnswer
     if (selectedOption === questions[currentQuestion].correctAnswer) {
       return "Bravo! Right Answer : " + rightAnswer
@@ -63,6 +66,7 @@ const QuizPage = () => {
     }
   }
 
+  //Cevap her gösterildiginde puan tablosu hesaplanir
   useEffect(() => {
     if (showAnswer) {
       if (selectedOption === questions[currentQuestion].correctAnswer) {
@@ -81,6 +85,7 @@ const QuizPage = () => {
     }
   }, [showAnswer]);
 
+  //SORU ve SECENEKLERIN YAZDIRILMASI
   const renderOptions = () => {
     return questions[currentQuestion].options.map((option, index) => {
       return (
@@ -103,7 +108,7 @@ const QuizPage = () => {
         <div >
           <h2 className='text-center mt-5 mb-2'>{questions[currentQuestion].question}</h2>
           <div className='text-center'>{renderOptions()}</div>
-          <div className='text-center'>{showAnswer ? cevapReaksiyon() : "Result of question "}</div>
+          <div className='text-center'>{showAnswer ? reactAnswer() : "Result of question "}</div>
           {showAnswer && isLastQuestion ? (
             <div className='text-center'>
               <p>Quiz completed!</p>
