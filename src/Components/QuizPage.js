@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 
-
-const QuizApp = () => {
+const QuizPage = () => {
   const questions = [
     {
       question: 'Soru 1: Hangi programlama dili React.js ile birlikte kullanılır?',
@@ -139,4 +138,4 @@ const QuizApp = () => {
   );
 };
 
-export default QuizApp;
+export default QuizPage;
