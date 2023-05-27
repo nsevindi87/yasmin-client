@@ -29,28 +29,21 @@ const QuizPage = () => {
   const [resultColor, setResultColor] = useState('');
   const [isLastQuestion, setIsLastQuestion] = useState(false);
 
-
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
-
     setResultColor('orange');
-
     let control = setTimeout(() => {
       setShowAnswer(true);
-
       if (option === questions[currentQuestion].correctAnswer) {
         setResultColor('green');
       } else {
         setResultColor('red');
       }
-
       if (currentQuestion === questions.length - 1) {
         setIsLastQuestion(true);
       }
-
     }, 2000);
     return () => clearTimeout(control);
-
   };
 
   const handleNextQuestion = () => {
@@ -64,7 +57,7 @@ const QuizPage = () => {
   const cevapReaksiyon = () => {
     let rightAnswer = questions[currentQuestion].correctAnswer
     if (selectedOption === questions[currentQuestion].correctAnswer) {
-      return "Bravo! Answer is : " + rightAnswer
+      return "Bravo! Right Answer : " + rightAnswer
     } else {
       return "Sorry! Right answer is : " + rightAnswer
     }
@@ -72,8 +65,6 @@ const QuizPage = () => {
 
   useEffect(() => {
     if (showAnswer) {
-      
-      
       if (selectedOption === questions[currentQuestion].correctAnswer) {
         setScore(score + 1);
         setCorrectAnswers(correctAnswers + 1);
@@ -93,9 +84,10 @@ const QuizPage = () => {
   const renderOptions = () => {
     return questions[currentQuestion].options.map((option, index) => {
       return (
-        <Button variant="outline-dark" size="lg" 
+        <Button variant="outline-dark" size="lg"
           key={index}
           onClick={() => handleOptionSelect(option, index)}
+          disabled={showAnswer}
           style={{ backgroundColor: selectedOption === option && resultColor }}
           className="w-50 m-2"
         >
@@ -113,17 +105,17 @@ const QuizPage = () => {
           <div className='text-center'>{renderOptions()}</div>
           <div className='text-center'>{showAnswer ? cevapReaksiyon() : "Result of question "}</div>
           {showAnswer && isLastQuestion ? (
-          <div className='text-center'>
-            <p>Quiz completed!</p>
-            <Button variant="success" onClick={handleNextQuestion} disabled={!showAnswer}>Result!</Button>
-          </div>
+            <div className='text-center'>
+              <p>Quiz completed!</p>
+              <Button variant="success" onClick={handleNextQuestion} disabled={!showAnswer}>Result!</Button>
+            </div>
           ) : (
-          <div className='text-center'>
-            <br></br>
-            <Button variant="warning" onClick={handleNextQuestion} disabled={!showAnswer}>Next Question</Button>
-          </div>
-          )}
-
+            <div className='text-center'>
+              <br></br>
+              <Button variant="warning" onClick={handleNextQuestion} disabled={!showAnswer}>Next Question</Button>
+            </div>
+          )
+          }
         </div>
       ) : (
         <div>
