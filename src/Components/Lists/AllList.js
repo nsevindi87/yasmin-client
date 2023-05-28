@@ -9,7 +9,7 @@ import { PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
 
 const GeneralList = () => {
   const { getWordsList, allWordsList, handleDelete, handleEdit, handleClose, show, setInputValue, inputValue, handleUpdate,
-    wordList, setWordList,handleEditList,handleDeleteList } = useContext(wordsContext)
+    wordList, setWordList,handleEditList,handleDeleteList,getQuizQuestions } = useContext(wordsContext)
 
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const GeneralList = () => {
             <h1 className='text-center'>All Word List</h1>
             <div className='mb-2 text-center'>
               <Button className='btn-dark text-warning mx-3'><Nav.Link as={Link} to="/practice">Training</Nav.Link></Button>
-              <Button className='btn-dark text-warning'><Nav.Link as={Link} to="/quiz">Test Yourself</Nav.Link></Button>
+              <Button className='btn-dark text-warning'><Nav.Link as={Link} to="/quiz" onClick={getQuizQuestions}>Test Yourself</Nav.Link></Button>
             </div>
             <Table striped bordered hover variant="dark">
               <thead>

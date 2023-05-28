@@ -13,7 +13,7 @@ const WordsListContextProvider = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
   const [wordList, setWordList] = useState('');
-
+  const [quizQuestions, setQuizquestions] = useState([]);
 
   const [inputValue, setInputValue] = useState({
     id: null,
@@ -176,6 +176,7 @@ const handleEditList = async (pListName, pId)=>{
   
 }
 
+//DELETE the List of Word
 const handleDeleteList = async(pId)=>{
   try {
     const response = await fetch(`${BASE_URL}/delwordfromlist` , {
@@ -194,8 +195,23 @@ const handleDeleteList = async(pId)=>{
   } catch (error) {
     console.error('Hata:2', error);
   }
-  
 }
+
+ //GET QUIZ QUESTIONS=====================================================================================================
+ const getQuizQuestions = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/quizquestions`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch posts");
+    }
+    const data = await response.json();
+    const listArr = Object.entries(data);
+    setQuizquestions(listArr)
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch posts")
+  }
+};
 
 
   return (
@@ -209,7 +225,8 @@ const handleDeleteList = async(pId)=>{
       handleEdit, handleUpdate, show, setShow,
       handleClose, handleModalOpen, handleModalClose,
       showModal,modalContent,handleEditList,handleDeleteList,
-      handleCancel
+      handleCancel,
+      getQuizQuestions,quizQuestions, setQuizquestions
     }}>
       {children}
     </wordsContext.Provider>

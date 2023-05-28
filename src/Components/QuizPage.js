@@ -1,24 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
+import { wordsContext } from "../Context/wordsListContext.js";
+
 
 const QuizPage = () => {
-  const questions = [
-    {
-      question: 'Soru 1: Hangi programlama dili React.js ile birlikte kullanılır?',
-      options: ['Python', 'Java', 'JavaScript', 'C++'],
-      correctAnswer: 'JavaScript',
-    },
-    {
-      question: 'Soru 2: React.js hangi şirket tarafından geliştirilmiştir?',
-      options: ['Google', 'Facebook', 'Microsoft', 'Amazon'],
-      correctAnswer: 'Facebook',
-    },
-    {
-      question: 'Soru 3: React.js hangi tür bir kütüphanedir?',
-      options: ['CSS', 'JavaScript', 'HTML', 'PHP'],
-      correctAnswer: 'JavaScript',
-    },
-  ];
+
+  const { quizQuestions, setQuizquestions, getQuizQuestions } = useContext(wordsContext)
+
   //!PUAN TABLOSU YAPILACAk
   //!DB den soru cekilecek
 
@@ -31,18 +19,23 @@ const QuizPage = () => {
   const [resultColor, setResultColor] = useState('');
   const [isLastQuestion, setIsLastQuestion] = useState(false);
 
+  const rightAnswer = quizQuestions[currentQuestion][1].correct_word
+  const englishExample = quizQuestions[currentQuestion][1].english_example
+  const germanExample = quizQuestions[currentQuestion][1].german_example
+
+
   //When answer is selected!
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
     setResultColor('orange');
     let control = setTimeout(() => {
       setShowAnswer(true);
-      if (option === questions[currentQuestion].correctAnswer) {
+      if (option === rightAnswer) {
         setResultColor('green');
       } else {
         setResultColor('red');
       }
-      if (currentQuestion === questions.length - 1) {
+      if (currentQuestion === quizQuestions.length - 1) {
         setIsLastQuestion(true);
       }
     }, 2000);
@@ -51,7 +44,7 @@ const QuizPage = () => {
 
   //To new question
   const handleNextQuestion = () => {
-    if (currentQuestion < questions.length) {
+    if (currentQuestion < quizQuestions.length) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedOption('');
       setShowAnswer(false);
@@ -60,9 +53,9 @@ const QuizPage = () => {
 
   //Say something about answer
   const reactAnswer = () => {
-    let rightAnswer = questions[currentQuestion].correctAnswer
-    if (selectedOption === questions[currentQuestion].correctAnswer) {
-      return "Bravo! Right Answer : " + rightAnswer
+    
+    if (selectedOption === rightAnswer) {
+      return "Bravo! You got it! Example sentences with this word! : " + englishExample
     } else {
       return "Sorry! Right answer is : " + rightAnswer
     }
@@ -70,8 +63,9 @@ const QuizPage = () => {
 
   //Cevap her gösterildiginde puan tablosu hesaplanir
   useEffect(() => {
+    getQuizQuestions()
     if (showAnswer) {
-      if (selectedOption === questions[currentQuestion].correctAnswer) {
+      if (selectedOption === rightAnswer) {
         setScore(score + 10);
         setCorrectAnswers(correctAnswers + 1);
       } else {
@@ -89,28 +83,31 @@ const QuizPage = () => {
 
   //SORU ve SECENEKLERIN YAZDIRILMASI
   const renderOptions = () => {
-    return questions[currentQuestion].options.map((option, index) => {
-      return (
-        <Button variant="outline-dark" size="lg"
-          key={index}
-          onClick={() => handleOptionSelect(option, index)}
-          disabled={showAnswer}
-          style={{ backgroundColor: selectedOption === option && resultColor }}
-          className="w-50 m-2"
-        >
-          {option}
-        </Button>
-      );
-    });
+    return
   };
+
 
   return (
     <div>
-      {currentQuestion < questions.length ? (
+
+      {currentQuestion < quizQuestions.length ?
         <div >
-          <h2 className='text-center mt-5 mb-2'>{questions[currentQuestion].question}</h2>
-          <div className='text-center'>{renderOptions()}</div>
-          <div className='text-center'>{showAnswer ? reactAnswer() : "Result of question "}</div>
+          <h2 className='text-center mt-5 mb-2'>{quizQuestions[currentQuestion][1].question_text}</h2>
+          <div className='text-center'>
+            { quizQuestions[currentQuestion][1].options.split(",").map((option, index) => (
+              <Button variant="outline-dark" size="lg"
+                key={index}
+                onClick={() => handleOptionSelect(option, index)}
+                disabled={showAnswer}
+                style={{ backgroundColor: selectedOption === option && resultColor }}
+                className="w-50 m-2"
+              >
+                {option}
+              </Button> 
+            ))
+            }
+            </div>
+          <div className='text-center'>{showAnswer ? reactAnswer() : "The answer to the question.........."}</div>
           {showAnswer && isLastQuestion ? (
             <div className='text-center'>
               <p>Quiz completed!</p>
@@ -124,19 +121,19 @@ const QuizPage = () => {
           )
           }
         </div>
-      ) : (
-        <div className='text-center'>
-          <h2 className='mt-5'>Quiz Completed!</h2>
-          <h2 className='mt-2'>Statistics!</h2>
-          <div>
+        : (
+          <div className='text-center'>
+            <h2 className='mt-5'>Quiz Completed!</h2>
+            <h2 className='mt-2'>Statistics!</h2>
+            <div>
 
-            <Button variant="outline-info m-2 px-5 w-50" size="lg" >Soru Sayisi: {questions.length}</Button>
-            <Button variant="outline-success px-5 m-2 w-50" size="lg">Doğru Cevap Sayısı: {correctAnswers}</Button>
-            <Button variant="outline-danger px-5 m-2 w-50" size="lg">Yanlış Cevap Sayısı: {wrongAnswers}</Button>
-            <Button variant="outline-warning px-5 m-2 w-50" size="lg">Alınan Puan: {questions.length * 10 + "/" + score}</Button>
+              <Button variant="outline-info m-2 px-5 w-50" size="lg" >Soru Sayisi: {quizQuestions.length}</Button>
+              <Button variant="outline-success px-5 m-2 w-50" size="lg">Doğru Cevap Sayısı: {correctAnswers}</Button>
+              <Button variant="outline-danger px-5 m-2 w-50" size="lg">Yanlış Cevap Sayısı: {wrongAnswers}</Button>
+              <Button variant="outline-warning px-5 m-2 w-50" size="lg">Alınan Puan: {quizQuestions.length * 10 + "/" + score}</Button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </div>
   );
 };
