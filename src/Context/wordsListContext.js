@@ -12,7 +12,6 @@ const WordsListContextProvider = ({ children }) => {
   const [show, setShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
-  const [wordList, setWordList] = useState('');
   const [quizQuestions, setQuizquestions] = useState([]);
 
   const [inputValue, setInputValue] = useState({
@@ -38,6 +37,7 @@ const WordsListContextProvider = ({ children }) => {
       const dataGreen = data.filter((word) => word.wordCategory === "success")
       const dataYellow = data.filter((word) => word.wordCategory === "warning")
       const dataRed = data.filter((word) => word.wordCategory === "danger")
+      
       setAllWordsList(data)
       setGreenList(dataGreen)
       setYellowList(dataYellow)
@@ -47,7 +47,6 @@ const WordsListContextProvider = ({ children }) => {
       throw new Error("Failed to fetch posts")
     }
   };
-
 
   //ADD NEW WORD=====================================================================================================
   const handleNewWord = async () => {
@@ -214,6 +213,8 @@ const handleDeleteList = async(pId)=>{
 };
 
 
+
+
   return (
     <wordsContext.Provider value={{
       getWordsList, allWordsList, setAllWordsList,
@@ -226,7 +227,8 @@ const handleDeleteList = async(pId)=>{
       handleClose, handleModalOpen, handleModalClose,
       showModal,modalContent,handleEditList,handleDeleteList,
       handleCancel,
-      getQuizQuestions,quizQuestions, setQuizquestions
+      getQuizQuestions,quizQuestions, setQuizquestions,
+      
     }}>
       {children}
     </wordsContext.Provider>

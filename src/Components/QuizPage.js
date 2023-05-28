@@ -81,15 +81,8 @@ const QuizPage = () => {
     }
   }, [showAnswer]);
 
-  //SORU ve SECENEKLERIN YAZDIRILMASI
-  const renderOptions = () => {
-    return
-  };
-
-
   return (
     <div>
-
       {currentQuestion < quizQuestions.length ?
         <div >
           <h2 className='text-center mt-5 mb-2'>{quizQuestions[currentQuestion][1].question_text}</h2>

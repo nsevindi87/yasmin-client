@@ -9,7 +9,7 @@ import { PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
 
 const GeneralList = () => {
   const { getWordsList, allWordsList, handleDelete, handleEdit, handleClose, show, setInputValue, inputValue, handleUpdate,
-    wordList, setWordList,handleEditList,handleDeleteList,getQuizQuestions } = useContext(wordsContext)
+    handleEditList,handleDeleteList,getQuizQuestions } = useContext(wordsContext)
 
 
   useEffect(() => {
