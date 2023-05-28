@@ -19,6 +19,8 @@ const QuizPage = () => {
       correctAnswer: 'JavaScript',
     },
   ];
+  //!PUAN TABLOSU YAPILACAk
+  //!DB den soru cekilecek
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState('');
@@ -56,7 +58,7 @@ const QuizPage = () => {
     }
   };
 
-//Say something about answer
+  //Say something about answer
   const reactAnswer = () => {
     let rightAnswer = questions[currentQuestion].correctAnswer
     if (selectedOption === questions[currentQuestion].correctAnswer) {
@@ -70,7 +72,7 @@ const QuizPage = () => {
   useEffect(() => {
     if (showAnswer) {
       if (selectedOption === questions[currentQuestion].correctAnswer) {
-        setScore(score + 1);
+        setScore(score + 10);
         setCorrectAnswers(correctAnswers + 1);
       } else {
         setWrongAnswers(wrongAnswers + 1);
@@ -123,12 +125,16 @@ const QuizPage = () => {
           }
         </div>
       ) : (
-        <div>
-          <h2>Quiz Tamamlandı</h2>
-          <p>Soru Sayısı: {questions.length}</p>
-          <p>Doğru Cevap Sayısı: {correctAnswers}</p>
-          <p>Yanlış Cevap Sayısı: {wrongAnswers}</p>
-          <p>Alınan Puan: {score}</p>
+        <div className='text-center'>
+          <h2 className='mt-5'>Quiz Completed!</h2>
+          <h2 className='mt-2'>Statistics!</h2>
+          <div>
+
+            <Button variant="outline-info m-2 px-5 w-50" size="lg" >Soru Sayisi: {questions.length}</Button>
+            <Button variant="outline-success px-5 m-2 w-50" size="lg">Doğru Cevap Sayısı: {correctAnswers}</Button>
+            <Button variant="outline-danger px-5 m-2 w-50" size="lg">Yanlış Cevap Sayısı: {wrongAnswers}</Button>
+            <Button variant="outline-warning px-5 m-2 w-50" size="lg">Alınan Puan: {questions.length * 10 + "/" + score}</Button>
+          </div>
         </div>
       )}
     </div>
