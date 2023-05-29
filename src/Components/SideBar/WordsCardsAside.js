@@ -13,6 +13,10 @@ const timer = setTimeout(() => {
 
 useEffect(()=>{
 getAsideWords()
+const interval = setInterval(() => {
+  getAsideWords()
+}, 15000);
+return () => clearInterval(interval);
 },[]) 
 
   return (

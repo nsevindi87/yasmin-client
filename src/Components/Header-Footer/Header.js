@@ -40,7 +40,7 @@ const HeaderLoggedin = () => {
                                                 navbarScroll>
                                                 <Nav.Link as={Link} to="/addword">Add Word</Nav.Link>
                                                 <Nav.Link as={Link} to="/translate">Translate</Nav.Link>
-                                                <NavDropdown title="All Lists" id="navbarScrollingDropdown">
+                                                <NavDropdown title="Lists" id="navbarScrollingDropdown">
                                                     <NavDropdown.Item as={Link} to="/greenlist">Green List</NavDropdown.Item>
                                                     <NavDropdown.Item as={Link} to="/yellowlist">
                                                         Yellow List
@@ -50,7 +50,7 @@ const HeaderLoggedin = () => {
                                                     </NavDropdown.Item>
                                                     <NavDropdown.Divider />
                                                     <NavDropdown.Item as={Link} to="/alllist">
-                                                        All Lists
+                                                        All Words
                                                     </NavDropdown.Item>
                                                 </NavDropdown>
 
