@@ -19,12 +19,10 @@ import PracticeYellowList from "../PracticePages/PracticeYellowList.js"
 import PracticeRedList from "../PracticePages/PracticeRedList.js"
 import QuizPage from "../QuizPage.js";
 
-
-
 const HeaderLoggedin = () => {
 
     const { logout, loginWithRedirect, isAuthenticated } = useAuth0()
-    
+
     return (
         <div className="App">
             <div>
@@ -76,9 +74,9 @@ const HeaderLoggedin = () => {
                                         </Navbar.Collapse>
                                     </Container>
                                 </Navbar>
-                                <Container style={{maxWidth: 1500}}>
+                                <Container style={{ maxWidth: 1500 }}>
                                     <Row>
-                                        <Col lg="9"  className="me-auto">
+                                        <Col lg="9" className="me-auto">
                                             <Routes>
                                                 <Route path="/" element={<Home />} />
                                                 <Route path="/addword" element={<AddWord />} />

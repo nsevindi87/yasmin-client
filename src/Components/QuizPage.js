@@ -5,7 +5,7 @@ import { wordsContext } from "../Context/wordsListContext.js";
 
 const QuizPage = () => {
 
-  const { quizQuestions, setQuizquestions, getQuizQuestions } = useContext(wordsContext)
+  const { quizQuestions, getQuizQuestions } = useContext(wordsContext)
 
   //!PUAN TABLOSU YAPILACAk
   //!DB den soru cekilecek
@@ -23,6 +23,7 @@ const QuizPage = () => {
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
     setResultColor('orange');
+
     let control = setTimeout(() => {
       setShowAnswer(true);
       if (option === quizQuestions[currentQuestion][1].correct_word) {
@@ -34,6 +35,7 @@ const QuizPage = () => {
         setIsLastQuestion(true);
       }
     }, 2000);
+    
     return () => clearTimeout(control);
   };
 

@@ -2,84 +2,38 @@ import Accordion from 'react-bootstrap/Accordion';
 import { wordsContext } from "../../Context/wordsListContext";
 import { useState, useEffect, useContext } from 'react';
 
-
-//!CALISMIYOR
 function CardsAside() {
-  const { greenList, redList, yellowList,getWordsList, } = useContext(wordsContext)
+  const { getAsideWords, greenWord, yellowWord, redWord } = useContext(wordsContext)
 
-  const [greenWord, setGreenWord] = useState(null)
-  const [yellowWord, setYellowWord] = useState(null)
-  const [redWord, setRedWord] = useState(null)
+/* console.log(greenWord)
 
-  const kelimeGetir = ()=>{
-    const randomWord = greenList[Math.floor(Math.random() * greenList.length)];
-      const randomWord2 = yellowList[Math.floor(Math.random() * yellowList.length)];
-      const randomWord3 = redList[Math.floor(Math.random() * redList.length)];
-      setGreenWord(randomWord)
-      setYellowWord(randomWord2)
-      setRedWord(randomWord3)
-  }
+const timer = setTimeout(() => {
+  getAsideWords()
+}, 15000);*/
 
-  useEffect(() => {
-    
-    getWordsList()
-
-    const interval = setInterval(() => {
-      kelimeGetir()
-    }, 5000);
-    
-    return () => {
-      clearInterval(interval);
-    };
-  }, [])
+useEffect(()=>{
+getAsideWords()
+},[]) 
 
   return (
-    <Accordion defaultActiveKey={['0']} alwaysOpen>
-        <Accordion.Item eventKey="0" className='mt-2'>
-          <Accordion.Header>{greenWord?.word}</Accordion.Header>
-          <Accordion.Body >
-          {greenWord?.word}
-          </Accordion.Body>
-          <Accordion.Body>
-          {greenWord?.word}
-          </Accordion.Body>
-          <Accordion.Body>
-          {greenWord?.word}
-          </Accordion.Body>
-          <Accordion.Body>
-          {greenWord?.word}
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="1" className='mt-2'>
-          <Accordion.Header>{yellowWord?.word}</Accordion.Header>
-          <Accordion.Body>
-          {yellowWord?.word}
-          </Accordion.Body>
-          <Accordion.Body>
-          {yellowWord?.word}
-          </Accordion.Body>
-          <Accordion.Body>
-          {yellowWord?.word}
-          </Accordion.Body>
-          <Accordion.Body>
-          {yellowWord?.word}
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="2" className='mt-2'>
-          <Accordion.Header>{redWord?.word}</Accordion.Header>
-          <Accordion.Body>
-          {redWord?.word}
-          </Accordion.Body>
-          <Accordion.Body>
-          {redWord?.word}
-          </Accordion.Body>
-          <Accordion.Body>
-          {redWord?.word}
-          </Accordion.Body>
-          <Accordion.Body>
-          {redWord?.word}
-          </Accordion.Body>
-        </Accordion.Item>
+    <Accordion>
+      <Accordion.Item eventKey="0" className='mt-2'>
+        <Accordion.Header>{greenWord[1]?.word}</Accordion.Header>
+        <Accordion.Body>{greenWord[1]?.wordMeaning}</Accordion.Body>
+        <Accordion.Body>{greenWord[1]?.wordSecondMeaning}</Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="1" className='mt-2'>
+        <Accordion.Header>{yellowWord[1]?.word}</Accordion.Header>
+        <Accordion.Body>{yellowWord[1]?.wordMeaning}</Accordion.Body>
+        <Accordion.Body>{yellowWord[1]?.wordSecondMeaning}</Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="2" className='mt-2'>
+        <Accordion.Header>{redWord[1]?.word}</Accordion.Header>
+        <Accordion.Body>{redWord[1]?.wordMeaning}</Accordion.Body>
+        <Accordion.Body>{redWord[1]?.wordSecondMeaning}</Accordion.Body>
+      </Accordion.Item>
+
+
     </Accordion>
   );
 }

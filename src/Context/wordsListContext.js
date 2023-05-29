@@ -206,14 +206,47 @@ const handleDeleteList = async(pId)=>{
     const data = await response.json();
     const listArr = Object.entries(data);
     setQuizquestions(listArr)
-    console.log(quizQuestions)
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch posts")
   }
 };
 
+ //GET Aside  Words=====================================================================================================
 
+
+
+const [greenWord, setGreenWord] = useState([])
+const [yellowWord, setYellowWord] = useState([])
+const [redWord, setRedWord] = useState([])
+
+ const getAsideWords = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/words`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch posts");
+    }
+    const data = await response.json();
+    const dataGreen = data.filter((word) => word.wordCategory === "success")
+    const dataYellow = data.filter((word) => word.wordCategory === "warning")
+    const dataRed = data.filter((word) => word.wordCategory === "danger")
+
+    const greenArr = Object.entries(dataGreen);
+    const yellowArr = Object.entries(dataYellow);
+    const redArr = Object.entries(dataRed);
+
+    const greenRandom = greenArr[Math.floor(Math.random() * greenArr.length)];
+    const yellowRandom = yellowArr[Math.floor(Math.random() * yellowArr.length)];
+    const redRandom = redArr[Math.floor(Math.random() * redArr.length)];
+
+    setGreenWord(greenRandom)
+    setYellowWord(yellowRandom)
+    setRedWord(redRandom)
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch posts")
+  }
+};
 
 
   return (
@@ -228,7 +261,8 @@ const handleDeleteList = async(pId)=>{
       handleClose, handleModalOpen, handleModalClose,
       showModal,modalContent,handleEditList,handleDeleteList,
       handleCancel,
-      getQuizQuestions,quizQuestions, setQuizquestions,
+      getQuizQuestions,quizQuestions, setQuizquestions, 
+      getAsideWords, greenWord,yellowWord,redWord
       
     }}>
       {children}
