@@ -2,7 +2,7 @@ import { Form, Button, Navbar, Container, Nav, NavDropdown, Col, Row } from "rea
 import { useAuth0 } from '@auth0/auth0-react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import AddWord from "../AddWordPage/AddWord.js"
-import Translate from "../TranslatePage/Translate.js";
+import FindExample from "../FindExample/FindExample.js";
 import AllList from '../Lists/AllList';
 import YellowList from '../Lists/YellowList';
 import GreenList from '../Lists/GreenList';
@@ -39,7 +39,7 @@ const HeaderLoggedin = () => {
                                                 style={{ maxHeight: '100px' }}
                                                 navbarScroll>
                                                 <Nav.Link as={Link} to="/addword">Add Word</Nav.Link>
-                                                <Nav.Link as={Link} to="/translate">Translate</Nav.Link>
+                                                <Nav.Link as={Link} to="/findExample">Find Example</Nav.Link>
                                                 <NavDropdown title="Lists" id="navbarScrollingDropdown">
                                                     <NavDropdown.Item as={Link} to="/greenlist">Green List</NavDropdown.Item>
                                                     <NavDropdown.Item as={Link} to="/yellowlist">
@@ -80,7 +80,7 @@ const HeaderLoggedin = () => {
                                             <Routes>
                                                 <Route path="/" element={<Home />} />
                                                 <Route path="/addword" element={<AddWord />} />
-                                                <Route path="/translate" element={<Translate />} />
+                                                <Route path="/findExample" element={<FindExample />} />
                                                 <Route path="/addword" element={<AddWord />} />
                                                 <Route path="/todo" element={<Todo />} />
                                                 <Route path="/alllist" element={<AllList />} />
@@ -91,9 +91,9 @@ const HeaderLoggedin = () => {
                                                 <Route path="/about" element={<About />} />
                                                 <Route path="/contact" element={<Contact />} />
                                                 <Route path="/practice" element={<Practice />} />
-                                                <Route path="//practice-greenList" element={<PracticeGreenList />} />
-                                                <Route path="//practice-yellowList" element={<PracticeYellowList />} />
-                                                <Route path="//practice-redList" element={<PracticeRedList />} />
+                                                <Route path="/practice-greenList" element={<PracticeGreenList />} />
+                                                <Route path="/practice-yellowList" element={<PracticeYellowList />} />
+                                                <Route path="/practice-redList" element={<PracticeRedList />} />
                                                 <Route path="/quiz" element={<QuizPage />} />
                                             </Routes>
                                         </Col>
@@ -130,7 +130,7 @@ const HeaderLoggedin = () => {
                             </Navbar>
                             <div>
                                 <Routes>
-                                    <Route path="/translate" element={<Translate />} />
+                                    <Route path="/findExample" element={<FindExample />} />
                                     <Route path="/" element={<Home />} />
                                     <Route path="/about" element={<About />} />
                                     <Route path="/contact" element={<Contact />} />
