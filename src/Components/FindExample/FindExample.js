@@ -1,15 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext,useEffect } from 'react';
 import { Container, Form, Table } from 'react-bootstrap';
-
-const searchData = [
-  { id: 1, german: 'Haus', turkish: 'Ev' },
-  { id: 2, german: 'Auto', turkish: 'Araba' },
-  { id: 3, german: 'Buch', turkish: 'Kitap' },
-  { id: 4, german: 'Schule', turkish: 'Okul' },
-  { id: 5, german: 'Stadt', turkish: 'Şehir' },
-  // Diğer veri örnekleri
-];
-
+import { wordsContext } from "../../Context/wordsListContext";
 
 
 const FindExample = () => {
@@ -20,21 +11,13 @@ const FindExample = () => {
   const handleSearch = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-
-    if (term.length >= 3) { // En az 3 harf yazıldıysa arama yap
-      const results = searchData.filter(item =>
-        item.german.toLowerCase().includes(term.toLowerCase()) ||
-        item.turkish.toLowerCase().includes(term.toLowerCase())
-      );
-      setSearchResults(results);
-    } else {
-      setSearchResults([]);
-    }
-  };
+  }
 
   useEffect(()=>{
     getSearchedSentences(searchTerm)
+    console.log(searchResults)
   },[searchTerm])
+
   return (
     <Container>
       <h1 className='text-center my-3'>Find Example Sentences</h1>
@@ -47,21 +30,24 @@ const FindExample = () => {
           className="my-3"
         />
       </Form.Group>
-      <Table striped bordered hover variant="dark" size="sm">
+      <Table hover variant="dark" size="sm">
         <thead>
           <tr>
             <th>#</th>
-            <th>German</th>
+            <th>English</th>
             <th>Turkish</th>
           </tr>
         </thead>
         <tbody>
-          {searchResults.map(item => (
-            <tr key={item.id}>
+          {searchResults?.map((item) => (
+            item.map((item,value)=>(
+            <tr key={value}>
               <td>{item.id}</td>
-              <td>{item.german}</td>
+              <td>{item.english}</td>
               <td>{item.turkish}</td>
             </tr>
+
+            ))
           ))}
         </tbody>
       </Table>

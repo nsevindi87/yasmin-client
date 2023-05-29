@@ -251,13 +251,14 @@ const [searchResults, setSearchResults] = useState([]);
 
 const getSearchedSentences = async (pSearchTerm) => {
   try {
-    const response = await fetch(`${BASE_URL}/findExample?sentences=${pSearchTerm}`);
+    const response = await fetch(`${BASE_URL}/findExample?filter=${pSearchTerm}`);
     if (!response.ok) {
       throw new Error("Failed to fetch posts");
     }
     const data = await response.json();
     const searchedArr = Object.entries(data);
     setSearchResults(searchedArr)
+
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch posts")
