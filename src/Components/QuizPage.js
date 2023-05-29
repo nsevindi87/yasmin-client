@@ -53,12 +53,16 @@ const QuizPage = () => {
     let german_example = quizQuestions[currentQuestion][1].german_example
     if (selectedOption === quizQuestions[currentQuestion][1].correct_word) {
       return <div>
-              <h1>Bravo! Right Answer : {rightAnswer}</h1>
-              <h3>{english_example}</h3>
-              <h3>{german_example}</h3>
-            </div>
+        <h1>Bravo! Right Answer :  <span className='text-success'> {rightAnswer}</span></h1>
+        <h3 className='text-secondary'>{english_example}</h3>
+        <h3 className='text-secondary'>{german_example}</h3>
+      </div>
     } else {
-      return "Sorry! Right answer is : " + rightAnswer
+      return <div>
+        <h1>Sorry! Right answer is : <span className='text-danger'> {rightAnswer}</span></h1>
+        <h3 className='text-secondary'>{english_example}</h3>
+        <h3 className='text-secondary'>{german_example}</h3>
+      </div>
     }
   }
 
@@ -90,7 +94,7 @@ const QuizPage = () => {
         <div >
           <h2 className='text-center mt-5 mb-2'>{quizQuestions[currentQuestion][1].question_text}</h2>
           <div className='text-center'>
-             {quizQuestions[currentQuestion][1].options.split(",").map((option, index) => (
+            {quizQuestions[currentQuestion][1].options.split(",").map((option, index) => (
               <Button variant="outline-dark" size="lg"
                 key={index}
                 onClick={() => handleOptionSelect(option, index)}
@@ -99,10 +103,10 @@ const QuizPage = () => {
                 className="w-50 m-2"
               >
                 {option}
-              </Button> 
+              </Button>
             ))
             }
-            </div>
+          </div>
           <div className='text-center'>{showAnswer ? reactAnswer() : "Result of question "}</div>
           {showAnswer && isLastQuestion ? (
             <div className='text-center'>
