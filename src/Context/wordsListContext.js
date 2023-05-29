@@ -213,9 +213,6 @@ const handleDeleteList = async(pId)=>{
 };
 
  //GET Aside  Words=====================================================================================================
-
-
-
 const [greenWord, setGreenWord] = useState([])
 const [yellowWord, setYellowWord] = useState([])
 const [redWord, setRedWord] = useState([])
@@ -248,6 +245,26 @@ const [redWord, setRedWord] = useState([])
   }
 };
 
+//GET SELECTED SENTENCES
+const [searchTerm, setSearchTerm] = useState('');
+const [searchResults, setSearchResults] = useState([]);
+
+const getSearchedSentences = async (pSearchTerm) => {
+  try {
+    const response = await fetch(`${BASE_URL}/findExample?sentences=${pSearchTerm}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch posts");
+    }
+    const data = await response.json();
+    const searchedArr = Object.entries(data);
+    setSearchResults(searchedArr)
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch posts")
+  }
+};
+
+
 
   return (
     <wordsContext.Provider value={{
@@ -262,7 +279,8 @@ const [redWord, setRedWord] = useState([])
       showModal,modalContent,handleEditList,handleDeleteList,
       handleCancel,
       getQuizQuestions,quizQuestions, setQuizquestions, 
-      getAsideWords, greenWord,yellowWord,redWord
+      getAsideWords, greenWord,yellowWord,redWord,
+      searchTerm, setSearchTerm, searchResults, setSearchResults,getSearchedSentences
       
     }}>
       {children}

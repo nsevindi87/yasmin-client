@@ -10,9 +10,12 @@ const searchData = [
   // Diğer veri örnekleri
 ];
 
+
+
 const FindExample = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const {searchTerm, setSearchTerm, searchResults, setSearchResults,getSearchedSentences} = useContext(wordsContext)
+
+
 
   const handleSearch = (e) => {
     const term = e.target.value;
@@ -29,6 +32,9 @@ const FindExample = () => {
     }
   };
 
+  useEffect(()=>{
+    getSearchedSentences(searchTerm)
+  },[searchTerm])
   return (
     <Container>
       <h1 className='text-center my-3'>Find Example Sentences</h1>
