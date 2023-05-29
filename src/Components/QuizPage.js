@@ -19,18 +19,13 @@ const QuizPage = () => {
   const [resultColor, setResultColor] = useState('');
   const [isLastQuestion, setIsLastQuestion] = useState(false);
 
-  const rightAnswer = quizQuestions[currentQuestion][1].correct_word
-  const englishExample = quizQuestions[currentQuestion][1].english_example
-  const germanExample = quizQuestions[currentQuestion][1].german_example
-
-
   //When answer is selected!
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
     setResultColor('orange');
     let control = setTimeout(() => {
       setShowAnswer(true);
-      if (option === rightAnswer) {
+      if (option === quizQuestions[currentQuestion][1].correct_word) {
         setResultColor('green');
       } else {
         setResultColor('red');
@@ -53,9 +48,15 @@ const QuizPage = () => {
 
   //Say something about answer
   const reactAnswer = () => {
-    
-    if (selectedOption === rightAnswer) {
-      return "Bravo! You got it! Example sentences with this word! : " + englishExample
+    let rightAnswer = quizQuestions[currentQuestion][1].correct_word
+    let english_example = quizQuestions[currentQuestion][1].english_example
+    let german_example = quizQuestions[currentQuestion][1].german_example
+    if (selectedOption === quizQuestions[currentQuestion][1].correct_word) {
+      return <div>
+              <h1>Bravo! Right Answer : {rightAnswer}</h1>
+              <h3>{english_example}</h3>
+              <h3>{german_example}</h3>
+            </div>
     } else {
       return "Sorry! Right answer is : " + rightAnswer
     }
@@ -65,7 +66,7 @@ const QuizPage = () => {
   useEffect(() => {
     getQuizQuestions()
     if (showAnswer) {
-      if (selectedOption === rightAnswer) {
+      if (selectedOption === quizQuestions[currentQuestion][1].correct_word) {
         setScore(score + 10);
         setCorrectAnswers(correctAnswers + 1);
       } else {
@@ -81,13 +82,15 @@ const QuizPage = () => {
     }
   }, [showAnswer]);
 
+
   return (
     <div>
+
       {currentQuestion < quizQuestions.length ?
         <div >
           <h2 className='text-center mt-5 mb-2'>{quizQuestions[currentQuestion][1].question_text}</h2>
           <div className='text-center'>
-            { quizQuestions[currentQuestion][1].options.split(",").map((option, index) => (
+             {quizQuestions[currentQuestion][1].options.split(",").map((option, index) => (
               <Button variant="outline-dark" size="lg"
                 key={index}
                 onClick={() => handleOptionSelect(option, index)}
@@ -100,7 +103,7 @@ const QuizPage = () => {
             ))
             }
             </div>
-          <div className='text-center'>{showAnswer ? reactAnswer() : "The answer to the question.........."}</div>
+          <div className='text-center'>{showAnswer ? reactAnswer() : "Result of question "}</div>
           {showAnswer && isLastQuestion ? (
             <div className='text-center'>
               <p>Quiz completed!</p>

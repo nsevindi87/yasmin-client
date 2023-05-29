@@ -206,6 +206,7 @@ const handleDeleteList = async(pId)=>{
     const data = await response.json();
     const listArr = Object.entries(data);
     setQuizquestions(listArr)
+    console.log(quizQuestions)
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch posts")
