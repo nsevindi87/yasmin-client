@@ -19,6 +19,7 @@ const QuizPage = () => {
   const [resultColor, setResultColor] = useState('');
   const [isLastQuestion, setIsLastQuestion] = useState(false);
 
+
   //When answer is selected!
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
@@ -35,7 +36,7 @@ const QuizPage = () => {
         setIsLastQuestion(true);
       }
     }, 2000);
-    
+
     return () => clearTimeout(control);
   };
 
@@ -45,6 +46,7 @@ const QuizPage = () => {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedOption('');
       setShowAnswer(false);
+      setTimeLeft(0)
     }
   };
 
@@ -68,6 +70,9 @@ const QuizPage = () => {
     }
   }
 
+  const [timeLeft, setTimeLeft] = useState(15);
+
+
   //Cevap her gösterildiginde puan tablosu hesaplanir
   useEffect(() => {
     getQuizQuestions()
@@ -75,18 +80,48 @@ const QuizPage = () => {
       if (selectedOption === quizQuestions[currentQuestion][1].correct_word) {
         setScore(score + 10);
         setCorrectAnswers(correctAnswers + 1);
+
+        const timer1 = setInterval(() => {
+          setTimeLeft(prevTimeLeft => {
+            if (prevTimeLeft === 0) {
+              clearInterval(timer1);
+              setShowAnswer(false);
+              setSelectedOption('');
+              setCurrentQuestion(currentQuestion + 1);
+              setTimeLeft(15)
+            }
+            return prevTimeLeft - 1;
+          });
+        }, 1000);
+
+
       } else {
         setWrongAnswers(wrongAnswers + 1);
+        const timer2 = setInterval(() => {
+          setTimeLeft(prevTimeLeft => {
+            if (prevTimeLeft === 0) {
+              clearInterval(timer2);
+              setShowAnswer(false);
+              setSelectedOption('');
+              setCurrentQuestion(currentQuestion + 1);
+              setTimeLeft(15)
+            }
+            return prevTimeLeft - 1;
+          });
+        }, 1000);
       }
-      const timer = setTimeout(() => {
-        setShowAnswer(false);
-        setSelectedOption('');
-        setCurrentQuestion(currentQuestion + 1);
-      }, 20000);
-
-      return () => clearTimeout(timer);
     }
+
   }, [showAnswer]);
+
+  const progressBarStyles = {
+    width: `${(timeLeft / 15) * 80}%`,
+    height: '10px',
+    backgroundColor: '#ffc008',
+    transition: 'width 1s linear',
+    margin: `auto`
+  };
+
 
 
   return (
@@ -117,6 +152,8 @@ const QuizPage = () => {
             </div>
           ) : (
             <div className='text-center'>
+              <br></br>
+              <div className='text-center' style={progressBarStyles}></div>
               <br></br>
               <Button variant="warning" onClick={handleNextQuestion} disabled={!showAnswer}>Next Question</Button>
             </div>
