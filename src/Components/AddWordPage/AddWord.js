@@ -4,7 +4,7 @@ import AddWordUnterList from './AddWordUnterList';
 import {wordsContext} from "../../Context/wordsListContext"
 
 const AddWord = () => {
-  const { inputValue, setInputValue, handleNewWord, handleCancel } = useContext(wordsContext)
+  const { inputValue, setInputValue, handleNewWord, handleCancel,createLib } = useContext(wordsContext)
 
   return (
     <>
@@ -32,6 +32,9 @@ const AddWord = () => {
             <div className='mt-4'>
               <Button onClick={handleCancel} variant="danger w-50">Cancel</Button>
               <Button onClick={handleNewWord} variant="primary w-50">Add</Button>
+              //!
+              <Button onClick={createLib} variant="primary w-50">Library</Button>
+
             </div><br />
             <hr />
             <h1 className='mt-2 text-center'>Recently Added</h1>

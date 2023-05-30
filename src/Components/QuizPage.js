@@ -72,10 +72,10 @@ const QuizPage = () => {
 
   const [timeLeft, setTimeLeft] = useState(15);
 
-
   //Cevap her gösterildiginde puan tablosu hesaplanir
   useEffect(() => {
     getQuizQuestions()
+     
     if (showAnswer) {
       if (selectedOption === quizQuestions[currentQuestion][1].correct_word) {
         setScore(score + 10);

@@ -266,6 +266,34 @@ const getSearchedSentences = async (pSearchTerm) => {
 };
 
 
+//!
+const data = [
+  { english: "Nathan" },
+  { english: "Jack" },
+  { english: "John" },
+]
+//!
+const createLib = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/createlib`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      console.log(response)
+      if (!response.ok) {
+        throw new Error("Failed to create post");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+
+
 
   return (
     <wordsContext.Provider value={{
@@ -281,7 +309,8 @@ const getSearchedSentences = async (pSearchTerm) => {
       handleCancel,
       getQuizQuestions,quizQuestions, setQuizquestions, 
       getAsideWords, greenWord,yellowWord,redWord,
-      searchTerm, setSearchTerm, searchResults, setSearchResults,getSearchedSentences
+      searchTerm, setSearchTerm, searchResults, setSearchResults,getSearchedSentences,
+      createLib
       
     }}>
       {children}
