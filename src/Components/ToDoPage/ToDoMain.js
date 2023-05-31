@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
-import InputForm from "./InputForm"
+import InputForm from "./TodoInputForm"
 import ToDoList from './ToDoList';
 
 

@@ -1,7 +1,5 @@
 import { createContext, useState } from "react"
-
 export const wordsContext = createContext()
-
 
 const WordsListContextProvider = ({ children }) => {
   //INITIAL STATES
@@ -13,6 +11,12 @@ const WordsListContextProvider = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
   const [quizQuestions, setQuizquestions] = useState([]);
+  const [greenWord, setGreenWord] = useState([])
+  const [yellowWord, setYellowWord] = useState([])
+  const [redWord, setRedWord] = useState([])
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
 
   const [inputValue, setInputValue] = useState({
     id: null,
@@ -45,7 +49,7 @@ const WordsListContextProvider = ({ children }) => {
       const dataGreen = data.filter((word) => word.wordCategory === "success")
       const dataYellow = data.filter((word) => word.wordCategory === "warning")
       const dataRed = data.filter((word) => word.wordCategory === "danger")
-      
+
       setAllWordsList(data)
       setGreenList(dataGreen)
       setYellowList(dataYellow)
@@ -55,12 +59,12 @@ const WordsListContextProvider = ({ children }) => {
       throw new Error("Failed to fetch posts")
     }
   };
- 
+
 
   //ADD NEW WORD=====================================================================================================
   const handleNewWord = async () => {
     if (inputValue.word.length === 0 && inputValue.wordMeaning.length === 0 && inputValue.wordSecondMeaning.length === 0 && inputValue.wordNote.length === 0) {
-      alert("Lütfen en az bir bölümü doldurun")
+      alert("En azindan ilk bölümü doldurun")
     } else {
       try {
         const response = await fetch(`${BASE_URL}/words`, {
@@ -87,7 +91,24 @@ const WordsListContextProvider = ({ children }) => {
 
     }
   };
-  //ADD NEW TODO=====================================================================================================
+
+  //GET ALL TODOS   =====================================================================================================
+  const getTodoList = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/todos`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts");
+      }
+      const data = await response.json();
+      const listArr = Object.entries(data);
+      setTodoList(listArr)
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch posts")
+    }
+  };
+
+  //ADD NEW TODO   =====================================================================================================
   const handleNewTodo = async () => {
     if (todoValue.task.length === 0 && todoValue.date.length === 0 && todoValue.time.length === 0) {
       alert("Lütfen formun tamamini doldurun!")
@@ -114,21 +135,6 @@ const WordsListContextProvider = ({ children }) => {
       }
     }
   };
-
- //GET ALL TODOS=====================================================================================================
- const getTodoList = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/todos`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch posts");
-    }
-    const data = await response.json();
-    setTodoList(data)
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch posts")
-  }
-};
 
 
   //DELETE WORD  =====================================================================================================
@@ -157,7 +163,7 @@ const WordsListContextProvider = ({ children }) => {
   }
 
   //FORMU SIFIRLA
-  const handleCancel = async()=>{
+  const handleCancel = async () => {
     setInputValue({
       word: "",
       wordMeaning: "",
@@ -194,129 +200,124 @@ const WordsListContextProvider = ({ children }) => {
     })
   }
 
-
   //OPEN - CLOSE MODELS IN PRACTICE PAGES
   const handleModalOpen = (content) => {
     setModalContent(content);
     setShowModal(true);
-};
-const handleModalClose = () => {
+  };
+  const handleModalClose = () => {
     setShowModal(false);
-};
+  };
 
 
-//Change the List of Word
-const handleEditList = async (pListName, pId)=>{
-  try {
-    const response = await fetch(`${BASE_URL}/wordtolist` , {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ pListName, pId }),
-    });
+  //Change the List of Word
+  const handleEditList = async (pListName, pId) => {
+    try {
+      const response = await fetch(`${BASE_URL}/wordtolist`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ pListName, pId }),
+      });
 
-    if (response.ok) {
-      console.log('Kelime listeye eklendi');
-    } else {
-      console.error('Hata:1', response.statusText);
+      if (response.ok) {
+        console.log('Kelime listeye eklendi');
+      } else {
+        console.error('Hata:1', response.statusText);
+      }
+    } catch (error) {
+      console.error('Hata:2', error);
     }
-  } catch (error) {
-    console.error('Hata:2', error);
   }
+
+  //DELETE the List of Word
+  const handleDeleteList = async (pId) => {
+    try {
+      const response = await fetch(`${BASE_URL}/delwordfromlist`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ pId }),
+      });
+
+      if (response.ok) {
+        console.log('Kelime listeden silindi');
+      } else {
+        console.error('Hata:1', response.statusText);
+      }
+    } catch (error) {
+      console.error('Hata:2', error);
+    }
+  }
+
+  //GET QUIZ QUESTIONS=====================================================================================================
+  const getQuizQuestions = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/quizquestions`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts");
+      }
+      const data = await response.json();
+      const listArr = Object.entries(data);
+      setQuizquestions(listArr)
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch posts")
+    }
+  };
+
+  //GET Aside  Words=====================================================================================================
+  const getAsideWords = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/words`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts");
+      }
+      const data = await response.json();
+      const dataGreen = data.filter((word) => word.wordCategory === "success")
+      const dataYellow = data.filter((word) => word.wordCategory === "warning")
+      const dataRed = data.filter((word) => word.wordCategory === "danger")
+
+      const greenArr = Object.entries(dataGreen);
+      const yellowArr = Object.entries(dataYellow);
+      const redArr = Object.entries(dataRed);
+
+      const greenRandom = greenArr[Math.floor(Math.random() * greenArr.length)];
+      const yellowRandom = yellowArr[Math.floor(Math.random() * yellowArr.length)];
+      const redRandom = redArr[Math.floor(Math.random() * redArr.length)];
+
+      setGreenWord(greenRandom)
+      setYellowWord(yellowRandom)
+      setRedWord(redRandom)
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch posts")
+    }
+  };
+
+  //GET SELECTED SENTENCES
+  const getSearchedSentences = async (pSearchTerm) => {
+    try {
+      const response = await fetch(`${BASE_URL}/findExample?filter=${pSearchTerm}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts");
+      }
+      const data = await response.json();
+      const searchedArr = Object.entries(data);
+      setSearchResults(searchedArr)
+
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch posts")
+    }
+  };
+
+
+
+
   
-}
-
-//DELETE the List of Word
-const handleDeleteList = async(pId)=>{
-  try {
-    const response = await fetch(`${BASE_URL}/delwordfromlist` , {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ pId }),
-    });
-
-    if (response.ok) {
-      console.log('Kelime listeden silindi');
-    } else {
-      console.error('Hata:1', response.statusText);
-    }
-  } catch (error) {
-    console.error('Hata:2', error);
-  }
-}
-
- //GET QUIZ QUESTIONS=====================================================================================================
- const getQuizQuestions = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/quizquestions`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch posts");
-    }
-    const data = await response.json();
-    const listArr = Object.entries(data);
-    setQuizquestions(listArr)
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch posts")
-  }
-};
-
- //GET Aside  Words=====================================================================================================
-const [greenWord, setGreenWord] = useState([])
-const [yellowWord, setYellowWord] = useState([])
-const [redWord, setRedWord] = useState([])
-
- const getAsideWords = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/words`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch posts");
-    }
-    const data = await response.json();
-    const dataGreen = data.filter((word) => word.wordCategory === "success")
-    const dataYellow = data.filter((word) => word.wordCategory === "warning")
-    const dataRed = data.filter((word) => word.wordCategory === "danger")
-
-    const greenArr = Object.entries(dataGreen);
-    const yellowArr = Object.entries(dataYellow);
-    const redArr = Object.entries(dataRed);
-
-    const greenRandom = greenArr[Math.floor(Math.random() * greenArr.length)];
-    const yellowRandom = yellowArr[Math.floor(Math.random() * yellowArr.length)];
-    const redRandom = redArr[Math.floor(Math.random() * redArr.length)];
-
-    setGreenWord(greenRandom)
-    setYellowWord(yellowRandom)
-    setRedWord(redRandom)
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch posts")
-  }
-};
-
-//GET SELECTED SENTENCES
-const [searchTerm, setSearchTerm] = useState('');
-const [searchResults, setSearchResults] = useState([]);
-
-const getSearchedSentences = async (pSearchTerm) => {
-  try {
-    const response = await fetch(`${BASE_URL}/findExample?filter=${pSearchTerm}`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch posts");
-    }
-    const data = await response.json();
-    const searchedArr = Object.entries(data);
-    setSearchResults(searchedArr)
-
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch posts")
-  }
-};
-
   return (
     <wordsContext.Provider value={{
       getWordsList, allWordsList, setAllWordsList,
@@ -327,13 +328,13 @@ const getSearchedSentences = async (pSearchTerm) => {
       handleDelete, handleNewWord,
       handleEdit, handleUpdate, show, setShow,
       handleClose, handleModalOpen, handleModalClose,
-      showModal,modalContent,handleEditList,handleDeleteList,
+      showModal, modalContent, handleEditList, handleDeleteList,
       handleCancel,
-      getQuizQuestions,quizQuestions, setQuizquestions, 
-      getAsideWords, greenWord,yellowWord,redWord,
-      searchTerm, setSearchTerm, searchResults, setSearchResults,getSearchedSentences,
-      todoValue, setTodoValue,todoList, setTodoList
-      
+      getQuizQuestions, quizQuestions, setQuizquestions,
+      getAsideWords, greenWord, yellowWord, redWord,
+      searchTerm, setSearchTerm, searchResults, setSearchResults, getSearchedSentences,
+      todoValue, setTodoValue, todoList, setTodoList, getTodoList, handleNewTodo
+
     }}>
       {children}
     </wordsContext.Provider>

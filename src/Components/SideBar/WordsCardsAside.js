@@ -5,12 +5,6 @@ import { useState, useEffect, useContext } from 'react';
 function CardsAside() {
   const { getAsideWords, greenWord, yellowWord, redWord } = useContext(wordsContext)
 
-/* console.log(greenWord)
-
-const timer = setTimeout(() => {
-  getAsideWords()
-}, 15000);*/
-
 useEffect(()=>{
 getAsideWords()
 const interval = setInterval(() => {
