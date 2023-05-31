@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext,useState,useEffect } from 'react';
 import { Container, FloatingLabel, Form, Button,Row,Col} from 'react-bootstrap';
 import AddWordUnterList from './AddWordUnterList';
 import {wordsContext} from "../../Context/wordsListContext"
 
 const AddWord = () => {
-  const { inputValue, setInputValue, handleNewWord, handleCancel,createLib } = useContext(wordsContext)
+  const { inputValue, setInputValue, handleNewWord, handleCancel } = useContext(wordsContext)
 
   return (
     <>
@@ -32,8 +32,8 @@ const AddWord = () => {
             <div className='mt-4'>
               <Button onClick={handleCancel} variant="danger w-50">Cancel</Button>
               <Button onClick={handleNewWord} variant="primary w-50">Add</Button>
-              //!
-              <Button onClick={createLib} variant="primary w-50">Library</Button>
+              
+              <Button onClick={handleButtonClick} variant="primary w-50">Library</Button>
 
             </div><br />
             <hr />
