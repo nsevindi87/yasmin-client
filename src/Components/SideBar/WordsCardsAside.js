@@ -1,25 +1,33 @@
 import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
 import { wordsContext } from "../../Context/wordsListContext";
 import { useEffect, useContext } from 'react';
 
 function CardsAside() {
   const { getAsideWords, greenWord, yellowWord, redWord } = useContext(wordsContext)
 
-useEffect(()=>{
-getAsideWords()
-const interval = setInterval(() => {
-  getAsideWords()
-}, 15000);
-return () => clearInterval(interval);
-},[]) 
+  useEffect(() => {
+    getAsideWords()
+    const interval = setInterval(() => {
+      getAsideWords()
+    }, 15000);
+    return () => clearInterval(interval);
+  }, [])
+
+  const accordionHeader = {
+    backgroundColor: 'red',
+    transition: 'width 1s linear',
+    margin: `auto`
+  };
+
 
   return (
     <Accordion>
-      <Accordion.Item eventKey="0" className='mt-2'>
-        <Accordion.Header>{greenWord[1]?.word}</Accordion.Header>
+      <Card>
+        <Accordion.Header className='accordionHeader'>{greenWord[1]?.word}</Accordion.Header>
         <Accordion.Body>{greenWord[1]?.wordMeaning}</Accordion.Body>
         <Accordion.Body>{greenWord[1]?.wordSecondMeaning}</Accordion.Body>
-      </Accordion.Item>
+      </Card>
       <Accordion.Item eventKey="1" className='mt-2'>
         <Accordion.Header>{yellowWord[1]?.word}</Accordion.Header>
         <Accordion.Body>{yellowWord[1]?.wordMeaning}</Accordion.Body>
@@ -30,9 +38,8 @@ return () => clearInterval(interval);
         <Accordion.Body>{redWord[1]?.wordMeaning}</Accordion.Body>
         <Accordion.Body>{redWord[1]?.wordSecondMeaning}</Accordion.Body>
       </Accordion.Item>
-
-
     </Accordion>
+
   );
 }
 
