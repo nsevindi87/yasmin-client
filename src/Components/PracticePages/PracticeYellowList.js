@@ -19,7 +19,7 @@ const Practice = () => {
         <div>
             <h1 className='text-center my-3'>Practice Yellow List</h1>
             <Form.Check
-                type="switch"
+                type="checkbox"
                 label="Activate to change cards"
                 checked={isChecked}
                 onChange={() => setIsChecked(!isChecked)}

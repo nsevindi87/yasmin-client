@@ -282,7 +282,6 @@ const getSearchedSentences = async (pSearchTerm) => {
       getAsideWords, greenWord,yellowWord,redWord,
       searchTerm, setSearchTerm, searchResults, setSearchResults,getSearchedSentences,
       
-      
     }}>
       {children}
     </wordsContext.Provider>

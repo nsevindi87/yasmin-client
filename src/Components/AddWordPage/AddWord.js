@@ -32,9 +32,6 @@ const AddWord = () => {
             <div className='mt-4'>
               <Button onClick={handleCancel} variant="danger w-50">Cancel</Button>
               <Button onClick={handleNewWord} variant="primary w-50">Add</Button>
-              
-              <Button onClick={handleButtonClick} variant="primary w-50">Library</Button>
-
             </div><br />
             <hr />
             <h1 className='mt-2 text-center'>Recently Added</h1>
