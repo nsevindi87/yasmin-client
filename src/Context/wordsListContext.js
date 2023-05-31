@@ -23,6 +23,14 @@ const WordsListContextProvider = ({ children }) => {
     wordCategory: ""
   })
 
+  const [todoList, setTodoList] = useState([]);
+  const [todoValue, setTodoValue] = useState({
+    id: null,
+    task: "",
+    date: "",
+    time: ""
+  })
+
   //BASE URL
   const BASE_URL = "http://localhost:3302"
 
@@ -47,6 +55,7 @@ const WordsListContextProvider = ({ children }) => {
       throw new Error("Failed to fetch posts")
     }
   };
+ 
 
   //ADD NEW WORD=====================================================================================================
   const handleNewWord = async () => {
@@ -78,6 +87,48 @@ const WordsListContextProvider = ({ children }) => {
 
     }
   };
+  //ADD NEW TODO=====================================================================================================
+  const handleNewTodo = async () => {
+    if (todoValue.task.length === 0 && todoValue.date.length === 0 && todoValue.time.length === 0) {
+      alert("Lütfen formun tamamini doldurun!")
+    } else {
+      try {
+        const response = await fetch(`${BASE_URL}/todos`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(todoValue),
+        });
+        console.log(response)
+        if (!response.ok) {
+          throw new Error("Failed to create post");
+        }
+        setTodoValue({
+          task: "",
+          date: "",
+          time: ""
+        })
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+ //GET ALL TODOS=====================================================================================================
+ const getTodoList = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/todos`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch posts");
+    }
+    const data = await response.json();
+    setTodoList(data)
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch posts")
+  }
+};
 
 
   //DELETE WORD  =====================================================================================================
@@ -281,6 +332,7 @@ const getSearchedSentences = async (pSearchTerm) => {
       getQuizQuestions,quizQuestions, setQuizquestions, 
       getAsideWords, greenWord,yellowWord,redWord,
       searchTerm, setSearchTerm, searchResults, setSearchResults,getSearchedSentences,
+      todoValue, setTodoValue,todoList, setTodoList
       
     }}>
       {children}
