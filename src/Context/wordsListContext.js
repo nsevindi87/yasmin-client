@@ -110,7 +110,7 @@ const WordsListContextProvider = ({ children }) => {
 
   //ADD NEW TODO   =====================================================================================================
   const handleNewTodo = async () => {
-    if (todoValue.task.length === 0 && todoValue.date.length === 0 && todoValue.time.length === 0) {
+    if (todoValue.task === "" || todoValue.date === "" || todoValue.time === "") {
       alert("Lütfen formun tamamini doldurun!")
     } else {
       try {
@@ -134,8 +134,8 @@ const WordsListContextProvider = ({ children }) => {
         console.error(error);
       }
     }
+    getTodoList()
   };
-
 
   //DELETE WORD  =====================================================================================================
   const handleDelete = async (pId) => {
@@ -317,7 +317,7 @@ const WordsListContextProvider = ({ children }) => {
 
 
 
-  
+
   return (
     <wordsContext.Provider value={{
       getWordsList, allWordsList, setAllWordsList,

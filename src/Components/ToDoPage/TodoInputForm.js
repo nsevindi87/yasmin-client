@@ -16,7 +16,7 @@ const InputForm = () => {
                             <Form.Control type="text" id='task' value={todoValue.task} onChange={(e) => setTodoValue({ ...todoValue, [e.target.id]: e.target.value })} />
                         </FloatingLabel>
                         <FloatingLabel label="Date">
-                            <Form.Control type="date" id='date' value={todoValue.date} onChange={(e) => setTodoValue({ ...todoValue, [e.target.id]: e.target.value })} />
+                            <Form.Control className='my-3' type="date" id='date' value={todoValue.date} onChange={(e) => setTodoValue({ ...todoValue, [e.target.id]: e.target.value })} />
                         </FloatingLabel>
                         <FloatingLabel label="Time">
                             <Form.Control type="time" id='time' value={todoValue.time} onChange={(e) => setTodoValue({ ...todoValue, [e.target.id]: e.target.value })} />

@@ -22,12 +22,10 @@ const FindExample = () => {
 
   const handleSearch = (e) => {
     const term = e.target.value;
-    setSearchTerm(term);
+    getSearchedSentences(term)
   }
 
   useEffect(() => {
-    getSearchedSentences(searchTerm)
-    console.log(searchResults)
   }, [searchTerm])
 
   return (
@@ -36,8 +34,7 @@ const FindExample = () => {
       <Form.Group>
         <Form.Control
           type="text"
-          placeholder="Please write your word!"
-          value={searchTerm}
+          placeholder="Please write !"
           onChange={handleSearch}
           className="my-3"
         />

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Container, Row, Col, ListGroup, Button } from 'react-bootstrap';
 import { CheckCircle, PencilSquare, Trash3Fill } from 'react-bootstrap-icons';
 import { wordsContext } from "../../Context/wordsListContext"
 
 const ToDoList = () => {
-    const { todoList, getTodoList } = useContext(wordsContext)
+    const { todoList, getTodoList,handleNewTodo } = useContext(wordsContext)
 
     useEffect(()=>{
         getTodoList()

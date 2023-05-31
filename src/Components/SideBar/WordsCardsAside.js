@@ -1,6 +1,6 @@
 import Accordion from 'react-bootstrap/Accordion';
 import { wordsContext } from "../../Context/wordsListContext";
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 
 function CardsAside() {
   const { getAsideWords, greenWord, yellowWord, redWord } = useContext(wordsContext)
