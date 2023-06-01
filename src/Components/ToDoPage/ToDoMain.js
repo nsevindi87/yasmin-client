@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
-import InputForm from "./TodoInputForm"
-import ToDoList from './ToDoList';
+import InputForm from "./TodoInputForm.js"
+import ToDoList from './ToDoList.js';
 
 
 const ToDoMain = () => {

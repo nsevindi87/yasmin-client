@@ -372,6 +372,57 @@ const handleTodoDelete = async (pId) => {
   getTodoList()
 }
 
+const [showTodoUpdate, setShowTodoUpdate] = useState(false);
+
+
+//UPDATE WORD  ====================================================
+  //Edit tiklandiginda forma eski bilgiler gelir
+  const handleTodoEdit = async (pTodo) => {
+    setShowTodoUpdate(true)
+    
+    setTodoValue({
+      id: pTodo.id,
+      task: pTodo.task,
+      date: pTodo.date.slice(0,10),
+      time: pTodo.time,
+    })
+  }
+
+  //FORMU SIFIRLA
+  const handleTodoCancel = async () => {
+    setShowTodoUpdate(false)
+    setTodoValue({
+      task: "",
+      date: "",
+      time: "",
+    })
+  }
+
+  //Gerekli degisikliklerden sonra yeni bilgiler DB ye kaydedilir.
+  const handleTodoUpdate = async () => {
+    try {
+      await fetch(`${BASE_URL}/todos/${inputValue.id}`, {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputValue)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+    setShowTodoUpdate(true)
+    setTodoValue({
+      id:null,
+      task: "",
+      date: "",
+      time: "",
+    })
+  }
+
+
+
 
 
 
@@ -391,7 +442,7 @@ const handleTodoDelete = async (pId) => {
       getAsideWords, greenWord, yellowWord, redWord,
       searchTerm, setSearchTerm, searchResults, setSearchResults, getSearchedSentences,
       todoValue, setTodoValue, todoList, setTodoList, getTodoList, handleNewTodo,
-      handleTodoDelete
+      handleTodoDelete,handleTodoEdit,handleTodoCancel,handleTodoUpdate,
 
     }}>
       {children}

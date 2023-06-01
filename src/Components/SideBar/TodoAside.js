@@ -20,8 +20,8 @@ function TodoAside() {
           <Card.Header>Your next plan! Don't forget!!!</Card.Header>
           <Card.Body>
             <Card.Title>Task:{task[1]?.task} </Card.Title>
-            <Card.Text >Time: {task[1]?.time.slice(0, 5)}</Card.Text>
-            <Card.Text>Date: {task[1]?.date.slice(0, 10)}</Card.Text>
+            <Card.Text >Time: {task[1]?.time}</Card.Text>
+            <Card.Text>Date: {task[1]?.date}</Card.Text>
           </Card.Body>
           <Card.Footer >
             <Button className=' btn-warning w-25 ms-4'> <PencilSquare /> </Button>
