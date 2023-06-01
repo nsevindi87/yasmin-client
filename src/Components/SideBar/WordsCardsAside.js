@@ -14,31 +14,55 @@ function CardsAside() {
     return () => clearInterval(interval);
   }, [])
 
-  const accordionHeader = {
-    backgroundColor: 'red',
-    transition: 'width 1s linear',
-    margin: `auto`
-  };
-
 
   return (
-    <Accordion>
-      <Card>
-        <Accordion.Header className='accordionHeader'>{greenWord[1]?.word}</Accordion.Header>
-        <Accordion.Body>{greenWord[1]?.wordMeaning}</Accordion.Body>
-        <Accordion.Body>{greenWord[1]?.wordSecondMeaning}</Accordion.Body>
+    <>
+      <Card
+        bg="danger"
+        key="danger"
+        text="light"
+        style={{ width: '20rem' }}
+        className="mb-2"
+      >
+        <Card.Header>Red List</Card.Header>
+        <Card.Body>
+          <Card.Title> {redWord[1]?.word} </Card.Title>
+          <Card.Text> {redWord[1]?.wordMeaning}</Card.Text>
+          <Card.Text> {redWord[1]?.wordSecondMeaning}</Card.Text>
+          <Card.Text> {redWord[1]?.wordNote}</Card.Text>
+        </Card.Body>
       </Card>
-      <Accordion.Item eventKey="1" className='mt-2'>
-        <Accordion.Header>{yellowWord[1]?.word}</Accordion.Header>
-        <Accordion.Body>{yellowWord[1]?.wordMeaning}</Accordion.Body>
-        <Accordion.Body>{yellowWord[1]?.wordSecondMeaning}</Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="2" className='mt-2'>
-        <Accordion.Header>{redWord[1]?.word}</Accordion.Header>
-        <Accordion.Body>{redWord[1]?.wordMeaning}</Accordion.Body>
-        <Accordion.Body>{redWord[1]?.wordSecondMeaning}</Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
+      <Card
+        bg="warning"
+        key="warning"
+        text="light"
+        style={{ width: '20rem' }}
+        className="mb-2"
+      >
+        <Card.Header>Yellow List</Card.Header>
+        <Card.Body>
+          <Card.Title> {greenWord[1]?.word} </Card.Title>
+          <Card.Text> {greenWord[1]?.wordMeaning}</Card.Text>
+          <Card.Text> {greenWord[1]?.wordSecondMeaning}</Card.Text>
+          <Card.Text> {greenWord[1]?.wordNote}</Card.Text>
+        </Card.Body>
+      </Card>
+      <Card
+        bg="success"
+        key="success"
+        text="light"
+        style={{ width: '20rem' }}
+        className="mb-2"
+      >
+        <Card.Header>Green List</Card.Header>
+        <Card.Body>
+          <Card.Title> {greenWord[1]?.word} </Card.Title>
+          <Card.Text> {greenWord[1]?.wordMeaning}</Card.Text>
+          <Card.Text> {greenWord[1]?.wordSecondMeaning}</Card.Text>
+          <Card.Text> {greenWord[1]?.wordNote}</Card.Text>
+        </Card.Body>
+      </Card>
+    </>
 
   );
 }
