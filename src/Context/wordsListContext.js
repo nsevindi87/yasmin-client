@@ -401,18 +401,21 @@ const [showTodoUpdate, setShowTodoUpdate] = useState(false);
   //Gerekli degisikliklerden sonra yeni bilgiler DB ye kaydedilir.
   const handleTodoUpdate = async () => {
     try {
-      await fetch(`${BASE_URL}/todos/${inputValue.id}`, {
+      await fetch(`${BASE_URL}/todos/${todoValue.id}`, {
         method: "PUT",
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(inputValue)
+        body: JSON.stringify(todoValue)
+        
       })
+      console.log(todoValue)
     } catch (error) {
       console.log(error)
     }
-    setShowTodoUpdate(true)
+    getTodoList()
+    setShowTodoUpdate(false)
     setTodoValue({
       id:null,
       task: "",
@@ -442,7 +445,7 @@ const [showTodoUpdate, setShowTodoUpdate] = useState(false);
       getAsideWords, greenWord, yellowWord, redWord,
       searchTerm, setSearchTerm, searchResults, setSearchResults, getSearchedSentences,
       todoValue, setTodoValue, todoList, setTodoList, getTodoList, handleNewTodo,
-      handleTodoDelete,handleTodoEdit,handleTodoCancel,handleTodoUpdate,
+      handleTodoDelete,handleTodoEdit,handleTodoCancel,handleTodoUpdate,showTodoUpdate, setShowTodoUpdate
 
     }}>
       {children}

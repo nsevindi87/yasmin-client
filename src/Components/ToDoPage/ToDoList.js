@@ -4,8 +4,7 @@ import { CheckCircle, PencilSquare, Trash3Fill } from 'react-bootstrap-icons';
 import { wordsContext } from "../../Context/wordsListContext"
 
 const ToDoList = () => {
-    const { todoList, getTodoList,handleTodoDelete,handleTodoEdit, handleTodoCancel,
-        handleToDoClose,handleTodoUpdate } = useContext(wordsContext)
+    const { todoList, getTodoList,handleTodoDelete,handleTodoEdit, handleTodoUpdate } = useContext(wordsContext)
 
     useEffect(()=>{
         getTodoList()
@@ -25,11 +24,10 @@ const ToDoList = () => {
                                     key={value}>
 
                                     <div className="ms-2 me-auto">
-                                        {task[1].task} {task[1].date} {task[1].time}
+                                        {task[1].task} {task[1].date.slice(0,10)} {task[1].time}
                                     </div>
 
                                     <Button className=' btn-warning'onClick={() => handleTodoEdit(task[1])}> <PencilSquare /> </Button>
-                                    <Button className='mx-1 btn-success'> <CheckCircle /> </Button>
                                     <Button className='btn-danger' onClick={() => handleTodoDelete(task[1].id)}> <Trash3Fill /> </Button>
                                 </ListGroup.Item>
 
