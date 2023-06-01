@@ -1,14 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext,useEffect } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { wordsContext } from "../../Context/wordsListContext";
 import { CheckCircle, PencilSquare, Trash3Fill } from 'react-bootstrap-icons';
 
 
 function TodoAside() {
-  const { todoList, getTodoList, handleNewTodo } = useContext(wordsContext)
+  const { todoList, getTodoList } = useContext(wordsContext)
 
+  useEffect(()=>{
+    getTodoList()
+  },[])
   return (
-    <div>
+    <div className='mt-2'>
       {todoList.slice(0, 1)?.map((task, value) => (
         <Card
           bg="light"

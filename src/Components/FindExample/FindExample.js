@@ -77,9 +77,9 @@ const FindExample = () => {
       <h4 className='text-center'> <span className='text-danger'>{searchResults.length} </span> sentences were found!</h4>
       <p className='text-center my-3'> * Double click the sentence you want to copy!</p>
       <hr></hr>
-      <ToastContainer className="p-3" position="bottom-start">
+      <ToastContainer className="p-3 " position="bottom-start">
         <Toast show={showToast} onClose={() => setShowToast(false)} delay={4000} autohide >
-          <Toast.Body>Kopyalandı!</Toast.Body>
+          <Toast.Body style={{ background: 'green', color: 'white'}}>Kopyalandı!</Toast.Body>
         </Toast>
       </ToastContainer>
     </Container>

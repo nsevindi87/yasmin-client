@@ -118,7 +118,7 @@ const HeaderLoggedin = () => {
                                             style={{ maxHeight: '100px' }}
                                             navbarScroll>
                                             <Nav.Link as={Link} to="/">Home</Nav.Link>
-                                            <Nav.Link as={Link} to="/translate">Translate</Nav.Link>
+                                            <Nav.Link as={Link} to="/findExample">Find Example</Nav.Link>
                                             <Nav.Link as={Link} to="/about">About</Nav.Link>
                                             <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
                                         </Nav>

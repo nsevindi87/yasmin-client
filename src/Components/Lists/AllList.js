@@ -4,13 +4,9 @@ import { wordsContext } from "../../Context/wordsListContext";
 import {  Link } from 'react-router-dom';
 import { PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
 
-
-
-
 const GeneralList = () => {
   const { getWordsList, allWordsList, handleDelete, handleEdit, handleClose, show, setInputValue, inputValue, handleUpdate,
     handleEditList,handleDeleteList,getQuizQuestions } = useContext(wordsContext)
-
 
   useEffect(() => {
     getWordsList()

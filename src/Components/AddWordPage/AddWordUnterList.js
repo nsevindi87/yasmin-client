@@ -3,11 +3,8 @@ import { Container, Row, Col, Table, Button, Modal, Form, FloatingLabel,Nav } fr
 import { wordsContext } from "../../Context/wordsListContext"
 import { PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
 
-
-
 const AddWordUnterList = () => {
   const { getWordsList, allWordsList, handleDelete,handleEdit,handleClose, show, setInputValue,inputValue, handleUpdate, handleEditList,handleDeleteList  } = useContext(wordsContext)
-
 
   useEffect(() => {
     getWordsList()

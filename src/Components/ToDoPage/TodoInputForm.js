@@ -2,11 +2,9 @@ import React, { useEffect, useContext } from 'react';
 import { Container, Row, Col, Button, Form, FloatingLabel } from 'react-bootstrap';
 import { wordsContext } from "../../Context/wordsListContext"
 
-
 const InputForm = () => {
     const { todoValue, setTodoValue, handleNewTodo,handleTodoCancel,showTodoUpdate, handleTodoUpdate } = useContext(wordsContext)
    
-
     return (
         <>
             <Container>
