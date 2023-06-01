@@ -5,6 +5,7 @@ import { wordsContext } from "../../Context/wordsListContext"
 
 const InputForm = () => {
     const { todoValue, setTodoValue, handleNewTodo } = useContext(wordsContext)
+   
 
     return (
         <>
