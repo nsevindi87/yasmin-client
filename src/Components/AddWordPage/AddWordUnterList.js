@@ -55,40 +55,6 @@ const AddWordUnterList = () => {
                     </td>
                   </tr>
                 )).reverse().slice(0, 5)}
-              <>
-                  <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Update Word</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <Form>
-                        <FloatingLabel label="First Value">
-                          <Form.Control onChange={(e) => setInputValue({ ...inputValue, [e.target.id]: e.target.value })} type="text" id='word' value={inputValue.word} />
-                        </FloatingLabel>
-
-                        <FloatingLabel label="Second Value">
-                          <Form.Control className='mt-4' onChange={(e) => setInputValue({ ...inputValue, [e.target.id]: e.target.value })} type="text" id='wordMeaning' value={inputValue.wordMeaning} />
-                        </FloatingLabel>
-
-                        <FloatingLabel className='my-4' label="Third Value" >
-                          <Form.Control onChange={(e) => setInputValue({ ...inputValue, [e.target.id]: e.target.value })} type="text" id='wordSecondMeaning' value={inputValue.wordSecondMeaning} />
-                        </FloatingLabel>
-
-                        <FloatingLabel label="Notes">
-                          <Form.Control onChange={(e) => setInputValue({ ...inputValue, [e.target.id]: e.target.value })} as="textarea" id='wordNote' value={inputValue.wordNote} style={{ height: '100px' }} />
-                        </FloatingLabel>
-                      </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button variant="secondary" onClick={handleClose}>
-                        Close
-                      </Button>
-                      <Button variant="primary" onClick={()=>handleUpdate()}>
-                        Save Changes
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-                </>
               </tbody>
             </Table>
           </Col>

@@ -2,12 +2,16 @@ import { createContext, useState } from "react"
 export const wordsContext = createContext()
 
 const WordsListContextProvider = ({ children }) => {
-  //INITIAL STATES
+ /* ==============================================================================================
+== //!    INITIAL STATES
+===============================================================================================*/
+
   const [allWordsList, setAllWordsList] = useState([]);
   const [greenList, setGreenList] = useState([]);
   const [yellowList, setYellowList] = useState([]);
   const [redList, setRedList] = useState([]);
   const [show, setShow] = useState(false);
+  const [showUpdate, setShowUpdate] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
   const [quizQuestions, setQuizquestions] = useState([]);
@@ -16,7 +20,7 @@ const WordsListContextProvider = ({ children }) => {
   const [redWord, setRedWord] = useState([])
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-
+  const [showTodoUpdate, setShowTodoUpdate] = useState(false);
 
   const [inputValue, setInputValue] = useState({
     id: null,
@@ -39,10 +43,8 @@ const WordsListContextProvider = ({ children }) => {
   const BASE_URL = "http://localhost:3302"
 
 /* ==============================================================================================
-== //!    WORDS  -GET -ADD  -DELETE  -EDIT
-==
+== //!    WORDS  -GET -ADD  -DELETE 
 ===============================================================================================*/
-
 
   //GET ALL DATAS==========================================================
   const getWordsList = async () => {
@@ -109,17 +111,14 @@ const WordsListContextProvider = ({ children }) => {
     }
   }
 
-
-
 /* ==============================================================================================
 == //!    UPDATE WORDS
-==
 ===============================================================================================*/
 
-  //UPDATE WORD  ====================================================
-  //Edit tiklandiginda forma eski bilgiler gelir
+//Edit tiklandiginda forma eski bilgiler gelir
   const handleEdit = async (pPost) => {
     setShow(true)
+    setShowUpdate(true)
     setInputValue({
       id: pPost.id,
       word: pPost.word,
@@ -132,6 +131,7 @@ const WordsListContextProvider = ({ children }) => {
 
   //FORMU SIFIRLA
   const handleCancel = async () => {
+    setShowUpdate(false)
     setInputValue({
       word: "",
       wordMeaning: "",
@@ -139,6 +139,7 @@ const WordsListContextProvider = ({ children }) => {
       wordNote: "",
       wordCategory: ""
     })
+
   }
   //Acilir sayfayi kapatir
   const handleClose = () => setShow(false)
@@ -158,6 +159,8 @@ const WordsListContextProvider = ({ children }) => {
       console.log(error)
     }
     setShow(false)
+    setShowUpdate(false)
+
     setInputValue({
       id: null,
       word: "",
@@ -167,6 +170,10 @@ const WordsListContextProvider = ({ children }) => {
       wordCategory: ""
     })
   }
+
+/*==============================================================================================
+== //!    PRACTICE PAGE
+===============================================================================================*/
 
   //OPEN - CLOSE MODELS IN PRACTICE PAGES
   const handleModalOpen = (content) => {
@@ -179,7 +186,6 @@ const WordsListContextProvider = ({ children }) => {
 
 /* ==============================================================================================
 == //!    LIST CHANGES   -EDIT -DELETE
-==
 ===============================================================================================*/
 
   //Change the List of Word
@@ -223,11 +229,10 @@ const WordsListContextProvider = ({ children }) => {
       console.error('Hata:2', error);
     }
   }
-  /* ==============================================================================================
-== //!    QUIZ INFORMATIONS
-==
-===============================================================================================*/
 
+/*==============================================================================================
+== //!    QUIZ INFORMATIONS
+===============================================================================================*/
 
   //GET QUIZ QUESTIONS=================================================
   const getQuizQuestions = async () => {
@@ -247,7 +252,6 @@ const WordsListContextProvider = ({ children }) => {
 
 /* ==============================================================================================
 == //!     ASIDE WORDS
-==
 ===============================================================================================*/
 
   //GET Aside  Words===================================================
@@ -279,12 +283,9 @@ const WordsListContextProvider = ({ children }) => {
     }
   };
 
-  
 /* ==============================================================================================
-== //!    GET EXAMPLE SENTENCES 
-==
+== //!   EXAMPLE SENTENCES 
 ===============================================================================================*/
-
 
   //GET SELECTED SENTENCES
   const getSearchedSentences = async (pSearchTerm) => {
@@ -305,9 +306,7 @@ const WordsListContextProvider = ({ children }) => {
 
 /* ==============================================================================================
 == //!    TODO LIST - ADD - DELETE  - EDIT
-==
 ===============================================================================================*/
-
 
 //GET ALL TODOS   ========================================================
 const getTodoList = async () => {
@@ -325,11 +324,10 @@ const getTodoList = async () => {
   }
 };
 
- 
-const currentDate = new Date().toISOString().slice(0, 10);
-const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
 //ADD NEW TODO   ===========================================================
+const currentDate = new Date().toISOString().slice(0, 10);
+const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 const handleNewTodo = async () => {
   if (todoValue.task === "" || todoValue.date === "" || todoValue.time === "") {
     alert("Please fill in the entire form ")
@@ -372,10 +370,7 @@ const handleTodoDelete = async (pId) => {
   getTodoList()
 }
 
-const [showTodoUpdate, setShowTodoUpdate] = useState(false);
-
-
-//UPDATE WORD  ====================================================
+//UPDATE TODO  ====================================================
   //Edit tiklandiginda forma eski bilgiler gelir
   const handleTodoEdit = async (pTodo) => {
     setShowTodoUpdate(true)
@@ -445,7 +440,7 @@ const [showTodoUpdate, setShowTodoUpdate] = useState(false);
       getAsideWords, greenWord, yellowWord, redWord,
       searchTerm, setSearchTerm, searchResults, setSearchResults, getSearchedSentences,
       todoValue, setTodoValue, todoList, setTodoList, getTodoList, handleNewTodo,
-      handleTodoDelete,handleTodoEdit,handleTodoCancel,handleTodoUpdate,showTodoUpdate, setShowTodoUpdate
+      handleTodoDelete,handleTodoEdit,handleTodoCancel,handleTodoUpdate,showTodoUpdate, setShowTodoUpdate,showUpdate
 
     }}>
       {children}
