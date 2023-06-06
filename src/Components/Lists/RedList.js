@@ -11,7 +11,7 @@ const RedList = () => {
 
   useEffect(() => {
     getWordsList()
-  }, [redList])
+  }, [])
   return (
     <>
       <Container>

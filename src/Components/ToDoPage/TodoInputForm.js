@@ -1,10 +1,17 @@
 import React, { useEffect, useContext } from 'react';
 import { Container, Row, Col, Button, Form, FloatingLabel } from 'react-bootstrap';
 import { wordsContext } from "../../Context/wordsListContext"
+import { UserContext } from '../../Context/UserContext.js';
+
 
 const InputForm = () => {
     const { todoValue, setTodoValue, handleNewTodo,handleTodoCancel,showTodoUpdate, handleTodoUpdate } = useContext(wordsContext)
    
+    const { getProfileInfo,dene,profileInfo} = useContext(UserContext)
+
+  useEffect(() => {
+    getProfileInfo()
+  }, [])
     return (
         <>
             <Container>

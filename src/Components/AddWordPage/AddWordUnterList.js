@@ -4,11 +4,11 @@ import { wordsContext } from "../../Context/wordsListContext"
 import { PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
 
 const AddWordUnterList = () => {
-  const { getWordsList, allWordsList, handleDelete,handleEdit,handleClose, show, setInputValue,inputValue, handleUpdate, handleEditList,handleDeleteList  } = useContext(wordsContext)
+  const { getWordsList, allWordsList, handleDelete,handleEdit, handleEditList,handleDeleteList  } = useContext(wordsContext)
 
   useEffect(() => {
     getWordsList()
-  }, [allWordsList])
+  }, [])
 
   return (
     <>

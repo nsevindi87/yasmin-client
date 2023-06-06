@@ -1,19 +1,32 @@
-import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { wordsContext } from "../../Context/wordsListContext";
 import { useEffect, useContext } from 'react';
+import { UserContext } from '../../Context/UserContext.js';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function CardsAside() {
-  const { getAsideWords, greenWord, yellowWord, redWord } = useContext(wordsContext)
+  const { getAsideWordList,greenAsideList,yellowAsideList,redAsideList } = useContext(wordsContext)
+  const {profileInfo,getProfileInfo,user2} = useContext(UserContext)
+
+  const randomRed = redAsideList[Math.floor(Math.random() * redAsideList.length)]
+  const randomYellow = yellowAsideList[Math.floor(Math.random() * yellowAsideList.length)]
+  const randomGreen = greenAsideList[Math.floor(Math.random() * greenAsideList.length)]
+ 
+  const {isAuthenticated } = useAuth0();
 
   useEffect(() => {
-    getAsideWords()
+  
     const interval = setInterval(() => {
-      getAsideWords()
-    }, 15000);
+      const fetchData = async () => {
+          const profileData = await getProfileInfo();
+          await getAsideWordList(profileData.id);
+          console.log(profileData);
+      };
+      fetchData()
+    }, 5000);
     return () => clearInterval(interval);
-  }, [])
 
+  }, [isAuthenticated])
 
   return (
     <>
@@ -25,12 +38,12 @@ function CardsAside() {
         className="mb-2"
       >
         <Card.Header>Red List</Card.Header>
-        <Card.Body>
-          <Card.Title> {redWord[1]?.word} </Card.Title>
-          <Card.Text> {redWord[1]?.wordMeaning}</Card.Text>
-          <Card.Text> {redWord[1]?.wordSecondMeaning}</Card.Text>
-          <Card.Text> {redWord[1]?.wordNote}</Card.Text>
-        </Card.Body>
+          <Card.Body>
+            <Card.Title> {randomRed?.word} </Card.Title>
+            <Card.Text> {randomRed?.wordMeaning}</Card.Text>
+            <Card.Text> {randomRed?.wordSecondMeaning}</Card.Text>
+            <Card.Text> {randomRed?.wordNote}</Card.Text>
+          </Card.Body>
       </Card>
       <Card
         bg="warning"
@@ -41,10 +54,10 @@ function CardsAside() {
       >
         <Card.Header>Yellow List</Card.Header>
         <Card.Body>
-          <Card.Title> {greenWord[1]?.word} </Card.Title>
-          <Card.Text> {greenWord[1]?.wordMeaning}</Card.Text>
-          <Card.Text> {greenWord[1]?.wordSecondMeaning}</Card.Text>
-          <Card.Text> {greenWord[1]?.wordNote}</Card.Text>
+          <Card.Title> {randomYellow?.word} </Card.Title>
+          <Card.Text> {randomYellow?.wordMeaning}</Card.Text>
+          <Card.Text> {randomYellow?.wordSecondMeaning}</Card.Text>
+          <Card.Text> {randomYellow?.wordNote}</Card.Text>
         </Card.Body>
       </Card>
       <Card
@@ -56,10 +69,10 @@ function CardsAside() {
       >
         <Card.Header>Green List</Card.Header>
         <Card.Body>
-          <Card.Title> {greenWord[1]?.word} </Card.Title>
-          <Card.Text> {greenWord[1]?.wordMeaning}</Card.Text>
-          <Card.Text> {greenWord[1]?.wordSecondMeaning}</Card.Text>
-          <Card.Text> {greenWord[1]?.wordNote}</Card.Text>
+          <Card.Title> {randomGreen?.word} </Card.Title>
+          <Card.Text> {randomGreen?.wordMeaning}</Card.Text>
+          <Card.Text> {randomGreen?.wordSecondMeaning}</Card.Text>
+          <Card.Text> {randomGreen?.wordNote}</Card.Text>
         </Card.Body>
       </Card>
     </>

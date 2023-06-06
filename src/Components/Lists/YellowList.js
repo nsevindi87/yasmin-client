@@ -12,7 +12,7 @@ const YellowList = () => {
 
   useEffect(() => {
     getWordsList()
-  }, [yellowList])
+  }, [])
 
   return (
     <>

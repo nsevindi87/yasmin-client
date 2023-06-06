@@ -1,16 +1,20 @@
-import React, { useContext, useEffect,useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col, Table, Button, Modal, Form, FloatingLabel,Nav } from 'react-bootstrap';
-import { wordsContext } from "../../Context/wordsListContext";
 import {  Link } from 'react-router-dom';
 import { PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
+import { wordsContext } from "../../Context/wordsListContext";
+import { UserContext } from '../../Context/UserContext.js';
 
 const GeneralList = () => {
   const { getWordsList, allWordsList, handleDelete, handleEdit, handleClose, show, setInputValue, inputValue, handleUpdate,
     handleEditList,handleDeleteList,getQuizQuestions } = useContext(wordsContext)
 
+  const {profileInfo,getProfileInfo} = useContext(UserContext)
+  
   useEffect(() => {
-    getWordsList()
-  }, [allWordsList])
+    getProfileInfo()
+    getWordsList(profileInfo?.id)
+  }, [])
 
   return (
     <>

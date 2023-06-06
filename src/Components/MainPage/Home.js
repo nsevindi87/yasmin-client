@@ -1,7 +1,21 @@
-import React from 'react'
+import { useEffect, useContext } from 'react';
 import image from "../../Images/contentImg.png"
+import { useAuth0 } from '@auth0/auth0-react';
+
+import { wordsContext } from "../../Context/wordsListContext.js";
+import { UserContext } from '../../Context/UserContext.js';
 
 const Home = () => {
+  const { getWordsList, getAsideWordList} = useContext(wordsContext)
+  const {profileInfo,getProfileInfo} = useContext(UserContext)
+  const {isAuthenticated } = useAuth0();
+
+  
+    useEffect(() => {
+      getProfileInfo()
+      getWordsList(profileInfo?.id)
+      getAsideWordList(profileInfo?.id)
+    }, [isAuthenticated])
   return (
     <div>
       <div className="row h-100" >
