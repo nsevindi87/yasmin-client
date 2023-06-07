@@ -7,7 +7,7 @@ import { UserContext } from '../../Context/UserContext.js';
 const InputForm = () => {
     const { todoValue, setTodoValue, handleNewTodo,handleTodoCancel,showTodoUpdate, handleTodoUpdate } = useContext(wordsContext)
    
-    const { getProfileInfo,dene,profileInfo} = useContext(UserContext)
+    const { getProfileInfo,profileInfo} = useContext(UserContext)
 
   useEffect(() => {
     getProfileInfo()

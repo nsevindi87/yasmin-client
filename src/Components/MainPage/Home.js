@@ -7,7 +7,7 @@ import { UserContext } from '../../Context/UserContext.js';
 
 const Home = () => {
   const { getWordsList, getAsideWordList} = useContext(wordsContext)
-  const {profileInfo,getProfileInfo} = useContext(UserContext)
+  const {profileInfo,getProfileInfo,getTodoList} = useContext(UserContext)
   const {isAuthenticated } = useAuth0();
 
   

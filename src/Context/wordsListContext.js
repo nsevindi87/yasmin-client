@@ -1,13 +1,13 @@
-import { createContext, useState,useContext } from "react"
+import { createContext, useState, useContext } from "react"
 import { UserContext } from './UserContext.js';
 
 export const wordsContext = createContext()
 
 
 const WordsListContextProvider = ({ children }) => {
- /* ==============================================================================================
-== //!    INITIAL STATES
-===============================================================================================*/
+  /* ==============================================================================================
+ == //!    INITIAL STATES
+ ===============================================================================================*/
 
   const [allWordsList, setAllWordsList] = useState([]);
   const [greenList, setGreenList] = useState([]);
@@ -22,7 +22,7 @@ const WordsListContextProvider = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [showTodoUpdate, setShowTodoUpdate] = useState(false);
 
-  const {profileInfo,user2, getProfileInfo} = useContext(UserContext)
+  const { profileInfo, user2, getProfileInfo } = useContext(UserContext)
 
   const [inputValue, setInputValue] = useState({
     id: null,
@@ -44,9 +44,9 @@ const WordsListContextProvider = ({ children }) => {
   //BASE URL
   const BASE_URL = "http://localhost:3302"
 
-/* ==============================================================================================
-== //!    WORDS  -GET -ADD  -DELETE 
-===============================================================================================*/
+  /* ==============================================================================================
+  == //!    WORDS  -GET -ADD  -DELETE 
+  ===============================================================================================*/
 
   //GET ALL DATAS==========================================================
   const getWordsList = async (pId) => {
@@ -80,7 +80,7 @@ const WordsListContextProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({...inputValue, userId:profileInfo?.id}),
+          body: JSON.stringify({ ...inputValue, userId: profileInfo?.id }),
         });
         getWordsList(profileInfo.id)
         if (!response.ok) {
@@ -92,7 +92,7 @@ const WordsListContextProvider = ({ children }) => {
           wordSecondMeaning: "",
           wordNote: "",
           wordCategory: "",
-          userId:profileInfo.id
+          userId: profileInfo.id
         })
       } catch (error) {
         console.error(error);
@@ -113,11 +113,11 @@ const WordsListContextProvider = ({ children }) => {
     }
   }
 
-/* ==============================================================================================
-== //!    UPDATE WORDS
-===============================================================================================*/
+  /* ==============================================================================================
+  == //!    UPDATE WORDS
+  ===============================================================================================*/
 
-//Edit tiklandiginda forma eski bilgiler gelir
+  //Edit tiklandiginda forma eski bilgiler gelir
   const handleEdit = async (pPost) => {
     setShow(true)
     setShowUpdate(true)
@@ -175,9 +175,9 @@ const WordsListContextProvider = ({ children }) => {
     })
   }
 
-/*==============================================================================================
-== //!    PRACTICE PAGE
-===============================================================================================*/
+  /*==============================================================================================
+  == //!    PRACTICE PAGE
+  ===============================================================================================*/
 
   //OPEN - CLOSE MODELS IN PRACTICE PAGES
   const handleModalOpen = (content) => {
@@ -188,9 +188,9 @@ const WordsListContextProvider = ({ children }) => {
     setShowModal(false);
   };
 
-/* ==============================================================================================
-== //!    LIST CHANGES   -EDIT -DELETE
-===============================================================================================*/
+  /* ==============================================================================================
+  == //!    LIST CHANGES   -EDIT -DELETE
+  ===============================================================================================*/
 
   //Change the List of Word
   const handleEditList = async (pListName, pId) => {
@@ -221,7 +221,7 @@ const WordsListContextProvider = ({ children }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ pId}),
+        body: JSON.stringify({ pId }),
       });
       if (response.ok) {
         console.log('Kelime listeden silindi');
@@ -234,9 +234,9 @@ const WordsListContextProvider = ({ children }) => {
     }
   }
 
-/*==============================================================================================
-== //!    QUIZ INFORMATIONS
-===============================================================================================*/
+  /*==============================================================================================
+  == //!    QUIZ INFORMATIONS
+  ===============================================================================================*/
 
   //GET QUIZ QUESTIONS=================================================
   const getQuizQuestions = async () => {
@@ -254,17 +254,17 @@ const WordsListContextProvider = ({ children }) => {
     }
   };
 
-/* ==============================================================================================
-== //!     ASIDE WORDS
-===============================================================================================*/
+  /* ==============================================================================================
+  == //!     ASIDE WORDS
+  ===============================================================================================*/
 
-const [greenAsideList, setGreenAsideList] = useState([]);
-const [yellowAsideList, setYellowAsideList] = useState([]);
-const [redAsideList, setRedAsideList] = useState([]);
+  const [greenAsideList, setGreenAsideList] = useState([]);
+  const [yellowAsideList, setYellowAsideList] = useState([]);
+  const [redAsideList, setRedAsideList] = useState([]);
 
 
   //GET Aside  Words===================================================
-  
+
   const getAsideWordList = async (pId) => {
     try {
       const response = await fetch(`${BASE_URL}/asideWords/${pId}`);
@@ -273,7 +273,6 @@ const [redAsideList, setRedAsideList] = useState([]);
       const dataAsideYellow = dataAside?.filter((word) => word.wordCategory === "warning")
       const dataAsideRed = dataAside?.filter((word) => word.wordCategory === "danger")
 
-      console.log(dataAside)
       setGreenAsideList(dataAsideGreen)
       setYellowAsideList(dataAsideYellow)
       setRedAsideList(dataAsideRed)
@@ -283,9 +282,9 @@ const [redAsideList, setRedAsideList] = useState([]);
     }
   };
 
-/* ==============================================================================================
-== //!   EXAMPLE SENTENCES 
-===============================================================================================*/
+  /* ==============================================================================================
+  == //!   EXAMPLE SENTENCES 
+  ===============================================================================================*/
 
   //GET SELECTED SENTENCES
   const getSearchedSentences = async (pSearchTerm) => {
@@ -304,85 +303,78 @@ const [redAsideList, setRedAsideList] = useState([]);
     }
   };
 
-/* ==============================================================================================
-== //!    TODO LIST - ADD - DELETE  - EDIT
-===============================================================================================*/
+  /* ==============================================================================================
+  == //!    TODO LIST - ADD - DELETE  - EDIT
+  ===============================================================================================*/
 
-//GET ALL TODOS   ========================================================
-const getTodoList = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/todos`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch posts");
-    }
-    const data = await response.json();
-    const listArr = Object.entries(data);
-    setTodoList(listArr)
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch posts")
-  }
-};
-
-
-//ADD NEW TODO   ===========================================================
-const currentDate = new Date().toISOString().slice(0, 10);
-const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-const handleNewTodo = async () => {
-  if (todoValue.task === "" || todoValue.date === "" || todoValue.time === "") {
-    alert("Please fill in the entire form ")
-  } else if (todoValue.date < currentDate || (todoValue.date === currentDate && todoValue.time < currentTime)){
-    alert("Please select a current date and time!")
-  } else {
+  //GET ALL TODOS   ========================================================
+  const getTodoList = async (pId) => {
     try {
-      getProfileInfo()
-      console.log(profileInfo?.id)
-      const response = await fetch(`${BASE_URL}/todos`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({...todoValue, userId:profileInfo?.id}),
-      });
-      console.log(response)
-      if (!response.ok) {
-        throw new Error("Failed to create post");
-      }
-      setTodoValue({
-        task: "",
-        date: "",
-        time: "",
-        userId:profileInfo.id
-      })
+      const response = await fetch(`${BASE_URL}/todos/${pId}`);
+      const data = await response.json();
+      setTodoList(data)
     } catch (error) {
       console.error(error);
+      throw new Error("Failed to fetch posts")
     }
-    getTodoList()
-  }
-};
+  };
 
-//DELETE TODO  ==================================================
-const handleTodoDelete = async (pId) => {
-  try {
-    await fetch(`${BASE_URL}/todos/${pId}`, {
-      method: "DELETE"
-    })
-  } catch (error) {
-    console.log(error);
-  }
-  getTodoList()
-}
 
-//UPDATE TODO  ====================================================
+  //ADD NEW TODO   ===========================================================
+  const currentDate = new Date().toISOString().slice(0, 10);
+  const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  const handleNewTodo = async () => {
+    if (todoValue.task === "" || todoValue.date === "" || todoValue.time === "") {
+      alert("Please fill in the entire form ")
+    } else if (todoValue.date < currentDate || (todoValue.date === currentDate && todoValue.time < currentTime)) {
+      alert("Please select a current date and time!")
+    } else {
+      try {
+        const response = await fetch(`${BASE_URL}/todos`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...todoValue, userId: profileInfo?.id }),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to create post");
+        }
+        setTodoValue({
+          task: "",
+          date: "",
+          time: "",
+          userId: profileInfo.id
+        })
+      } catch (error) {
+        console.error(error);
+      }
+      getTodoList(profileInfo.id)
+    }
+  };
+
+  //DELETE TODO  ==================================================
+  const handleTodoDelete = async (pId) => {
+    try {
+      await fetch(`${BASE_URL}/todos/${pId}`, {
+        method: "DELETE"
+      })
+    } catch (error) {
+      console.log(error);
+    }
+    getTodoList(profileInfo.id)
+  }
+
+  //UPDATE TODO  ====================================================
   //Edit tiklandiginda forma eski bilgiler gelir
   const handleTodoEdit = async (pTodo) => {
     setShowTodoUpdate(true)
-    
+
     setTodoValue({
       id: pTodo.id,
       task: pTodo.task,
-      date: pTodo.date.slice(0,10),
+      date: pTodo.date.slice(0, 10),
       time: pTodo.time,
     })
   }
@@ -399,30 +391,34 @@ const handleTodoDelete = async (pId) => {
 
   //Gerekli degisikliklerden sonra yeni bilgiler DB ye kaydedilir.
   const handleTodoUpdate = async () => {
-    try {
-      await fetch(`${BASE_URL}/todos/${todoValue.id}`, {
-        method: "PUT",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(todoValue)
-        
-      })
-      console.log(todoValue)
-    } catch (error) {
-      console.log(error)
-    }
-    getTodoList()
-    setShowTodoUpdate(false)
-    setTodoValue({
-      id:null,
-      task: "",
-      date: "",
-      time: "",
-    })
-  }
+    if (todoValue.task === "" || todoValue.date === "" || todoValue.time === "") {
+      alert("Please fill in the entire form ")
+    } else if (todoValue.date < currentDate || (todoValue.date === currentDate && todoValue.time < currentTime)) {
+      alert("Please select a current date and time!")
+    } else {
+      try {
+        await fetch(`${BASE_URL}/todos/${todoValue.id}`, {
+          method: "PUT",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(todoValue)
 
+        })
+      } catch (error) {
+        console.log(error)
+      }
+      getTodoList(profileInfo.id)
+      setShowTodoUpdate(false)
+      setTodoValue({
+        id: null,
+        task: "",
+        date: "",
+        time: "",
+      })
+    }
+  }
 
   return (
     <wordsContext.Provider value={{
@@ -439,8 +435,8 @@ const handleTodoDelete = async (pId) => {
       getQuizQuestions, quizQuestions, setQuizquestions,
       searchTerm, setSearchTerm, searchResults, setSearchResults, getSearchedSentences,
       todoValue, setTodoValue, todoList, setTodoList, getTodoList, handleNewTodo,
-      handleTodoDelete,handleTodoEdit,handleTodoCancel,handleTodoUpdate,showTodoUpdate, setShowTodoUpdate,showUpdate,
-      getAsideWordList,greenAsideList,yellowAsideList,redAsideList
+      handleTodoDelete, handleTodoEdit, handleTodoCancel, handleTodoUpdate, showTodoUpdate, setShowTodoUpdate, showUpdate,
+      getAsideWordList, greenAsideList, yellowAsideList, redAsideList
 
     }}>
       {children}
