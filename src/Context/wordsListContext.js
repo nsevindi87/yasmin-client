@@ -450,10 +450,9 @@ const WordsListContextProvider = ({ children }) => {
 
   return (
     <wordsContext.Provider value={{
-      getWordsList, allWordsList, setAllWordsList,
-      greenList, setGreenList,
-      yellowList, setYellowList,
-      redList, setRedList,
+      getWordsList,setAllWordsList,
+      allWordsList, greenList, setGreenList,
+      yellowList, setYellowList, redList, setRedList,
       inputValue, setInputValue,
       handleDelete, handleNewWord,
       handleEdit, handleUpdate, show, setShow,

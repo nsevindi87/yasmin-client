@@ -1,14 +1,15 @@
-import React, { useContext, useEffect,useState,useCallback } from 'react'
+import React, { useContext, useEffect, useState, useCallback } from 'react'
 import { useAuth0 } from '@auth0/auth0-react';
 import { UserContext } from '../../Context/UserContext.js';
 import { wordsContext } from "../../Context/wordsListContext.js";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, PieChart, Pie, Sector } from "recharts";
+import { all } from 'axios';
 
 
 
 const Profile = () => {
   const { profileInfo, getProfileInfo } = useContext(UserContext)
-  const { getQuizStatistics, quizStatistics, setQuizStatistics, getFiveQuizStatistics, fiveStatistics, setFiveStatistics } = useContext(wordsContext)
+  const { getQuizStatistics, quizStatistics, getFiveQuizStatistics, fiveStatistics,getWordsList, greenList, yellowList,redList, allWordsList } = useContext(wordsContext)
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   const renderCustomizedLabel = (props) => {
@@ -87,7 +88,7 @@ const Profile = () => {
 
 
 
-//!TOTAL STATISTICS
+  //!TOTAL STATISTICS
   const data = [
     { name: "Total Questions", value: Number(quizStatistics.totalQuestions) },
     { name: "Wrong Answers", value: Number(quizStatistics.totalWrongAnswers) },
@@ -176,13 +177,105 @@ const Profile = () => {
   );
 
 
-//!USEEFFECT
+  //!WORDS  STATISTICS
+  const dataWords = [
+    { name: "Green List", value: Number(greenList.length) },
+    { name: "Red List", value: Number(redList.length) },
+    { name: "Yellow List", value: Number(yellowList.length) },
+    { name: "All of Word List", value: Number(allWordsList.length) }
+  ];
+
+  const renderActiveShape2 = (props) => {
+    const RADIAN = Math.PI / 180;
+    const {
+      cx,
+      cy,
+      midAngle,
+      innerRadius,
+      outerRadius,
+      startAngle,
+      endAngle,
+      fill,
+      payload,
+      percent,
+      value
+    } = props;
+    const sin = Math.sin(-RADIAN * midAngle);
+    const cos = Math.cos(-RADIAN * midAngle);
+    const sx = cx + (outerRadius + 10) * cos;
+    const sy = cy + (outerRadius + 10) * sin;
+    const mx = cx + (outerRadius + 30) * cos;
+    const my = cy + (outerRadius + 30) * sin;
+    const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+    const ey = my;
+    const textAnchor = cos >= 0 ? "start" : "end";
+    return (
+      <g>
+        <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
+          {payload.name}
+        </text>
+        <Sector
+          cx={cx}
+          cy={cy}
+          innerRadius={innerRadius}
+          outerRadius={outerRadius}
+          startAngle={startAngle}
+          endAngle={endAngle}
+          fill="red"
+        />
+        <Sector
+          cx={cx}
+          cy={cy}
+          startAngle={startAngle}
+          endAngle={endAngle}
+          innerRadius={outerRadius + 6}
+          outerRadius={outerRadius + 10}
+          fill="orange"
+        />
+        <path
+          d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
+          stroke={fill}
+          fill="none"
+        />
+        <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+        <text
+          x={ex + (cos >= 0 ? 1 : -1) * 12}
+          y={ey}
+          textAnchor={textAnchor}
+          fill="#333"
+        >{`Total ${value}`}</text>
+        {/* <text
+          x={ex + (cos >= 0 ? 1 : -1) * 15}
+          y={ey}
+          dy={18}
+          textAnchor={textAnchor}
+          fill="#999"
+        >
+          {`(Rate ${(percent * 100).toFixed(2)}%)`}
+        </text> */}
+      </g>
+    );
+  };
+
+  const [activeIndex2, setActiveIndex2] = useState(0);
+
+  const onPieEnter2 = useCallback(
+    (_, index) => {
+      setActiveIndex2(index);
+    },
+    [setActiveIndex2]
+  );
+
+
+  //!USEEFFECT
   useEffect(() => {
     const fetchData = async () => {
       try {
         const profileData = await getProfileInfo();
         await getQuizStatistics(profileData.id);
         await getFiveQuizStatistics(profileData.id);
+        await getWordsList(profileData.id)
+        console.log(greenList)
       } catch (error) {
         // Hata yönetimi
       }
@@ -210,21 +303,47 @@ const Profile = () => {
           <h1>Score: {quizStatistics.totalQuestions * 10} / {quizStatistics.totalScore}</h1>
         </div>
       }
-      <PieChart width={400} height={400}>
-        <Pie
-          activeIndex={activeIndex}
-          activeShape={renderActiveShape}
-          data={data}
-          cx={200}
-          cy={200}
-          innerRadius={60}
-          outerRadius={100}
-          fill="#8884d8"
-          dataKey="value"
-          onMouseEnter={onPieEnter}
-        />
-      </PieChart>
+      <div className='d-flex text-center '>
+        {/* QUIZ GRAPHICS */}
+        <div className='border border-4 ms-3 shadow'>
+          <h1>Quiz Istatistics</h1>
+          <PieChart width={500} height={400}>
+            <Pie
+              activeIndex={activeIndex}
+              activeShape={renderActiveShape}
+              data={data}
+              cx={230}
+              cy={200}
+              innerRadius={60}
+              outerRadius={100}
+              fill="#8884d8"
+              dataKey="value"
+              onMouseEnter={onPieEnter}
+            />
+          </PieChart>
+        </div>
+        {/* WORDS GRAPHICS */}
+        <div className='border border-4 ms-3 shadow'>
 
+
+          <h1>Words Istatistics</h1>
+          <PieChart width={500} height={400}>
+            <Pie
+              activeIndex={activeIndex2}
+              activeShape={renderActiveShape2}
+              data={dataWords}
+              cx={230}
+              cy={200}
+              innerRadius={60}
+              outerRadius={100}
+              fill="#8884d8"
+              dataKey="value"
+              onMouseEnter={onPieEnter2}
+            />
+          </PieChart>
+        </div>
+      </div>
+      <div className='border border-4 shadow m-4'>
       <BarChart
         width={1000}
         height={500}
@@ -246,6 +365,8 @@ const Profile = () => {
         <Bar dataKey="Correct" fill="#77bfa3" minPointSize={5} />
         <Bar dataKey="Wrong" fill="#ffbcaa" minPointSize={10} />
       </BarChart>
+
+      </div>
     </div>
   )
 }
