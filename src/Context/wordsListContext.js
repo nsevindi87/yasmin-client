@@ -18,6 +18,7 @@ const WordsListContextProvider = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
   const [quizQuestions, setQuizquestions] = useState([]);
+  const [quizStatistics, setQuizStatistics] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [showTodoUpdate, setShowTodoUpdate] = useState(false);
@@ -254,6 +255,21 @@ const WordsListContextProvider = ({ children }) => {
     }
   };
 
+  //!GET QUIZ STATISTICS
+  const getQuizStatistics = async (pId) => {
+    try {
+      const response = await fetch(`http://localhost:3302/quizstatistics/${pId}`);
+      console.log(response)
+      const data = await response.json();
+      console.log(data)
+      setQuizStatistics(data)
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch posts")
+    }
+  };
+
+
   /* ==============================================================================================
   == //!     ASIDE WORDS
   ===============================================================================================*/
@@ -436,7 +452,8 @@ const WordsListContextProvider = ({ children }) => {
       searchTerm, setSearchTerm, searchResults, setSearchResults, getSearchedSentences,
       todoValue, setTodoValue, todoList, setTodoList, getTodoList, handleNewTodo,
       handleTodoDelete, handleTodoEdit, handleTodoCancel, handleTodoUpdate, showTodoUpdate, setShowTodoUpdate, showUpdate,
-      getAsideWordList, greenAsideList, yellowAsideList, redAsideList
+      getAsideWordList, greenAsideList, yellowAsideList, redAsideList,
+      getQuizStatistics, quizStatistics, setQuizStatistics
 
     }}>
       {children}
