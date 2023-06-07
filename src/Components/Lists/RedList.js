@@ -3,15 +3,26 @@ import { Container, Row, Col, Table, Button, Modal, Form, FloatingLabel,Nav } fr
 import { wordsContext } from "../../Context/wordsListContext"
 import {  Link } from 'react-router-dom';
 import { PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
-
+import { UserContext } from '../../Context/UserContext.js';
 
 
 const RedList = () => {
-  const { redList,  getWordsList, handleDelete,handleEdit, handleClose, show, setInputValue, inputValue, handleUpdate, handleDeleteList } = useContext(wordsContext)
+  const { redList,redAsideList,  getWordsList, handleDelete,handleEdit, handleClose, show, setInputValue, inputValue, handleUpdate, handleDeleteList } = useContext(wordsContext)
+  const {profileInfo,getProfileInfo} = useContext(UserContext)
 
-  useEffect(() => {
-    getWordsList()
-  }, [])
+
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const profileData = await getProfileInfo();
+        await getWordsList(profileData.id);
+      } catch (error) {
+        // Hata yönetimi
+      }
+    };
+    fetchData();
+  },[])
+
   return (
     <>
       <Container>
@@ -44,7 +55,7 @@ const RedList = () => {
                     <td>{word.wordNote}</td>
                     <td>
                       <Button onClick={() => handleEdit(word)} variant="warning me-1" className='p-2'><PencilSquare/></Button>
-                      <Button onClick={() => handleDelete(word.id, word.listGroup)} variant="danger" className='p-2'><Trash3Fill/></Button>
+                      <Button onClick={() => handleDelete(word.id)} variant="danger" className='p-2'><Trash3Fill/></Button>
                     </td>
                     <td> {word.wordCategory ? <Button variant={word.wordCategory} onClick={()=> handleDeleteList(word.id)} className='p-2'></Button> : null}</td>
                     

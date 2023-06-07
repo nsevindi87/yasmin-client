@@ -1,19 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { wordsContext } from "../../Context/wordsListContext";
 import { Button, Modal, Card, Form } from 'react-bootstrap';
+import { UserContext } from '../../Context/UserContext.js';
 
 
 const Practice = () => {
     const { redList, getWordsList, handleModalOpen, handleModalClose, modalContent,showModal } = useContext(wordsContext)
     const [isChecked, setIsChecked] = useState(false);
+    const { getProfileInfo,profileInfo,user2} = useContext(UserContext)
 
     //Change the words place
     const shuffledData = [...redList].sort(() => Math.random() - 0.5);
 
 
-    useEffect(() => {
-        getWordsList()
-    }, [])
+    useEffect(()=>{
+        const fetchData = async () => {
+          try {
+            const profileData = await getProfileInfo();
+            await getWordsList(profileData.id);
+          } catch (error) {
+            // Hata yönetimi
+          }
+        };
+        console.log(shuffledData)
+        fetchData();
+      },[])
 
     return (
         <div>

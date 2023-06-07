@@ -20,13 +20,12 @@ const AsideComponent = () => {
   const handleTodoChange = () => {
     setTodoVisible(!todoVisible);
   };
-  
+
   useEffect(()=>{
     const fetchData = async () => {
       try {
         const profileData = await getProfileInfo();
         await getAsideWordList(profileData.id);
-        console.log(profileData);
       } catch (error) {
         // Hata yönetimi
       }

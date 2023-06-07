@@ -20,7 +20,6 @@ function CardsAside() {
       const fetchData = async () => {
           const profileData = await getProfileInfo();
           await getAsideWordList(profileData.id);
-          console.log(profileData);
       };
       fetchData()
     }, 5000);

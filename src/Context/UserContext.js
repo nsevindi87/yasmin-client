@@ -10,9 +10,6 @@ export const UserContextProvider = ({ children }) => {
     initializeHttpService(getAccessTokenSilently, "http://localhost:3302");
 
     let user2 = useCheckUser();
-    console.log(user2)
-
-
 
 
     const { user } = useAuth0();
@@ -25,12 +22,10 @@ export const UserContextProvider = ({ children }) => {
                 throw new Error("Failed to fetch posts");
             }
             const data = await response.json();
-            console.log(data)
 
             setProfileInfo(data)
             return data
         } catch (error) {
-            console.error(error);
             setProfileInfo(null)
             throw new Error("Failed to fetch posts")
         }

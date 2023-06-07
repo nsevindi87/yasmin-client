@@ -52,14 +52,12 @@ const WordsListContextProvider = ({ children }) => {
   const getWordsList = async (pId) => {
     try {
       const response = await fetch(`${BASE_URL}/words/${pId}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch posts");
-      }
       const data = await response.json();
       const dataGreen = data.filter((word) => word.wordCategory === "success")
       const dataYellow = data.filter((word) => word.wordCategory === "warning")
       const dataRed = data.filter((word) => word.wordCategory === "danger")
 
+      console.log(data)
       setAllWordsList(data)
       setGreenList(dataGreen)
       setYellowList(dataYellow)
@@ -77,7 +75,6 @@ const WordsListContextProvider = ({ children }) => {
       alert("En azindan ilk bölümü doldurun")
     } else {
       try {
-        getProfileInfo()
         const response = await fetch(`${BASE_URL}/words`, {
           method: "POST",
           headers: {
@@ -85,8 +82,7 @@ const WordsListContextProvider = ({ children }) => {
           },
           body: JSON.stringify({...inputValue, userId:profileInfo?.id}),
         });
-        console.log(response)
-        getWordsList()
+        getWordsList(profileInfo.id)
         if (!response.ok) {
           throw new Error("Failed to create post");
         }
@@ -111,7 +107,7 @@ const WordsListContextProvider = ({ children }) => {
       await fetch(`${BASE_URL}/words/${pId}`, {
         method: "DELETE"
       })
-      getWordsList()
+      getWordsList(profileInfo.id)
     } catch (error) {
       console.log(error);
     }
@@ -166,7 +162,7 @@ const WordsListContextProvider = ({ children }) => {
     }
     setShow(false)
     setShowUpdate(false)
-    getWordsList()
+    getWordsList(profileInfo.id)
 
 
     setInputValue({
@@ -208,7 +204,7 @@ const WordsListContextProvider = ({ children }) => {
       });
       if (response.ok) {
         console.log('Kelime listeye eklendi');
-        getWordsList()
+        getWordsList(profileInfo.id)
       } else {
         console.error('Hata:1', response.statusText);
       }
@@ -229,7 +225,7 @@ const WordsListContextProvider = ({ children }) => {
       });
       if (response.ok) {
         console.log('Kelime listeden silindi');
-        getWordsList()
+        getWordsList(profileInfo.id)
       } else {
         console.error('Hata:1', response.statusText);
       }

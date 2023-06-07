@@ -10,11 +10,18 @@ const GeneralList = () => {
     handleEditList,handleDeleteList,getQuizQuestions } = useContext(wordsContext)
 
   const {profileInfo,getProfileInfo} = useContext(UserContext)
-  
-  useEffect(() => {
-    getProfileInfo()
-    getWordsList(profileInfo?.id)
-  }, [])
+ 
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const profileData = await getProfileInfo();
+        await getWordsList(profileData.id);
+      } catch (error) {
+        // Hata yönetimi
+      }
+    };
+    fetchData();
+  },[])
 
   return (
     <>

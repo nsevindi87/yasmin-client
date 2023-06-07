@@ -2,14 +2,23 @@ import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col, Table, Button, Modal, Form, FloatingLabel,Nav } from 'react-bootstrap';
 import { wordsContext } from "../../Context/wordsListContext"
 import { PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
+import { UserContext } from '../../Context/UserContext.js';
 
 const AddWordUnterList = () => {
   const { getWordsList, allWordsList, handleDelete,handleEdit, handleEditList,handleDeleteList  } = useContext(wordsContext)
+  const { getProfileInfo,profileInfo,user2} = useContext(UserContext)
 
-  useEffect(() => {
-    getWordsList()
-  }, [])
-
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const profileData = await getProfileInfo();
+        await getWordsList(profileData.id);
+      } catch (error) {
+        // Hata yönetimi
+      }
+    };
+    fetchData();
+  },[])
   return (
     <>
       <Container fluid>

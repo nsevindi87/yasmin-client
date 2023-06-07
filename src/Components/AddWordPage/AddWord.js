@@ -7,16 +7,24 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 const AddWord = () => {
-  const { inputValue, setInputValue, handleNewWord, handleCancel,
+  const { inputValue,getWordsList, setInputValue, handleNewWord, handleCancel,
     showUpdate,handleUpdate } = useContext(wordsContext)
 
     const { getProfileInfo,dene,profileInfo} = useContext(UserContext)
 
     const {isAuthenticated } = useAuth0();
 
-  useEffect(() => {
-    getProfileInfo(profileInfo?.id)
-  }, [])
+    useEffect(()=>{
+      const fetchData = async () => {
+        try {
+          const profileData = await getProfileInfo();
+          await getWordsList(profileData.id);
+        } catch (error) {
+          // Hata yönetimi
+        }
+      };
+      fetchData();
+    },[])
 
   return (
     <>
