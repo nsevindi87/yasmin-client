@@ -100,14 +100,14 @@ const QuizPage = () => {
 
       setTimeout(() => {
         setShowToast(false);
-      }, 3000);
+      }, 2000);
 
       setCorrectAnswers(0)
       setWrongAnswers(0)
       setScore(0)
       setTimeout(() => {
-        navigate('/');
-      }, 3000);
+        navigate('/addword');
+      }, 2000);
     } catch (error) {
       console.error(error);
     }
