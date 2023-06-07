@@ -48,7 +48,7 @@ export default function WelcomePage() {
                 <Row>
                     <Col>
                         <h1 className='mt-5 text-center'>Register Page</h1>
-
+                        <p className="text-center">*If you don't fill in the form, you can not save anythig!</p>
                         <FloatingLabel label="First Name">
                             <Form.Control onChange={(e) => setUserValues({ ...userValues, [e.target.id]: e.target.value })} type="text" id='firstName' value={userValues.firstName} />
                         </FloatingLabel>
