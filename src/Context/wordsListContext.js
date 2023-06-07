@@ -22,6 +22,7 @@ const WordsListContextProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [showTodoUpdate, setShowTodoUpdate] = useState(false);
+  const [fiveStatistics, setFiveStatistics]=useState([])
 
   const { profileInfo, user2, getProfileInfo } = useContext(UserContext)
 
@@ -258,11 +259,22 @@ const WordsListContextProvider = ({ children }) => {
   //!GET QUIZ STATISTICS
   const getQuizStatistics = async (pId) => {
     try {
-      const response = await fetch(`http://localhost:3302/quizstatistics/${pId}`);
-      console.log(response)
+      const response = await fetch(`${BASE_URL}/quizstatistics/all/${pId}`);
       const data = await response.json();
-      console.log(data)
       setQuizStatistics(data)
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch posts")
+    }
+  };
+
+  //Get five statistics
+  const getFiveQuizStatistics = async (pId) => {
+    try {
+      const response = await fetch(`${BASE_URL}/quizstatistics/${pId}`);
+      const data = await response.json();
+      setFiveStatistics(data)
+      console.log(fiveStatistics)
     } catch (error) {
       console.error(error);
       throw new Error("Failed to fetch posts")
@@ -453,7 +465,8 @@ const WordsListContextProvider = ({ children }) => {
       todoValue, setTodoValue, todoList, setTodoList, getTodoList, handleNewTodo,
       handleTodoDelete, handleTodoEdit, handleTodoCancel, handleTodoUpdate, showTodoUpdate, setShowTodoUpdate, showUpdate,
       getAsideWordList, greenAsideList, yellowAsideList, redAsideList,
-      getQuizStatistics, quizStatistics, setQuizStatistics
+      getQuizStatistics, quizStatistics, setQuizStatistics,
+      getFiveQuizStatistics,fiveStatistics, setFiveStatistics
 
     }}>
       {children}
