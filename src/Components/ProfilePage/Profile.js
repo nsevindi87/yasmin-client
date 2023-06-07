@@ -290,11 +290,11 @@ const Profile = () => {
 
 
   return (
-    <div>
+    <div className='ms-4'>
       {isAuthenticated &&
         <div>
           <h1 className='text-center'>Hoşgeldin {profileInfo?.firstName}</h1>
-          <img src={user?.picture} alt="user_picture" />
+          <img src={user?.picture} alt="user_picture" className='rounded' />
           <h1>{profileInfo?.id}</h1>
           <h1>{user?.sex}</h1>
           <h1>Total Questions: {quizStatistics.totalQuestions}</h1>
@@ -303,9 +303,10 @@ const Profile = () => {
           <h1>Score: {quizStatistics.totalQuestions * 10} / {quizStatistics.totalScore}</h1>
         </div>
       }
+
       <div className='d-flex text-center '>
         {/* QUIZ GRAPHICS */}
-        <div className='border border-4 ms-3 shadow'>
+        <div className='border border-4 shadow'>
           <h1>Quiz Istatistics</h1>
           <PieChart width={500} height={400}>
             <Pie
@@ -322,10 +323,9 @@ const Profile = () => {
             />
           </PieChart>
         </div>
+
         {/* WORDS GRAPHICS */}
         <div className='border border-4 ms-3 shadow'>
-
-
           <h1>Words Istatistics</h1>
           <PieChart width={500} height={400}>
             <Pie
@@ -343,9 +343,10 @@ const Profile = () => {
           </PieChart>
         </div>
       </div>
-      <div className='border border-4 shadow m-4'>
+      <div className='border border-4 shadow m-5'>
+        <h1 className='text-center'>Quiz Individuel Statistics</h1>
       <BarChart
-        width={1000}
+        width={900}
         height={500}
         data={chartData}
         margin={{
