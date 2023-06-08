@@ -5,8 +5,8 @@ import Foto from "../../Images/Foto.jpg"
 const About = () => {
   return (
     <div>
-      <Container>
-        <Row>
+      <Container >
+        <Row >
           <Col style={{marginTop:"7rem"}}>
           <h1>Hi I'm <span>Nizami SEVINDI</span></h1>
           

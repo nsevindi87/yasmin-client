@@ -1,38 +1,21 @@
-import React, { useContext, useEffect } from 'react';
+import React,{useContext,useEffect} from 'react';
 import { Container, Row, Col, Table, Button, Modal, Form, FloatingLabel,Nav } from 'react-bootstrap';
 import {  Link } from 'react-router-dom';
-import { PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
-import { wordsContext } from "../../Context/wordsListContext";
 import { UserContext } from '../../Context/UserContext.js';
 
-const GeneralList = () => {
-  const { getWordsList, allWordsList, handleDelete, handleEdit, handleClose, show, setInputValue, inputValue, handleUpdate,
-    handleEditList,handleDeleteList,getQuizQuestions } = useContext(wordsContext)
 
-  const {profileInfo,getProfileInfo} = useContext(UserContext)
- 
+const UserStatistics = () => {
+  const {profileInfo,getProfileInfo,allUsers,getAllUsers} = useContext(UserContext)
   useEffect(()=>{
-    const fetchData = async () => {
-      try {
-        const profileData = await getProfileInfo();
-        await getWordsList(profileData.id);
-      } catch (error) {
-        
-      }
-    };
-    fetchData();
+    getAllUsers()
   },[])
 
   return (
-    <>
-      <Container>
+    <Container>
         <Row className='mt-5' >
           <Col>
-            <h1 className='text-center'>All Word List</h1>
-            <div className='mb-2 text-center'>
-              <Button className='btn-dark text-warning mx-3'><Nav.Link as={Link} to="/practice">Training</Nav.Link></Button>
-              <Button className='btn-dark text-warning'><Nav.Link as={Link} to="/quiz" onClick={getQuizQuestions}>Test Yourself</Nav.Link></Button>
-            </div>
+            <h1 className='text-center'>User List</h1>
+            
             <Table striped bordered hover variant="dark">
               <thead>
                 <tr className='text-center'>
@@ -42,35 +25,22 @@ const GeneralList = () => {
                   <th>Value 3</th>
                   <th>Notes</th>
                   <th>Actions </th>
-                  <th>List </th>
-                  <th >New List </th>
+                  <th>Actions </th>
                 </tr>
               </thead>
               <tbody>
-                {allWordsList?.map((word, value) => (
+                 {allUsers?.map((user, value) => (
                   <tr key={value} className='text-center'>
                     <td>{value + 1}</td>
-                    <td>{word.word}</td>
-                    <td>{word.wordMeaning}</td>
-                    <td>{word.wordSecondMeaning}</td>
-                    <td>{word.wordNote}</td>
-                    <td>
-                      <Button onClick={() => handleEdit(word)} variant="warning me-1" size='sm'><PencilSquare/></Button>
-                      <Button onClick={() => handleDelete(word.id)} variant="danger" size='sm'><Trash3Fill/> </Button>
-                    </td>
-                    <td> {word.wordCategory ? <Button variant={word.wordCategory} onClick={()=> handleDeleteList(word.id)} className='p-2'></Button> : null}</td>
-                    <td>
-                      {word.wordCategory ? null :
-                        <div>
-                          <Button variant="success" onClick={() => handleEditList("success", word.id)} className='p-2'></Button>
-                          <Button variant="warning" onClick={() => handleEditList("warning",word.id)} className='p-2 mx-1'></Button>
-                          <Button variant="danger" onClick={() => handleEditList("danger",word.id)} className='p-2'></Button>
-                        </div>
-                      }
-                    </td>
+                    <td>{user.firstName}</td>
+                    <td>{user.lastName}</td>
+                    <td>{user.birthday}</td>
+                    <td>{user.email}</td>
+                    <td>{user.role}</td>
+                    <td>{user.createdAt}</td>
                   </tr>
                 ))}
-                <>
+                {/* <>
                   <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                       <Modal.Title>Update Word</Modal.Title>
@@ -103,15 +73,14 @@ const GeneralList = () => {
                       </Button>
                     </Modal.Footer>
                   </Modal>
-                </>
+                </> */}
 
               </tbody>
             </Table>
           </Col>
         </Row>
       </Container>
-    </>
   )
 }
 
-export default GeneralList
+export default UserStatistics

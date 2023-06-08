@@ -3,8 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { UserContext } from '../../Context/UserContext.js';
 import { wordsContext } from "../../Context/wordsListContext.js";
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, PieChart, Pie, Sector } from "recharts";
-
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import { Container, Row, Col,Spinner } from 'react-bootstrap';
 
 
 const Profile = () => {
@@ -40,7 +39,7 @@ const Profile = () => {
     return { ...item, createdAt: `${formattedDate} - ${formattedTime}` };
   });
 
-  //DATA for five statistics
+  //!FIVE QUIZ STATISTICS
   const getChartData = () => {
     const firstData = formattedData[0];
     const secondData = formattedData[1];
@@ -86,15 +85,12 @@ const Profile = () => {
   }
   const chartData = getChartData();
 
-
-
   //!TOTAL STATISTICS
   const data = [
     { name: "Total Questions", value: Number(quizStatistics.totalQuestions) },
     { name: "Wrong Answers", value: Number(quizStatistics.totalWrongAnswers) },
     { name: "Correct Answers", value: Number(quizStatistics.totalCorrectAnswers) }
   ];
-
   const renderActiveShape = (props) => {
     const RADIAN = Math.PI / 180;
     const {
@@ -166,9 +162,7 @@ const Profile = () => {
       </g>
     );
   };
-
   const [activeIndex, setActiveIndex] = useState(0);
-
   const onPieEnter = useCallback(
     (_, index) => {
       setActiveIndex(index);
@@ -282,7 +276,11 @@ const Profile = () => {
   }, [])
 
   if (isLoading) {
-    return <div>Page is loading...</div>
+    return <h1>Page is loading
+       <Spinner animation="grow" size="sm" />
+       <Spinner animation="grow" size="sm" />
+       <Spinner animation="grow" size="sm" />
+    </h1>
 
   }
 
@@ -310,8 +308,8 @@ const Profile = () => {
             <Col md={1} />
             <Col md={8}>
               <div className="personal-info">
-                <h3>Kişisel Bilgiler</h3>
                 <div className="personal-info-details">
+                  <p></p>
                   <p><strong>Ad:</strong> {profileInfo?.firstName}</p>
                   <p><strong>Soyad:</strong> {profileInfo?.lastName}</p>
                   <p><strong>Adres:</strong> - </p>
@@ -330,7 +328,7 @@ const Profile = () => {
       <hr></hr>
       <Row className='d-flex justify-content-center text-center '>
         {/* QUIZ GRAPHICS */}
-        <Col md={6} sm={10} className='border border-4 shadow my-2'>
+        <Col md={6} sm={10} className='border border-4 shadow my-1'>
           <h1>Quiz Statistics</h1>
           <PieChart width={500} height={400}>
             <Pie
@@ -348,7 +346,7 @@ const Profile = () => {
           </PieChart>
         </Col>
         {/* WORDS GRAPHICS */}
-        <Col md={6} sm={10} className='border border-4 shadow'>
+        <Col md={6} sm={10} className='border border-4 shadow my-1'>
           <h1>Words Statistics</h1>
           <PieChart width={500} height={400}>
             <Pie

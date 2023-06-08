@@ -14,6 +14,7 @@ export const UserContextProvider = ({ children }) => {
 
     const { user } = useAuth0();
     const [profileInfo, setProfileInfo] = useState([])
+    const [allUsers, setAllUsers] = useState([])
   
  const getProfileInfo = async () => {
         try {
@@ -22,17 +23,30 @@ export const UserContextProvider = ({ children }) => {
                 throw new Error("Failed to fetch posts");
             }
             const data = await response.json();
-
             setProfileInfo(data)
             return data
         } catch (error) {
-            setProfileInfo(null)
+            throw new Error("Failed to fetch posts")
+        }
+    };
+  
+ const getAllUsers = async () => {
+        try {
+            const response = await fetch(`http://localhost:3302/users`);
+            const data = await response.json();
+            setAllUsers(data)
+            return data
+        } catch (error) {
             throw new Error("Failed to fetch posts")
         }
     };
 
+
     return (
-        <UserContext.Provider value={{ profileInfo,getProfileInfo,user2 }}>
+        <UserContext.Provider value={{ 
+            profileInfo,getProfileInfo,user2,
+            getAllUsers, allUsers, setAllUsers
+            }}>
             {children}
         </UserContext.Provider>
     )

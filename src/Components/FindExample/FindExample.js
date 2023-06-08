@@ -42,8 +42,7 @@ const FindExample = () => {
       <Table hover variant="dark">
         <thead>
           <tr>
-            <th>Order</th>
-            <th>#</th>
+            <th style={{ width: '50px' }}>Order</th>
             <th>English</th>
             <th>Turkish</th>
           </tr>
@@ -53,7 +52,6 @@ const FindExample = () => {
             <tr key={value}>
 
               <td>{value + 1}</td>
-              <td>{item[1].id}</td>
               <td>
                 <CopyToClipboard text={item[1].english} onCopy={handleCopy}>
                   <div>
