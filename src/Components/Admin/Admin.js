@@ -12,12 +12,19 @@ import QuizQuestions from './QuizQuestions';
 
 const Admin = () => {
 
-  const { profileInfo, getProfileInfo } = useContext(UserContext)
-  const { getQuizStatistics, quizStatistics, getFiveQuizStatistics, fiveStatistics, getWordsList, greenList, yellowList, redList, allWordsList } = useContext(wordsContext)
+  const { getAllUsers, profileInfo, getProfileInfo } = useContext(UserContext)
+  const { getAllWords, getQuizStatistics, quizStatistics, getFiveQuizStatistics, fiveStatistics, getWordsList, greenList, yellowList, redList, allWordsList } = useContext(wordsContext)
   const { user, isAuthenticated, isLoading } = useAuth0();
 
 
-
+  useEffect(() => {
+    const fetchData = async () => { 
+      // Kullanıcıları ve kelime listesini al
+      await getAllUsers();
+      await getAllWords();
+    }
+    fetchData();
+  }, []);
 
   return (
     <Container fluid>

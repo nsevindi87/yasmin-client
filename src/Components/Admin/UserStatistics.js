@@ -6,6 +6,7 @@ import { UserContext } from '../../Context/UserContext.js';
 
 const UserStatistics = () => {
   const {profileInfo,getProfileInfo,allUsers,getAllUsers} = useContext(UserContext)
+  
   useEffect(()=>{
     getAllUsers()
   },[])
@@ -20,11 +21,12 @@ const UserStatistics = () => {
               <thead>
                 <tr className='text-center'>
                   <th>#</th>
-                  <th>Value 1</th>
-                  <th>Value 2</th>
-                  <th>Value 3</th>
-                  <th>Notes</th>
-                  <th>Actions </th>
+                  <th>First Name</th>
+                  <th>Second Name</th>
+                  <th>E-mail</th>
+                  <th>Birthday</th>
+                  <th>Role </th>
+                  <th>Created Date </th>
                   <th>Actions </th>
                 </tr>
               </thead>
@@ -38,6 +40,7 @@ const UserStatistics = () => {
                     <td>{user.email}</td>
                     <td>{user.role}</td>
                     <td>{user.createdAt}</td>
+                    <td>XXX</td>
                   </tr>
                 ))}
                 {/* <>

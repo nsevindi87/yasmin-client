@@ -10,6 +10,7 @@ const WordsListContextProvider = ({ children }) => {
  ===============================================================================================*/
 
   const [allWordsList, setAllWordsList] = useState([]);
+  const [allWordsList2, setAllWordsList2] = useState([]);
   const [greenList, setGreenList] = useState([]);
   const [yellowList, setYellowList] = useState([]);
   const [redList, setRedList] = useState([]);
@@ -50,7 +51,20 @@ const WordsListContextProvider = ({ children }) => {
   == //!    WORDS  -GET -ADD  -DELETE 
   ===============================================================================================*/
 
-  //GET ALL DATAS==========================================================
+  //GET ALL DATAS By ID==========================================================
+  const getAllWords = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/words`);
+      const data = await response.json();
+      setAllWordsList2(data)
+      return data
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch posts")
+    }
+  };
+
+  //GET ALL DATAS By ID==========================================================
   const getWordsList = async (pId) => {
     try {
       const response = await fetch(`${BASE_URL}/words/${pId}`);
@@ -59,7 +73,6 @@ const WordsListContextProvider = ({ children }) => {
       const dataYellow = data.filter((word) => word.wordCategory === "warning")
       const dataRed = data.filter((word) => word.wordCategory === "danger")
 
-      console.log(data)
       setAllWordsList(data)
       setGreenList(dataGreen)
       setYellowList(dataYellow)
@@ -453,6 +466,7 @@ const WordsListContextProvider = ({ children }) => {
       getWordsList,setAllWordsList,
       allWordsList, greenList, setGreenList,
       yellowList, setYellowList, redList, setRedList,
+      getAllWords, allWordsList2, setAllWordsList2,
       inputValue, setInputValue,
       handleDelete, handleNewWord,
       handleEdit, handleUpdate, show, setShow,
