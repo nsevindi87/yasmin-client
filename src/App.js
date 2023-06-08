@@ -18,10 +18,10 @@ function App() {
           <Header />
           {!isAuthenticated ? <Outlet /> 
           : <Row>
-          <Col lg="9">
+          <Col lg="9" >
             <Outlet />
           </Col>
-          <Col lg="3">
+          <Col lg="3" className="d-none d-md-block">
             <AsideComponent />
           </Col>
         </Row> }

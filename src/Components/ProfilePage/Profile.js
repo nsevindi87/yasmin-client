@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState, useCallback } from 'react'
 import { useAuth0 } from '@auth0/auth0-react';
 import { UserContext } from '../../Context/UserContext.js';
 import { wordsContext } from "../../Context/wordsListContext.js";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, PieChart, Pie, Sector } from "recharts";
-import { all } from 'axios';
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, PieChart, Pie, Sector } from "recharts";
 
+import { Container, Row, Col, Form } from 'react-bootstrap';
 
 
 const Profile = () => {
   const { profileInfo, getProfileInfo } = useContext(UserContext)
-  const { getQuizStatistics, quizStatistics, getFiveQuizStatistics, fiveStatistics,getWordsList, greenList, yellowList,redList, allWordsList } = useContext(wordsContext)
+  const { getQuizStatistics, quizStatistics, getFiveQuizStatistics, fiveStatistics, getWordsList, greenList, yellowList, redList, allWordsList } = useContext(wordsContext)
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   const renderCustomizedLabel = (props) => {
@@ -108,7 +108,7 @@ const Profile = () => {
       fill,
       payload,
       percent,
-      value
+      value,name
     } = props;
     const sin = Math.sin(-RADIAN * midAngle);
     const cos = Math.cos(-RADIAN * midAngle);
@@ -153,7 +153,7 @@ const Profile = () => {
           y={ey}
           textAnchor={textAnchor}
           fill="#333"
-        >{`Total ${value}`}</text>
+        >{`${name} ${value}`}</text>
         {/* <text
           x={ex + (cos >= 0 ? 1 : -1) * 15}
           y={ey}
@@ -184,7 +184,6 @@ const Profile = () => {
     { name: "Yellow List", value: Number(yellowList.length) },
     { name: "All of Word List", value: Number(allWordsList.length) }
   ];
-
   const renderActiveShape2 = (props) => {
     const RADIAN = Math.PI / 180;
     const {
@@ -198,7 +197,8 @@ const Profile = () => {
       fill,
       payload,
       percent,
-      value
+      value,
+      name
     } = props;
     const sin = Math.sin(-RADIAN * midAngle);
     const cos = Math.cos(-RADIAN * midAngle);
@@ -243,7 +243,7 @@ const Profile = () => {
           y={ey}
           textAnchor={textAnchor}
           fill="#333"
-        >{`Total ${value}`}</text>
+        >{`${name} ${value}`}</text>
         {/* <text
           x={ex + (cos >= 0 ? 1 : -1) * 15}
           y={ey}
@@ -256,9 +256,7 @@ const Profile = () => {
       </g>
     );
   };
-
   const [activeIndex2, setActiveIndex2] = useState(0);
-
   const onPieEnter2 = useCallback(
     (_, index) => {
       setActiveIndex2(index);
@@ -292,22 +290,48 @@ const Profile = () => {
   return (
     <div className='ms-4'>
       {isAuthenticated &&
-        <div>
-          <h1 className='text-center'>Hoşgeldin {profileInfo?.firstName}</h1>
-          <img src={user?.picture} alt="user_picture" className='rounded' />
-          <h1>{profileInfo?.id}</h1>
-          <h1>{user?.sex}</h1>
-          <h1>Total Questions: {quizStatistics.totalQuestions}</h1>
-          <h1>Correct Answers: {quizStatistics.totalCorrectAnswers}</h1>
-          <h1>Wrong Answers: {quizStatistics.totalWrongAnswers}</h1>
-          <h1>Score: {quizStatistics.totalQuestions * 10} / {quizStatistics.totalScore}</h1>
-        </div>
-      }
+        <Container>
+          <h1 className='text-center mt-3 shadow'>Welcome {profileInfo?.firstName}</h1>
+          <hr></hr>
+          <h3 className='text-center mt-4 shadow '>Personal Informations</h3>
+          <hr></hr>
 
-      <div className='d-flex text-center '>
+
+          <Row className='shadow'>
+            <Col md={3}>
+              <div className="profile-picture d-flex justify-content-center">
+                <img src={user?.picture} className="rounded" alt="Profile Picture" />
+              </div>
+              <div className="profile-info">
+                <h4 className='text-center'>{profileInfo?.role}</h4>
+                <h4>{profileInfo?.email}</h4>
+              </div>
+            </Col>
+            <Col md={1} />
+            <Col md={8}>
+              <div className="personal-info">
+                <h3>Kişisel Bilgiler</h3>
+                <div className="personal-info-details">
+                  <p><strong>Ad:</strong> {profileInfo?.firstName}</p>
+                  <p><strong>Soyad:</strong> {profileInfo?.lastName}</p>
+                  <p><strong>Adres:</strong> - </p>
+                  <p><strong>Doğum Tarihi:</strong> {profileInfo?.birthday}</p>
+                </div>
+              </div>
+            </Col>
+            <Row className="my-2">
+              <Col>&nbsp;</Col>
+            </Row>
+          </Row>
+          <hr></hr>
+        </Container>
+      }
+      <h3 className='text-center my-4 shadow hover'>Statistics</h3>
+      <hr></hr>
+      <Row className='d-flex justify-content-center text-center '>
         {/* QUIZ GRAPHICS */}
-        <div className='border border-4 shadow'>
-          <h1>Quiz Istatistics</h1>
+        <Col md={6} sm={10} className='border border-4 shadow my-2'>
+          <h1>Quiz Statistics</h1>
           <PieChart width={500} height={400}>
             <Pie
               activeIndex={activeIndex}
@@ -322,11 +346,10 @@ const Profile = () => {
               onMouseEnter={onPieEnter}
             />
           </PieChart>
-        </div>
-
+        </Col>
         {/* WORDS GRAPHICS */}
-        <div className='border border-4 ms-3 shadow'>
-          <h1>Words Istatistics</h1>
+        <Col md={6} sm={10} className='border border-4 shadow'>
+          <h1>Words Statistics</h1>
           <PieChart width={500} height={400}>
             <Pie
               activeIndex={activeIndex2}
@@ -341,33 +364,40 @@ const Profile = () => {
               onMouseEnter={onPieEnter2}
             />
           </PieChart>
-        </div>
-      </div>
-      <div className='border border-4 shadow m-5'>
-        <h1 className='text-center'>Quiz Individuel Statistics</h1>
-      <BarChart
-        width={900}
-        height={500}
-        data={chartData}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <LabelList dataKey="name" content={renderCustomizedLabel} />
-        <Bar dataKey="Total" fill="#9c89b8" minPointSize={5} />
-        <Bar dataKey="Correct" fill="#77bfa3" minPointSize={5} />
-        <Bar dataKey="Wrong" fill="#ffbcaa" minPointSize={10} />
-      </BarChart>
+        </Col>
+      </Row>
 
-      </div>
+      <Row className='border border-4 shadow m-5'>
+        <Col>
+
+          <h1 className='text-center'>Individual Quiz Statistics</h1>
+          <ResponsiveContainer width="100%" height={500}>
+
+            <BarChart
+              width={900}
+              height={500}
+              data={chartData}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <LabelList dataKey="name" content={renderCustomizedLabel} />
+              <Bar dataKey="Total" fill="#9c89b8" minPointSize={5} />
+              <Bar dataKey="Correct" fill="#77bfa3" minPointSize={5} />
+              <Bar dataKey="Wrong" fill="#ffbcaa" minPointSize={10} />
+            </BarChart>
+          </ResponsiveContainer>
+
+        </Col>
+      </Row>
     </div>
   )
 }

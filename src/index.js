@@ -24,7 +24,8 @@ import PracticeGreenList from "./Components/PracticePages/PracticeGreenList.js"
 import PracticeYellowList from "./Components/PracticePages/PracticeYellowList.js"
 import PracticeRedList from "./Components/PracticePages/PracticeRedList.js"
 import QuizPage from "./Components/QuizPage.js";
-import WelcomePage from './Components/WelcomePage';
+import WelcomePage from './Components/WelcomePage.js';
+import Admin from './Components/Admin/Admin.js'
 
 
 
@@ -120,6 +121,11 @@ const router = createHashRouter([
         path: "quiz",
         element:
           <QuizPage />
+      },
+      {
+        path: "admin",
+        element:
+          <Admin />
       }
     ]
   }

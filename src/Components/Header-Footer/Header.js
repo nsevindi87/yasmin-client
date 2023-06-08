@@ -1,10 +1,15 @@
+import React, { useContext } from 'react'
 import { Navbar, Container, Nav, NavDropdown} from "react-bootstrap";
 import { useAuth0 } from '@auth0/auth0-react';
 import { NavLink } from 'react-router-dom';
+import ProtectedLink from "../ProtectedLink";
+import { UserContext } from '../../Context/UserContext.js';
 
 const HeaderLoggedin = () => {
 
     const { logout, loginWithRedirect, isLoading, isAuthenticated } = useAuth0()
+    const { profileInfo } = useContext(UserContext)
+
 
     return (
             <Navbar bg="dark" variant="dark" sticky="top">
@@ -53,6 +58,7 @@ const HeaderLoggedin = () => {
                                         <Nav.Link as={NavLink} to="/todo">ToDo</Nav.Link>
                                     </Nav>
                                     <Nav>
+                                        <ProtectedLink name="Admin" link="/admin" user={profileInfo}  roles={['admin']}/>
                                         <Nav.Link as={NavLink} to="/about">About</Nav.Link>
                                         <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
                                         <Nav.Link as={NavLink} to="/profile">Profile</Nav.Link>
