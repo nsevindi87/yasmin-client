@@ -6,12 +6,12 @@ import { PencilSquare, Trash3Fill  } from 'react-bootstrap-icons'
 
 
 const QuizStatistics = () => {
-  const { getAllQuizQuestions,allQuizQuestions,handleNewQuestion,quizNewInputValue, setQuizNewInputValue,handleQuestionCancel,handleQuestionDelete} = useContext(wordsContext)
+  const { getAllQuizQuestions,allQuizQuestions,handleNewQuestion,quizNewInputValue, setQuizNewInputValue,handleQuestionCancel,handleQuestionDelete,handleQuestionEdit,handleQuestionUpdate,showUpdateQuiz,setShowUpdateQuiz} = useContext(wordsContext)
 
   useEffect(()=>{
     getAllQuizQuestions()
   },[])
-
+  
   return (
     <Container>
       <Row>
@@ -19,7 +19,7 @@ const QuizStatistics = () => {
             <h1 className='my-4 text-center border-1 shadow'>Add New Question</h1>
 
             <FloatingLabel label="First Value">
-              <Form.Control onChange={(e)=>setQuizNewInputValue({...quizNewInputValue, [e.target.id]:e.target.value})} type="text" id='question_text' value={quizNewInputValue.question_text} />
+              <Form.Control onChange={(e)=>setQuizNewInputValue({...quizNewInputValue, [e.target.id]:e.target.value})} type="text" id='question_text' value={quizNewInputValue.question_text.question_text} />
             </FloatingLabel>
 
             <FloatingLabel label="Second Value">
@@ -37,15 +37,12 @@ const QuizStatistics = () => {
             <FloatingLabel  className='my-4' label="Notes">
               <Form.Control onChange={(e)=>setQuizNewInputValue({...quizNewInputValue, [e.target.id]:e.target.value})} as="textarea" id='german_example' value={quizNewInputValue.german_example} style={{ height: '100px' }}/>
             </FloatingLabel>
-
-            <Button onClick={handleQuestionCancel} variant="danger w-50">Cancel</Button>
-            <Button onClick={handleNewQuestion} variant="primary w-50">Add</Button>
             
-            {/* <div className='mt-4'>
-              <Button onClick={handleCancel} variant="danger w-50">Cancel</Button>
-              {showUpdate ? <Button onClick={handleUpdate} variant="warning w-50">Update</Button> : <Button onClick={handleNewWord} variant="primary w-50">Add</Button> }
-            </div><br /> */}
-            <hr />
+            <div className='mt-4'>
+              <Button onClick={handleQuestionCancel} variant="danger w-50">Cancel</Button>
+              {showUpdateQuiz ? <Button onClick={handleQuestionUpdate} variant="warning w-50">Update</Button> : <Button onClick={handleNewQuestion} variant="primary w-50">Add</Button> }
+            </div><br />
+            <hr/>
           </Col>
         </Row>
       <Row className='mt-5' >
@@ -70,7 +67,7 @@ const QuizStatistics = () => {
                 <tr key={value} className='text-center'>
                   <td>{value + 1}</td>
                   <td>
-                      <Button /* onClick={() => handleEdit(word)}  */variant="warning me-1" className='mb-1 p-0'><PencilSquare/></Button>
+                      <Button onClick={() => handleQuestionEdit(question[1])}  variant="warning me-1" className='mb-1 p-0'><PencilSquare/></Button>
                       <Button onClick={() => handleQuestionDelete(question[1].id)} variant="danger"className='mb-1 p-0'><Trash3Fill/> </Button>
                   </td>
                   <td>{question[1].question_text}</td>

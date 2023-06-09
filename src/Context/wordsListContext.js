@@ -16,6 +16,7 @@ const WordsListContextProvider = ({ children }) => {
   const [redList, setRedList] = useState([]);
   const [show, setShow] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
+  const [showUpdateQuiz, setShowUpdateQuiz] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
   const [quizQuestions, setQuizquestions] = useState([]);
@@ -167,7 +168,7 @@ const WordsListContextProvider = ({ children }) => {
     })
   }
 
- 
+
   //Acilir sayfayi kapatir
   const handleClose = () => setShow(false)
 
@@ -199,6 +200,9 @@ const WordsListContextProvider = ({ children }) => {
       wordCategory: ""
     })
   }
+
+
+
 
   /*==============================================================================================
   == //!    PRACTICE PAGE
@@ -329,8 +333,8 @@ const WordsListContextProvider = ({ children }) => {
     }
   };
 
-   //Soru FORMU SIFIRLA
-   const handleQuestionCancel = async () => {
+  //Soru FORMU SIFIRLA
+  const handleQuestionCancel = async () => {
     setQuizNewInputValue({
       question_text: "",
       options: "",
@@ -340,8 +344,8 @@ const WordsListContextProvider = ({ children }) => {
     })
   }
 
-   //DELETE QUESTION  ==================================================
-   const handleQuestionDelete = async (pId) => {
+  //DELETE QUESTION  ==================================================
+  const handleQuestionDelete = async (pId) => {
     try {
       await fetch(`${BASE_URL}/quizquestions/${pId}`, {
         method: "DELETE"
@@ -352,6 +356,46 @@ const WordsListContextProvider = ({ children }) => {
     }
   }
 
+  //UPDATE QUIZ QUESTION   ==================================================
+  //Edit tiklandiginda forma eski bilgiler gelir
+
+  const handleQuestionEdit = async (pPost) => {
+    setShowUpdateQuiz(true)
+    setQuizNewInputValue({
+      id: pPost.id,
+      question_text: pPost,
+      options: pPost.options,
+      correct_word: pPost.correct_word,
+      english_example: pPost.english_example,
+      german_example: pPost.german_example
+    })
+  }
+
+  const handleQuestionUpdate = async () => {
+    try {
+      await fetch(`${BASE_URL}/quizquestions/${quizNewInputValue.id}`, {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(quizNewInputValue)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+    setShowUpdateQuiz(false)
+    getAllQuizQuestions()
+
+    setQuizNewInputValue({
+      question_text: "",
+      options: "",
+      correct_word: "",
+      english_example: "",
+      german_example: ""
+    })
+  }
+  
 
   //!GET QUIZ STATISTICS
   const getQuizStatistics = async (pId) => {
@@ -559,7 +603,8 @@ const WordsListContextProvider = ({ children }) => {
       getQuizQuestions, quizQuestions, setQuizquestions,
       getAllQuizQuestions, allQuizQuestions, setAllQuizquestions,
       handleNewQuestion, quizNewInputValue, setQuizNewInputValue, handleQuestionCancel,
-      handleQuestionDelete,
+      handleQuestionDelete, 
+      handleQuestionEdit,handleQuestionUpdate,showUpdateQuiz,setShowUpdateQuiz,
       searchTerm, setSearchTerm, searchResults, setSearchResults, getSearchedSentences,
       todoValue, setTodoValue, todoList, setTodoList, getTodoList, handleNewTodo,
       handleTodoDelete, handleTodoEdit, handleTodoCancel, handleTodoUpdate, showTodoUpdate, setShowTodoUpdate, showUpdate,
