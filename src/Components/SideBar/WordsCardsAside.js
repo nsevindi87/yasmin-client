@@ -22,7 +22,7 @@ function CardsAside() {
           await getAsideWordList(profileData.id);
       };
       fetchData()
-    }, 5000);
+    }, 25000);
     return () => clearInterval(interval);
 
   }, [isAuthenticated])

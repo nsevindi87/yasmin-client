@@ -25,7 +25,7 @@ const WordsListContextProvider = ({ children }) => {
   const [showTodoUpdate, setShowTodoUpdate] = useState(false);
   const [fiveStatistics, setFiveStatistics]=useState([])
 
-  const { profileInfo, user2, getProfileInfo } = useContext(UserContext)
+  const { profileInfo, getProfileInfo } = useContext(UserContext)
 
   const [inputValue, setInputValue] = useState({
     id: null,
@@ -51,7 +51,7 @@ const WordsListContextProvider = ({ children }) => {
   == //!    WORDS  -GET -ADD  -DELETE 
   ===============================================================================================*/
 
-  //GET ALL DATAS By ID==========================================================
+  //GET ALL DATAS ==========================================================
   const getAllWords = async () => {
     try {
       const response = await fetch(`${BASE_URL}/words`);

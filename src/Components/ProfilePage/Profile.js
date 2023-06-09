@@ -85,7 +85,7 @@ const Profile = () => {
   }
   const chartData = getChartData();
 
-  //!TOTAL STATISTICS
+  //!QUIZ STATISTICS
   const data = [
     { name: "Total Questions", value: Number(quizStatistics.totalQuestions) },
     { name: "Wrong Answers", value: Number(quizStatistics.totalWrongAnswers) },

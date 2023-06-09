@@ -1,119 +1,214 @@
-import React,{useContext,useState,useEffect} from 'react';
+import React, { useContext, useState, useEffect,useCallback } from 'react';
 import { wordsContext } from "../../Context/wordsListContext.js";
 import { UserContext } from '../../Context/UserContext.js';
-import { Container, Row, Col, Table} from 'react-bootstrap';
+import { Container, Row, Col, Table } from 'react-bootstrap';
+import { useAuth0 } from '@auth0/auth0-react';
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, PieChart, Pie, Sector } from "recharts";
 
 
 const WordsStatistics = () => {
 
-  const {getAllWords, allWordsList2 } = useContext(wordsContext)
-  const {getAllUsers,allUsers} = useContext(UserContext)
+  const { getAllWords, allWordsList2, setAllWordsList2 } = useContext(wordsContext)
+  const { getAllUsers, allUsers, setAllUsers } = useContext(UserContext)
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
   const [userWordsNumbers, setUserWordsNumbers] = useState([]);
+  const [dataLoaded, setDataLoaded] = useState(true);
+
+  const greenWordNum = allWordsList2.filter((word) => word.wordCategory === 'success').length;
+  const yellowWordNum = allWordsList2.filter((word) => word.wordCategory === 'warning').length;
+  const redWordNum = allWordsList2.filter((word) => word.wordCategory === 'danger').length;
+
+  const data = [
+    { name: "All of Words", value: Number(allWordsList2.length) },
+    { name: "Green List", value: Number(greenWordNum) },
+    { name: "Yellow Words", value: Number(yellowWordNum) },
+    { name: "Red Words", value: Number(redWordNum) },
+  ];
+
+  const renderActiveShape = (props) => {
+    const RADIAN = Math.PI / 180;
+    const {
+      cx,
+      cy,
+      midAngle,
+      innerRadius,
+      outerRadius,
+      startAngle,
+      endAngle,
+      fill,
+      payload,
+      percent,
+      value,name
+    } = props;
+    const sin = Math.sin(-RADIAN * midAngle);
+    const cos = Math.cos(-RADIAN * midAngle);
+    const sx = cx + (outerRadius + 10) * cos;
+    const sy = cy + (outerRadius + 10) * sin;
+    const mx = cx + (outerRadius + 30) * cos;
+    const my = cy + (outerRadius + 30) * sin;
+    const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+    const ey = my;
+    const textAnchor = cos >= 0 ? "start" : "end";
+    return (
+      <g>
+        <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
+          {payload.name}
+        </text>
+        <Sector
+          cx={cx}
+          cy={cy}
+          innerRadius={innerRadius}
+          outerRadius={outerRadius}
+          startAngle={startAngle}
+          endAngle={endAngle}
+          fill="red"
+        />
+        <Sector
+          cx={cx}
+          cy={cy}
+          startAngle={startAngle}
+          endAngle={endAngle}
+          innerRadius={outerRadius + 6}
+          outerRadius={outerRadius + 10}
+          fill="orange"
+        />
+        <path
+          d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
+          stroke={fill}
+          fill="none"
+        />
+        <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+        <text
+          x={ex + (cos >= 0 ? 1 : -1) * 12}
+          y={ey}
+          textAnchor={textAnchor}
+          fill="#333"
+        >{`${name} ${value}`}</text>
+        {/* <text
+          x={ex + (cos >= 0 ? 1 : -1) * 15}
+          y={ey}
+          dy={18}
+          textAnchor={textAnchor}
+          fill="#999"
+        >
+          {`(Rate ${(percent * 100).toFixed(2)}%)`}
+        </text> */}
+      </g>
+    );
+  };
+  const [activeIndex, setActiveIndex] = useState(0);
+  const onPieEnter = useCallback(
+    (_, index) => {
+      setActiveIndex(index);
+    },
+    [setActiveIndex]
+  );
+
+
 
   useEffect(() => {
-    const fetchData = async () => { 
-      // Kullanıcıları ve kelime listesini al
-      await getAllWords();
+    const fetchData = async () => {
+      try {
+        await getAllUsers();
+        const datalar = await getAllWords();
+        setDataLoaded(false);
 
-      // Kullanıcı ID arrayi
-      const userIDs = allUsers.map((user) => user.id);
+        // Kullanıcı ID arrayi
+        const userIDs = allUsers.map((user) => user.id);
 
-      const updatedUserWordsNumbers = userIDs.map((userID) => {
-        const userWordsListArr = allWordsList2.filter((word) => word.userId === userID);
-        const totalWordNum = userWordsListArr.length;
-        const greenWordNum = userWordsListArr.filter((word) => word.wordCategory === 'success').length;
-        const yellowWordNum = userWordsListArr.filter((word) => word.wordCategory === 'warning').length;
-        const redWordNum = userWordsListArr.filter((word) => word.wordCategory === 'danger').length;
+        const updatedUserWordsNumbers = userIDs.map((userID) => {
 
-        return {
-          userID,
-          total: totalWordNum,
-          green: greenWordNum,
-          yellow: yellowWordNum,
-          red: redWordNum,
-        };
-      });
+          const userWordsListArr = datalar.filter((word) => word.userId === userID);
+          const totalWordNum = userWordsListArr.length;
+          const greenWordNum = userWordsListArr.filter((word) => word.wordCategory === 'success').length;
+          const yellowWordNum = userWordsListArr.filter((word) => word.wordCategory === 'warning').length;
+          const redWordNum = userWordsListArr.filter((word) => word.wordCategory === 'danger').length;
 
-      setUserWordsNumbers(updatedUserWordsNumbers);
-      console.log(userWordsNumbers)
-      console.log(updatedUserWordsNumbers)
+          return {
+            userID,
+            total: totalWordNum,
+            green: greenWordNum,
+            yellow: yellowWordNum,
+            red: redWordNum,
+          };
+        });
+
+        return setUserWordsNumbers(updatedUserWordsNumbers)
+      } catch (error) {
+        console.log(error);
+      }
     };
-    
-    fetchData();
-  }, []);//!UI da render etmiyor
-  
+
+    if (dataLoaded) {
+      fetchData();
+    }
+
+  }, [dataLoaded, allUsers, allWordsList2]);
+
+
+
+
+
+
 
   return (
     <Container>
-        <Row className='mt-5' >
-          <Col>
-            <h1 className='text-center'>Words Statistics</h1>
-            
-            <Table striped bordered hover variant="dark">
-              <thead>
-                <tr className='text-center'>
-                  <th>#</th>
-                  <th>User Name</th>
-                  <th>User E-mail</th>
-                  <th>Total Words</th>
-                  <th>Green List</th>
-                  <th>Yellow List </th>
-                  <th>Red List </th>
+      <Row className='mt-5' >
+        <Col>
+          <h1 className='text-center'>Words Statistics</h1>
+
+          <Table striped bordered hover variant="dark">
+            <thead>
+              <tr className='text-center'>
+                <th>#</th>
+                <th>User Name</th>
+                <th>User E-mail</th>
+                <th>Total Words</th>
+                <th>Green List</th>
+                <th>Yellow List </th>
+                <th>Red List </th>
+              </tr>
+            </thead>
+            <tbody>
+              {userWordsNumbers?.map((user, value) => (
+                <tr key={value} className='text-center'>
+                  <td>{value + 1}</td>
+                  <td>{allUsers[value].firstName}</td>
+                  <td>{allUsers[value].email}</td>
+                  <td>{user.total}</td>
+                  <td>{user.green}</td>
+                  <td>{user.yellow}</td>
+                  <td>{user.red}</td>
                 </tr>
-              </thead>
-              <tbody>
-                 {userWordsNumbers?.map((user, value) => (
-                  <tr key={value} className='text-center'>
-                    <td>{value + 1}</td>
-                    <td>{allUsers[value].firstName}</td>
-                    <td>{allUsers[value].email}</td>
-                    <td>{user.total}</td>
-                    <td>{user.green}</td>
-                    <td>{user.yellow}</td>
-                    <td>{user.red}</td>
-                  </tr>
-                ))}
-                {/* <>
-                  <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Update Word</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <Form>
-                        <FloatingLabel label="First Value">
-                          <Form.Control onChange={(e) => setInputValue({ ...inputValue, [e.target.id]: e.target.value })} type="text" id='word' value={inputValue.word} />
-                        </FloatingLabel>
-
-                        <FloatingLabel label="Second Value">
-                          <Form.Control className='mt-4' onChange={(e) => setInputValue({ ...inputValue, [e.target.id]: e.target.value })} type="text" id='wordMeaning' value={inputValue.wordMeaning} />
-                        </FloatingLabel>
-
-                        <FloatingLabel className='my-4' label="Third Value" >
-                          <Form.Control onChange={(e) => setInputValue({ ...inputValue, [e.target.id]: e.target.value })} type="text" id='wordSecondMeaning' value={inputValue.wordSecondMeaning} />
-                        </FloatingLabel>
-
-                        <FloatingLabel label="Notes">
-                          <Form.Control onChange={(e) => setInputValue({ ...inputValue, [e.target.id]: e.target.value })} as="textarea" id='wordNote' value={inputValue.wordNote} style={{ height: '100px' }} />
-                        </FloatingLabel>
-                      </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button variant="secondary" onClick={handleClose}>
-                        Close
-                      </Button>
-                      <Button variant="primary" onClick={()=>handleUpdate()}>
-                        Save Changes
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-                </> */}
-
-              </tbody>
-            </Table>
-          </Col>
-        </Row>
-      </Container>
+              ))}
+            </tbody>
+          </Table>
+        </Col>
+      </Row>
+      <hr></hr>
+      <Row className='d-flex justify-content-center'>
+        <Col lg="10" className='border border-4 shadow my-3 d-flex flex-column justify-content-center ' >
+          <div>
+          <h2 className='text-center'>The Ratio of All Words In The List</h2>
+          <PieChart width={500} height={400}>
+            <Pie
+              activeIndex={activeIndex}
+              activeShape={renderActiveShape}
+              data={data}
+              cx={300}
+              cy={200}
+              innerRadius={60}
+              outerRadius={100}
+              fill="#8884d8"
+              dataKey="value"
+              onMouseEnter={onPieEnter}
+            />
+          </PieChart>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

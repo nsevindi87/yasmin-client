@@ -35,7 +35,6 @@ export const UserContextProvider = ({ children }) => {
             const response = await fetch(`http://localhost:3302/users`);
             const data = await response.json();
             setAllUsers(data)
-            console.log(data)
             return data
         } catch (error) {
             throw new Error("Failed to fetch posts")

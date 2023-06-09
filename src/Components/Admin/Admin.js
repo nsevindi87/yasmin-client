@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, useCallback } from 'react'
 import { useAuth0 } from '@auth0/auth0-react';
 import { UserContext } from '../../Context/UserContext.js';
 import { wordsContext } from "../../Context/wordsListContext.js";
-import { Container, Row, Nav,Col, Tab, Form } from 'react-bootstrap';
+import { Container, Row, Nav, Col, Tab, Form } from 'react-bootstrap';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, PieChart, Pie, Sector } from "recharts";
 import UserStatistics from "./UserStatistics.js"
 import WordsStatistics from './WordsStatistics';
@@ -12,19 +12,14 @@ import QuizQuestions from './QuizQuestions';
 
 const Admin = () => {
 
-  const { getAllUsers, profileInfo, getProfileInfo } = useContext(UserContext)
-  const { getAllWords, getQuizStatistics, quizStatistics, getFiveQuizStatistics, fiveStatistics, getWordsList, greenList, yellowList, redList, allWordsList } = useContext(wordsContext)
+  const { getAllUsers, profileInfo, getProfileInfo, allUsers, setAllUsers } = useContext(UserContext)
+  const { getAllWords, allWordsList2,setAllWordsList2 } = useContext(wordsContext)
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const [userWordsNumbers, setUserWordsNumbers] = useState([]);
 
 
-  useEffect(() => {
-    const fetchData = async () => { 
-      // Kullanıcıları ve kelime listesini al
-      await getAllUsers();
-      await getAllWords();
-    }
-    fetchData();
-  }, []);
+  
+
 
   return (
     <Container fluid>
@@ -52,11 +47,11 @@ const Admin = () => {
           </Col>
           <Col sm={10}>
             <Tab.Content>
-              <Tab.Pane eventKey="user"><UserStatistics/></Tab.Pane>
-              <Tab.Pane eventKey="words"><WordsStatistics/> </Tab.Pane>
-              <Tab.Pane eventKey="todo"><TodoStatistics/> </Tab.Pane>
-              <Tab.Pane eventKey="quiz"><QuizStatistics/></Tab.Pane>
-              <Tab.Pane eventKey="quizquestions"><QuizQuestions/></Tab.Pane>{/* quiz soru ekle cikar editle ara bul */}
+              <Tab.Pane eventKey="user"><UserStatistics /></Tab.Pane>
+              <Tab.Pane eventKey="words"><WordsStatistics /> </Tab.Pane>
+              <Tab.Pane eventKey="todo"><TodoStatistics /> </Tab.Pane>
+              <Tab.Pane eventKey="quiz"><QuizStatistics /></Tab.Pane>
+              <Tab.Pane eventKey="quizquestions"><QuizQuestions /></Tab.Pane>{/* quiz soru ekle cikar editle ara bul */}
             </Tab.Content>
           </Col>
         </Row>
