@@ -6,7 +6,7 @@ function ProtectedLink({ name, link, roles , user }) {
   const isAuthorized = roles.includes(user?.role);
   return (
     <>
-      {isAuthorized && <Nav.Link as={NavLink} to={link}> {name}</Nav.Link>}
+      {isAuthorized && <Nav.Link as={NavLink}  to={link}> {name}</Nav.Link>}
     </>
   )
 }

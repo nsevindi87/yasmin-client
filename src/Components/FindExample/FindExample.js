@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Container, Form, Table } from 'react-bootstrap';
 import { wordsContext } from "../../Context/wordsListContext";
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { Toast,ToastContainer } from 'react-bootstrap';
+import { Toast, ToastContainer } from 'react-bootstrap';
 
 
 
@@ -39,45 +39,47 @@ const FindExample = () => {
           className="my-3"
         />
       </Form.Group>
-      <Table hover variant="dark">
-        <thead>
-          <tr>
-            <th style={{ width: '50px' }}>Order</th>
-            <th>English</th>
-            <th>Turkish</th>
-          </tr>
-        </thead>
-        <tbody>
-          {searchResults?.map((item, value) => (
-            <tr key={value}>
-
-              <td>{value + 1}</td>
-              <td>
-                <CopyToClipboard text={item[1].english} onCopy={handleCopy}>
-                  <div>
-                    {item[1].english}
-                  </div>
-                </CopyToClipboard>
-              </td>
-              <td>
-                <CopyToClipboard text={item[1].turkish} onCopy={handleCopy}>
-                  <div>
-                    {item[1].turkish}
-                  </div>
-                </CopyToClipboard>
-              </td>
-
+      <div style={{ height: '300px', overflowY: 'scroll' }}>
+        <Table hover variant="dark">
+          <thead style={{ position: 'sticky', top: 0, backgroundColor: 'red', overflowY: 'scroll' }}>
+            <tr>
+              <th style={{ width: '50px' }}>Order</th>
+              <th>English</th>
+              <th>Turkish</th>
             </tr>
-          )).slice(0, 10)}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {searchResults?.map((item, value) => (
+              <tr key={value}>
+
+                <td>{value + 1}</td>
+                <td>
+                  <CopyToClipboard text={item[1].english} onCopy={handleCopy}>
+                    <div>
+                      {item[1].english}
+                    </div>
+                  </CopyToClipboard>
+                </td>
+                <td>
+                  <CopyToClipboard text={item[1].turkish} onCopy={handleCopy}>
+                    <div>
+                      {item[1].turkish}
+                    </div>
+                  </CopyToClipboard>
+                </td>
+
+              </tr>
+            )).slice(0, 30)}
+          </tbody>
+        </Table>
+      </div>
       <hr></hr>
       <h4 className='text-center'> <span className='text-danger'>{searchResults.length} </span> sentences were found!</h4>
       <p className='text-center my-3'> * Double click the sentence you want to copy!</p>
       <hr></hr>
       <ToastContainer className="p-3 " position="bottom-start">
         <Toast show={showToast} onClose={() => setShowToast(false)} delay={4000} autohide >
-          <Toast.Body style={{ background: 'green', color: 'white'}}>Kopyalandı!</Toast.Body>
+          <Toast.Body style={{ background: 'green', color: 'white' }}>Kopyalandı!</Toast.Body>
         </Toast>
       </ToastContainer>
     </Container>

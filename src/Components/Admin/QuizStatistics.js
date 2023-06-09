@@ -19,7 +19,7 @@ const QuizStatistics = () => {
           <hr></hr>
           <div style={{ height: '500px', overflowY: 'scroll' }}>
           <Table striped bordered hover variant="dark" style={{ maxWidth: '100%'}}>
-            <thead style={{ position: 'sticky', top: 0, backgroundColor: 'red',overflowY: 'scroll' }}>
+            <thead style={{ position: 'sticky', top: 0,overflowY: 'scroll' }}>
               <tr className='text-center'>
                 <th style={{ backgroundColor: '#c3c7c9' }}>#</th>
                 <th style={{ backgroundColor: '#c3c7c9' }}>Question</th>
