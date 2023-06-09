@@ -22,25 +22,24 @@ const Admin = () => {
 
 
   return (
-    <Container fluid>
-
+    <Container fluid  className='shadow' style={{ backgroundColor: '#ededed'  }}>
       <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
         <Row >
-          <Col sm={2} >
+          <Col sm={2} style={{height:"100vh"  }}>
             <Nav variant="pills" className="flex-column" style={{ position: 'sticky', top: 50}}>
-              <Nav.Item>
+              <Nav.Item  className='rounded my-2' style={{backgroundColor: '#bcc7cc'}}>
                 <Nav.Link eventKey="user">User Statistics</Nav.Link>
               </Nav.Item>
-              <Nav.Item>
+              <Nav.Item className='rounded' style={{backgroundColor: '#bcc7cc'}}>
                 <Nav.Link eventKey="words">Words Statistics</Nav.Link>
               </Nav.Item>
-              <Nav.Item>
+              <Nav.Item className='rounded my-2' style={{backgroundColor: '#bcc7cc'}}>
                 <Nav.Link eventKey="todo">Todo Statistics</Nav.Link>
               </Nav.Item>
-              <Nav.Item>
+              <Nav.Item className='rounded' style={{backgroundColor: '#bcc7cc'}}>
                 <Nav.Link eventKey="quiz">Quiz Statistics</Nav.Link>
               </Nav.Item>
-              <Nav.Item>
+              <Nav.Item className='rounded my-2' style={{backgroundColor: '#bcc7cc'}}>
                 <Nav.Link eventKey="quizquestions">Quiz Questions</Nav.Link>
               </Nav.Item>
             </Nav>

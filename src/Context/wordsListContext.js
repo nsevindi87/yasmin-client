@@ -24,7 +24,7 @@ const WordsListContextProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [showTodoUpdate, setShowTodoUpdate] = useState(false);
-  const [fiveStatistics, setFiveStatistics]=useState([])
+  const [fiveStatistics, setFiveStatistics] = useState([])
 
   const { profileInfo, getProfileInfo } = useContext(UserContext)
 
@@ -35,6 +35,14 @@ const WordsListContextProvider = ({ children }) => {
     wordSecondMeaning: "",
     wordNote: "",
     wordCategory: ""
+  })
+
+  const [quizNewInputValue, setQuizNewInputValue] = useState({
+    question_text: "",
+    options: "",
+    correct_word: "",
+    english_example: "",
+    german_example: ""
   })
 
   const [todoList, setTodoList] = useState([]);
@@ -157,8 +165,9 @@ const WordsListContextProvider = ({ children }) => {
       wordNote: "",
       wordCategory: ""
     })
-
   }
+
+ 
   //Acilir sayfayi kapatir
   const handleClose = () => setShow(false)
 
@@ -251,10 +260,10 @@ const WordsListContextProvider = ({ children }) => {
   }
 
   /*==============================================================================================
-  == //!    QUIZ INFORMATIONS
+  == //!    QUIZ QUESTIONS
   ===============================================================================================*/
 
-  //GET QUIZ QUESTIONS=================================================
+  //GET QUIZ QUESTIONS (just 5 questions)=================================================
   const getQuizQuestions = async () => {
     try {
       const response = await fetch(`${BASE_URL}/quizquestions`);
@@ -272,7 +281,7 @@ const WordsListContextProvider = ({ children }) => {
       throw new Error("Failed to fetch posts")
     }
   };
-  //GET QUIZ QUESTIONS=================================================
+  //GET QUIZ QUESTIONS (All of them) =================================================
   const getAllQuizQuestions = async () => {
     try {
       const response = await fetch(`${BASE_URL}/allquizquestions`);
@@ -288,6 +297,60 @@ const WordsListContextProvider = ({ children }) => {
       throw new Error("Failed to fetch posts")
     }
   };
+
+  //ADD NEW QUESTION
+  const handleNewQuestion = async () => {
+    if (quizNewInputValue.question_text.length === 0 && quizNewInputValue.options.length === 0 && quizNewInputValue.correct_word.length === 0) {
+      alert("Please fill out the form correctly!")
+    } else {
+      try {
+        const response = await fetch(`${BASE_URL}/quizquestions`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(quizNewInputValue),
+        });
+        getAllQuizQuestions()
+        if (!response.ok) {
+          throw new Error("Failed to create post");
+        }
+        setQuizNewInputValue({
+          question_text: "",
+          options: "",
+          correct_word: "",
+          english_example: "",
+          german_example: ""
+        })
+      } catch (error) {
+        console.error(error);
+      }
+
+    }
+  };
+
+   //Soru FORMU SIFIRLA
+   const handleQuestionCancel = async () => {
+    setQuizNewInputValue({
+      question_text: "",
+      options: "",
+      correct_word: "",
+      english_example: "",
+      german_example: ""
+    })
+  }
+
+   //DELETE QUESTION  ==================================================
+   const handleQuestionDelete = async (pId) => {
+    try {
+      await fetch(`${BASE_URL}/quizquestions/${pId}`, {
+        method: "DELETE"
+      })
+      getAllQuizQuestions()
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 
   //!GET QUIZ STATISTICS
@@ -484,7 +547,7 @@ const WordsListContextProvider = ({ children }) => {
 
   return (
     <wordsContext.Provider value={{
-      getWordsList,setAllWordsList,
+      getWordsList, setAllWordsList,
       allWordsList, greenList, setGreenList,
       yellowList, setYellowList, redList, setRedList,
       getAllWords, allWordsList2, setAllWordsList2,
@@ -492,16 +555,17 @@ const WordsListContextProvider = ({ children }) => {
       handleDelete, handleNewWord,
       handleEdit, handleUpdate, show, setShow,
       handleClose, handleModalOpen, handleModalClose,
-      showModal, modalContent, handleEditList, handleDeleteList,
-      handleCancel,
+      showModal, modalContent, handleEditList, handleDeleteList, handleCancel,
       getQuizQuestions, quizQuestions, setQuizquestions,
-      getAllQuizQuestions,allQuizQuestions, setAllQuizquestions,
+      getAllQuizQuestions, allQuizQuestions, setAllQuizquestions,
+      handleNewQuestion, quizNewInputValue, setQuizNewInputValue, handleQuestionCancel,
+      handleQuestionDelete,
       searchTerm, setSearchTerm, searchResults, setSearchResults, getSearchedSentences,
       todoValue, setTodoValue, todoList, setTodoList, getTodoList, handleNewTodo,
       handleTodoDelete, handleTodoEdit, handleTodoCancel, handleTodoUpdate, showTodoUpdate, setShowTodoUpdate, showUpdate,
       getAsideWordList, greenAsideList, yellowAsideList, redAsideList,
       getQuizStatistics, quizStatistics, setQuizStatistics,
-      getFiveQuizStatistics,fiveStatistics, setFiveStatistics
+      getFiveQuizStatistics, fiveStatistics, setFiveStatistics
 
     }}>
       {children}
