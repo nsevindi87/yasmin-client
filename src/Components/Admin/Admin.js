@@ -24,10 +24,10 @@ const Admin = () => {
   return (
     <Container fluid>
 
-      <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-        <Row>
-          <Col sm={2}>
-            <Nav variant="pills" className="flex-column">
+      <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
+        <Row >
+          <Col sm={2} >
+            <Nav variant="pills" className="flex-column" style={{ position: 'sticky', top: 50}}>
               <Nav.Item>
                 <Nav.Link eventKey="user">User Statistics</Nav.Link>
               </Nav.Item>

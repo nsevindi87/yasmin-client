@@ -19,6 +19,7 @@ const WordsListContextProvider = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
   const [quizQuestions, setQuizquestions] = useState([]);
+  const [allQuizQuestions, setAllQuizquestions] = useState([]);
   const [quizStatistics, setQuizStatistics] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -262,12 +263,32 @@ const WordsListContextProvider = ({ children }) => {
       }
       const data = await response.json();
       const listArr = Object.entries(data);
+      console.log(data)
+      console.log(listArr)
       setQuizquestions(listArr)
+      return data
     } catch (error) {
       console.error(error);
       throw new Error("Failed to fetch posts")
     }
   };
+  //GET QUIZ QUESTIONS=================================================
+  const getAllQuizQuestions = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/allquizquestions`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts");
+      }
+      const data = await response.json();
+      const listArr = Object.entries(data);
+      setAllQuizquestions(listArr)
+      return data
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch posts")
+    }
+  };
+
 
   //!GET QUIZ STATISTICS
   const getQuizStatistics = async (pId) => {
@@ -474,6 +495,7 @@ const WordsListContextProvider = ({ children }) => {
       showModal, modalContent, handleEditList, handleDeleteList,
       handleCancel,
       getQuizQuestions, quizQuestions, setQuizquestions,
+      getAllQuizQuestions,allQuizQuestions, setAllQuizquestions,
       searchTerm, setSearchTerm, searchResults, setSearchResults, getSearchedSentences,
       todoValue, setTodoValue, todoList, setTodoList, getTodoList, handleNewTodo,
       handleTodoDelete, handleTodoEdit, handleTodoCancel, handleTodoUpdate, showTodoUpdate, setShowTodoUpdate, showUpdate,

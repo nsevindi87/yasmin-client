@@ -324,7 +324,7 @@ const Profile = () => {
           <hr></hr>
         </Container>
       }
-      <h3 className='text-center my-4 shadow hover'>Statistics</h3>
+      <h3 className='text-center my-4 shadow'>Statistics</h3>
       <hr></hr>
       <Row className='d-flex justify-content-center text-center '>
         {/* QUIZ GRAPHICS */}
