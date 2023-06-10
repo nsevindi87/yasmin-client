@@ -28,10 +28,12 @@ const HeaderLoggedin = () => {
                                     style={{ maxHeight: '100px' }}
                                     navbarScroll>
                                     <Nav.Link as={NavLink} to="/">Home</Nav.Link>
-                                    <Nav.Link as={NavLink} to="/about">About</Nav.Link>
-                                    <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
+                                    <Nav.Link as={NavLink} to="/findExample">Find Example</Nav.Link>
+                                    <Nav.Link as={NavLink} to="/quiz">Make Practice</Nav.Link>
                                 </Nav>
                                 <Nav>
+                                    <Nav.Link as={NavLink} to="/about">About</Nav.Link>
+                                    <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
                                     <Nav.Link to="logout" onClick={() => loginWithRedirect()} >Log in / Sign up</Nav.Link>
                                 </Nav>
                             </> :
@@ -39,7 +41,7 @@ const HeaderLoggedin = () => {
                                 <Nav className="m-auto my-1 my-lg-0"
                                     style={{ maxHeight: '100px' }}
                                     navbarScroll>
-                                    <Nav.Link as={NavLink} to="/addword">Add Word </Nav.Link>
+                                    <Nav.Link as={NavLink} to="/addword">Add Word</Nav.Link>
                                     <NavDropdown title="Lists" id="navbarScrollingDropdown">
                                         <NavDropdown.Item as={NavLink} to="/greenlist">Green List</NavDropdown.Item>
                                         <NavDropdown.Item as={NavLink} to="/yellowlist">
@@ -53,12 +55,18 @@ const HeaderLoggedin = () => {
                                             All Words
                                         </NavDropdown.Item>
                                     </NavDropdown>
-                                    <ProtectedLink name="Find Example" link="/findExample" user={profileInfo} roles={['admin', 'user']} />
-
-                                    <ProtectedLink name="Take Quiz" link="/quiz" user={profileInfo} roles={['admin', 'user']} />
-
-
-                                    <Nav.Link as={NavLink} to="/todo">ToDo</Nav.Link>
+                                    <NavDropdown title="Library" id="navbarScrollingDropdown">
+                                        <NavDropdown.Item as={NavLink} to="/findExample">
+                                        Find Example
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item as={NavLink} to="/quiz">
+                                        Make Practice
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item as={NavLink} to="/textreview">
+                                        Text Review
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
+                                    
                                 </Nav>
                                 <Nav>
                                     <ProtectedLink name="Admin" link="/admin" user={profileInfo} roles={['admin']} />

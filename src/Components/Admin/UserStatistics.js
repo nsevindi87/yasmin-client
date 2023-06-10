@@ -36,8 +36,8 @@ const UserStatistics = () => {
                     <td>{value + 1}</td>
                     <td>{user.firstName}</td>
                     <td>{user.lastName}</td>
-                    <td>{user.birthday}</td>
                     <td>{user.email}</td>
+                    <td>{user.birthday}</td>
                     <td>{user.role}</td>
                     <td>{user.createdAt}</td>
                     <td>XXX</td>

@@ -50,8 +50,17 @@ const AddWord = () => {
             </FloatingLabel>
 
             <div className='mt-4'>
-              <Button onClick={handleCancel} variant="danger w-50">Cancel</Button>
-              {showUpdate ? <Button onClick={handleUpdate} variant="warning w-50">Update</Button> : <Button onClick={handleNewWord} variant="primary w-50">Add</Button> }
+            <Row>
+              <Col>
+              <Button onClick={handleCancel} variant="danger w-100">Cancel</Button>
+              </Col>
+              <div style={{ width: '10px' }}></div> {/* Ara boşluk */}
+              <Col>
+              {showUpdate ? <Button onClick={handleUpdate} variant="warning w-100">Update</Button> : <Button onClick={handleNewWord} variant="primary w-100">Add</Button> }
+              </Col>
+            </Row>
+
+              
             </div><br />
             <hr />
             <h1 className='mt-2 text-center'>Recently Added</h1>

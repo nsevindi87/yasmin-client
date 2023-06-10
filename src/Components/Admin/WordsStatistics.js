@@ -191,7 +191,7 @@ const WordsStatistics = () => {
         <Col lg="10" className='border border-4 shadow my-3 d-flex flex-column justify-content-center ' >
           <div>
           <h2 className='text-center'>The Ratio of All Words In The List</h2>
-          <PieChart width={500} height={400}>
+          <PieChart width={700} height={400}>
             <Pie
               activeIndex={activeIndex}
               activeShape={renderActiveShape}

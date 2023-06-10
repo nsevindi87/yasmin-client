@@ -335,6 +335,8 @@ const WordsListContextProvider = ({ children }) => {
 
   //Soru FORMU SIFIRLA
   const handleQuestionCancel = async () => {
+    setShowUpdateQuiz(false)
+
     setQuizNewInputValue({
       question_text: "",
       options: "",

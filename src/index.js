@@ -25,7 +25,9 @@ import PracticeYellowList from "./Components/PracticePages/PracticeYellowList.js
 import PracticeRedList from "./Components/PracticePages/PracticeRedList.js"
 import QuizPage from "./Components/QuizPage.js";
 import WelcomePage from './Components/WelcomePage.js';
-import Admin from './Components/Admin/Admin.js'
+import Admin from './Components/Admin/Admin.js';
+import ProtectedRoute from "./Components/ProtectedRoute.js"
+import TextReview from "./Components/TextReview/TextReview.js"
 
 
 
@@ -64,8 +66,9 @@ const router = createHashRouter([
       },
       {
         path: "findExample",
-        element:
+        element: <ProtectedRoute>
           <FindExample />
+        </ProtectedRoute>
       },
       {
         path: "addword",
@@ -119,13 +122,19 @@ const router = createHashRouter([
       },
       {
         path: "quiz",
-        element:
+        element: <ProtectedRoute>
           <QuizPage />
+        </ProtectedRoute>
       },
       {
         path: "admin",
         element:
           <Admin />
+      },
+      {
+        path: "textreview",
+        element:
+          <TextReview />
       }
     ]
   }
@@ -141,7 +150,7 @@ root.render(
       clientId={clientId}
       redirectUri={window.location.origin}
     >
-        <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </Auth0Provider>
   </React.StrictMode>
 );
