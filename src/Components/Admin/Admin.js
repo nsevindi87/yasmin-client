@@ -7,6 +7,7 @@ import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Toolti
 import UserStatistics from "./UserStatistics.js"
 import WordsStatistics from './WordsStatistics';
 import QuizQuestions from './QuizQuestions';
+import ContactMails from './ContactMails';
 
 const Admin = () => {
 
@@ -34,6 +35,9 @@ const Admin = () => {
               <Nav.Item className='rounded my-2' style={{backgroundColor: '#bcc7cc'}}>
                 <Nav.Link eventKey="quiz">Quiz Questions</Nav.Link>
               </Nav.Item>
+              <Nav.Item className='rounded' style={{backgroundColor: '#bcc7cc'}}>
+                <Nav.Link eventKey="mail">Contact Mails</Nav.Link>
+              </Nav.Item>
               
             </Nav>
           </Col>
@@ -42,7 +46,8 @@ const Admin = () => {
               <Tab.Pane eventKey="user"><UserStatistics /></Tab.Pane>
               <Tab.Pane eventKey="words"><WordsStatistics /> </Tab.Pane>
               <Tab.Pane eventKey="quiz"><QuizQuestions /></Tab.Pane>
-              <Tab.Pane eventKey="quizquestions"><QuizQuestions /></Tab.Pane>{/* quiz soru ekle cikar editle ara bul */}
+              <Tab.Pane eventKey="quizquestions"><QuizQuestions /></Tab.Pane>{/* quiz soru ara bul */}
+              <Tab.Pane eventKey="mail"><ContactMails/></Tab.Pane>
             </Tab.Content>
           </Col>
         </Row>
