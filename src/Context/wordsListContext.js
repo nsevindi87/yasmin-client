@@ -135,6 +135,9 @@ const WordsListContextProvider = ({ children }) => {
     message: ""
   })
 
+  const [showContactToast, setShowContactToast] = useState(false);
+
+
   const handleNewMail = async () => {
     if (contactInputValue.name.length === 0 && contactInputValue.email.length === 0 && contactInputValue.message.length === 0) {
       alert("Please fill out the form")
@@ -147,6 +150,7 @@ const WordsListContextProvider = ({ children }) => {
           },
           body: JSON.stringify(contactInputValue),
         });
+        setShowContactToast(true);
         if (!response.ok) {
           throw new Error("Failed to create post");
         }
@@ -658,7 +662,8 @@ const WordsListContextProvider = ({ children }) => {
       getAsideWordList, greenAsideList, yellowAsideList, redAsideList,
       getQuizStatistics, quizStatistics, setQuizStatistics,
       getFiveQuizStatistics, fiveStatistics, setFiveStatistics,
-      contactInputValue, setContactInputValue,handleNewMail, handleContactCancel
+      contactInputValue, setContactInputValue,handleNewMail, handleContactCancel,
+      showContactToast, setShowContactToast
 
     }}>
       {children}
