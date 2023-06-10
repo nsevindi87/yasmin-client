@@ -161,6 +161,16 @@ const WordsListContextProvider = ({ children }) => {
     }
   };
 
+  //CONTACT FORM CANCEL
+   //FORMU SIFIRLA
+   const handleContactCancel = () => {
+    setContactInputValue({
+      name: "",
+      email: "",
+      message: ""
+    })
+  }
+
   //DELETE WORD  ==================================================
   const handleDelete = async (pId) => {
     try {
@@ -648,7 +658,7 @@ const WordsListContextProvider = ({ children }) => {
       getAsideWordList, greenAsideList, yellowAsideList, redAsideList,
       getQuizStatistics, quizStatistics, setQuizStatistics,
       getFiveQuizStatistics, fiveStatistics, setFiveStatistics,
-      contactInputValue, setContactInputValue,handleNewMail
+      contactInputValue, setContactInputValue,handleNewMail, handleContactCancel
 
     }}>
       {children}
