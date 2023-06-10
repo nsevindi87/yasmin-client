@@ -42,6 +42,7 @@ const HeaderLoggedin = () => {
                                     style={{ maxHeight: '100px' }}
                                     navbarScroll>
                                     <Nav.Link as={NavLink} to="/addword">Add Word</Nav.Link>
+                                    <Nav.Link as={NavLink} to="/todo">Todo</Nav.Link>
                                     <NavDropdown title="Lists" id="navbarScrollingDropdown">
                                         <NavDropdown.Item as={NavLink} to="/greenlist">Green List</NavDropdown.Item>
                                         <NavDropdown.Item as={NavLink} to="/yellowlist">

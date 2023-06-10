@@ -69,7 +69,7 @@ const GeneralList = () => {
                       }
                     </td>
                   </tr>
-                ))}
+                )).reverse()}
                 <>
                   <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>

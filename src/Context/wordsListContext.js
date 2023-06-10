@@ -60,7 +60,7 @@ const WordsListContextProvider = ({ children }) => {
   const BASE_URL = "http://localhost:3302"
 
   /* ==============================================================================================
-  == //!    WORDS  -GET -ADD  -DELETE 
+  == //!    WORDS  --------------------------------------------------------------------
   ===============================================================================================*/
 
   //GET ALL DATAS ==========================================================
@@ -127,53 +127,6 @@ const WordsListContextProvider = ({ children }) => {
 
     }
   };
-
-  //!CONTACT PAGE SEND NEW MESSAGE
-  const [contactInputValue, setContactInputValue] = useState({
-    name: "",
-    email: "",
-    message: ""
-  })
-
-  const [showContactToast, setShowContactToast] = useState(false);
-
-
-  const handleNewMail = async () => {
-    if (contactInputValue.name.length === 0 && contactInputValue.email.length === 0 && contactInputValue.message.length === 0) {
-      alert("Please fill out the form")
-    } else {
-      try {
-        const response = await fetch(`${BASE_URL}/contact`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(contactInputValue),
-        });
-        setShowContactToast(true);
-        if (!response.ok) {
-          throw new Error("Failed to create post");
-        }
-        setContactInputValue({
-          name: "",
-          email: "",
-          message: ""
-        })
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
-
-  //CONTACT FORM CANCEL
-   //FORMU SIFIRLA
-   const handleContactCancel = () => {
-    setContactInputValue({
-      name: "",
-      email: "",
-      message: ""
-    })
-  }
 
   //DELETE WORD  ==================================================
   const handleDelete = async (pId) => {
@@ -254,7 +207,7 @@ const WordsListContextProvider = ({ children }) => {
 
 
   /*==============================================================================================
-  == //!    PRACTICE PAGE
+  == //!    PRACTICE PAGE --------------------------------------------------------------------
   ===============================================================================================*/
 
   //OPEN - CLOSE MODELS IN PRACTICE PAGES
@@ -267,7 +220,7 @@ const WordsListContextProvider = ({ children }) => {
   };
 
   /* ==============================================================================================
-  == //!    LIST CHANGES   -EDIT -DELETE
+  == //!    LIST CHANGES  --------------------------------------------------------------------
   ===============================================================================================*/
 
   //Change the List of Word
@@ -313,7 +266,7 @@ const WordsListContextProvider = ({ children }) => {
   }
 
   /*==============================================================================================
-  == //!    QUIZ QUESTIONS
+  == //!    QUIZ QUESTIONS --------------------------------------------------------------------
   ===============================================================================================*/
 
   //GET QUIZ QUESTIONS (just 5 questions)=================================================
@@ -334,6 +287,7 @@ const WordsListContextProvider = ({ children }) => {
       throw new Error("Failed to fetch posts")
     }
   };
+
   //GET QUIZ QUESTIONS (All of them) =================================================
   const getAllQuizQuestions = async () => {
     try {
@@ -448,7 +402,10 @@ const WordsListContextProvider = ({ children }) => {
   }
 
 
-  //!GET QUIZ STATISTICS
+  /*==============================================================================================
+  == //!    QUIZ STATISTICS --------------------------------------------------------------------
+  ===============================================================================================*/
+
   const getQuizStatistics = async (pId) => {
     try {
       const response = await fetch(`${BASE_URL}/quizstatistics/all/${pId}`);
@@ -475,7 +432,7 @@ const WordsListContextProvider = ({ children }) => {
 
 
   /* ==============================================================================================
-  == //!     ASIDE WORDS
+  == //!     ASIDE WORDS --------------------------------------------------------------------
   ===============================================================================================*/
 
   const [greenAsideList, setGreenAsideList] = useState([]);
@@ -503,7 +460,7 @@ const WordsListContextProvider = ({ children }) => {
   };
 
   /* ==============================================================================================
-  == //!   EXAMPLE SENTENCES 
+  == //!   EXAMPLE SENTENCES --------------------------------------------------------------------
   ===============================================================================================*/
 
   //GET SELECTED SENTENCES
@@ -524,7 +481,7 @@ const WordsListContextProvider = ({ children }) => {
   };
 
   /* ==============================================================================================
-  == //!    TODO LIST - ADD - DELETE  - EDIT
+  == //!    TODO LIST --------------------------------------------------------------------
   ===============================================================================================*/
 
   //GET ALL TODOS   ========================================================
@@ -640,6 +597,77 @@ const WordsListContextProvider = ({ children }) => {
     }
   }
 
+
+  /* ==============================================================================================
+  == //!    CONTACT PAGE --------------------------------------------------------------------
+  ===============================================================================================*/
+
+
+  //CONTACT PAGE SEND NEW MESSAGE
+  const [contactInputValue, setContactInputValue] = useState({
+    name: "",
+    email: "",
+    message: ""
+  })
+
+  const [showContactToast, setShowContactToast] = useState(false);
+
+
+  const handleNewMail = async () => {
+    if (contactInputValue.name.length === 0 && contactInputValue.email.length === 0 && contactInputValue.message.length === 0) {
+      alert("Please fill out the form")
+    } else {
+      try {
+        const response = await fetch(`${BASE_URL}/contact`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(contactInputValue),
+        });
+        setShowContactToast(true);
+        if (!response.ok) {
+          throw new Error("Failed to create post");
+        }
+        setContactInputValue({
+          name: "",
+          email: "",
+          message: ""
+        })
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  //CONTACT FORM CANCEL
+   const handleContactCancel = () => {
+    setContactInputValue({
+      name: "",
+      email: "",
+      message: ""
+    })
+  }
+
+  const [contactMails, setContactMails] = useState([])
+  
+  //DELETE WORD  ==================================================
+  const getAllContactMails = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/contact`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts");
+      }
+      const data = await response.json();
+      const mailsArr = Object.entries(data);
+      setContactMails(mailsArr)
+      return data
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch posts")
+    }
+  };
+
   return (
     <wordsContext.Provider value={{
       getWordsList, setAllWordsList,
@@ -663,6 +691,7 @@ const WordsListContextProvider = ({ children }) => {
       getQuizStatistics, quizStatistics, setQuizStatistics,
       getFiveQuizStatistics, fiveStatistics, setFiveStatistics,
       contactInputValue, setContactInputValue,handleNewMail, handleContactCancel,
+      getAllContactMails,contactMails, setContactMails,
       showContactToast, setShowContactToast
 
     }}>

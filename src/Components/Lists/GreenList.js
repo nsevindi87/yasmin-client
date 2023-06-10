@@ -62,7 +62,7 @@ const GreenList = () => {
                     <td> {word.wordCategory ? <Button variant={word.wordCategory} onClick={()=> handleDeleteList(word.id)} className='p-2'></Button> : null}</td>
                     
                   </tr>
-                ))}
+                )).reverse()}
                 <>
                   <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
