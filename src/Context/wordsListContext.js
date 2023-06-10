@@ -46,6 +46,8 @@ const WordsListContextProvider = ({ children }) => {
     german_example: ""
   })
 
+
+
   const [todoList, setTodoList] = useState([]);
   const [todoValue, setTodoValue] = useState({
     id: null,
@@ -123,6 +125,39 @@ const WordsListContextProvider = ({ children }) => {
         console.error(error);
       }
 
+    }
+  };
+
+  //!CONTACT PAGE SEND NEW MESSAGE
+  const [contactInputValue, setContactInputValue] = useState({
+    name: "",
+    email: "",
+    message: ""
+  })
+
+  const handleNewMail = async () => {
+    if (contactInputValue.name.length === 0 && contactInputValue.email.length === 0 && contactInputValue.message.length === 0) {
+      alert("Please fill out the form")
+    } else {
+      try {
+        const response = await fetch(`${BASE_URL}/contact`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(contactInputValue),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to create post");
+        }
+        setContactInputValue({
+          name: "",
+          email: "",
+          message: ""
+        })
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -397,7 +432,7 @@ const WordsListContextProvider = ({ children }) => {
       german_example: ""
     })
   }
-  
+
 
   //!GET QUIZ STATISTICS
   const getQuizStatistics = async (pId) => {
@@ -605,14 +640,15 @@ const WordsListContextProvider = ({ children }) => {
       getQuizQuestions, quizQuestions, setQuizquestions,
       getAllQuizQuestions, allQuizQuestions, setAllQuizquestions,
       handleNewQuestion, quizNewInputValue, setQuizNewInputValue, handleQuestionCancel,
-      handleQuestionDelete, 
-      handleQuestionEdit,handleQuestionUpdate,showUpdateQuiz,setShowUpdateQuiz,
+      handleQuestionDelete,
+      handleQuestionEdit, handleQuestionUpdate, showUpdateQuiz, setShowUpdateQuiz,
       searchTerm, setSearchTerm, searchResults, setSearchResults, getSearchedSentences,
       todoValue, setTodoValue, todoList, setTodoList, getTodoList, handleNewTodo,
       handleTodoDelete, handleTodoEdit, handleTodoCancel, handleTodoUpdate, showTodoUpdate, setShowTodoUpdate, showUpdate,
       getAsideWordList, greenAsideList, yellowAsideList, redAsideList,
       getQuizStatistics, quizStatistics, setQuizStatistics,
-      getFiveQuizStatistics, fiveStatistics, setFiveStatistics
+      getFiveQuizStatistics, fiveStatistics, setFiveStatistics,
+      contactInputValue, setContactInputValue,handleNewMail
 
     }}>
       {children}
