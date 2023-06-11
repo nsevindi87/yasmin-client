@@ -8,6 +8,7 @@ import UserStatistics from "./UserStatistics.js"
 import WordsStatistics from './WordsStatistics';
 import QuizQuestions from './QuizQuestions';
 import ContactMails from './ContactMails';
+import Versions from "./Versions.js"
 
 const Admin = () => {
 
@@ -38,6 +39,9 @@ const Admin = () => {
               <Nav.Item className='rounded' style={{backgroundColor: '#bcc7cc'}}>
                 <Nav.Link eventKey="mail">Contact Mails</Nav.Link>
               </Nav.Item>
+              <Nav.Item className='rounded' style={{backgroundColor: '#bcc7cc'}}>
+                <Nav.Link eventKey="version">App Versions</Nav.Link>
+              </Nav.Item>
               
             </Nav>
           </Col>
@@ -48,6 +52,7 @@ const Admin = () => {
               <Tab.Pane eventKey="quiz"><QuizQuestions /></Tab.Pane>
               <Tab.Pane eventKey="quizquestions"><QuizQuestions /></Tab.Pane>{/* quiz soru ara bul */}
               <Tab.Pane eventKey="mail"><ContactMails/></Tab.Pane>
+              <Tab.Pane eventKey="version"><Versions/></Tab.Pane>
             </Tab.Content>
           </Col>
         </Row>
