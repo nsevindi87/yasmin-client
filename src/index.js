@@ -23,7 +23,7 @@ import Practice from "./Components/PracticePages/Practice";
 import PracticeGreenList from "./Components/PracticePages/PracticeGreenList.js"
 import PracticeYellowList from "./Components/PracticePages/PracticeYellowList.js"
 import PracticeRedList from "./Components/PracticePages/PracticeRedList.js"
-import QuizPage from "./Components/QuizPage.js";
+import QuizPage from "./Components/QuizPage/QuizPage.js";
 import WelcomePage from './Components/WelcomePage.js';
 import Admin from './Components/Admin/Admin.js';
 import ProtectedRoute from "./Components/ProtectedRoute.js"

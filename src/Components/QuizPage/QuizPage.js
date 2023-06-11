@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
-import { wordsContext } from "../Context/wordsListContext.js";
-import { UserContext } from '../Context/UserContext.js';
+import { wordsContext } from "../../Context/wordsListContext.js";
+import { UserContext } from '../../Context/UserContext.js';
 import { useNavigate } from 'react-router-dom';
 import { Toast,ToastContainer } from 'react-bootstrap';
 
