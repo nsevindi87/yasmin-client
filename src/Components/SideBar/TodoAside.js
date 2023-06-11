@@ -36,7 +36,11 @@ function TodoAside() {
           <Card.Header>Your next plan! Don't forget!!!</Card.Header>
           <Card.Body>
             <Card.Text> <p  className='text-light text-decoration-underline mb-0 bg-dark'>To do :</p><h4>{task?.task} </h4></Card.Text>
-            <Card.Text><p  className='text-light text-decoration-underline mb-0 bg-dark'>Date:</p><h4>{task?.date.slice(0,10)}</h4> </Card.Text>
+            <Card.Text><p  className='text-light text-decoration-underline mb-0 bg-dark'>Date:</p><h4>{new Intl.DateTimeFormat("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "2-digit",
+                    }).format(new Date(task?.date))}</h4> </Card.Text>
             <Card.Text > <p  className='text-light text-decoration-underline mb-0 bg-dark shadow'>Time :</p><h4>{task?.time.slice(0,5)} </h4></Card.Text>
           </Card.Body>
           <Card.Footer >

@@ -25,6 +25,7 @@ const Versions = () => {
                     <li>You will add photo to be able to practice</li>
                     <li>You will decide how many quiz question shoul be come.</li>
                     <li>You will see how long does your learning take. </li>
+                    <li>You will be able to change words that appears on the practice page. </li>
                 </ol>
             </list>
         </div>

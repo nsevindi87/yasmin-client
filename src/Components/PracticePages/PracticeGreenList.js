@@ -28,7 +28,7 @@ const Practice = () => {
       },[])
 
     return (
-        <div>
+        <div className='ms-5'>
             <h1 className='text-center my-3'>Practice Green List</h1>
             <Form.Check
                 type="checkbox"

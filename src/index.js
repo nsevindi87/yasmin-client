@@ -28,6 +28,7 @@ import WelcomePage from './Components/WelcomePage.js';
 import Admin from './Components/Admin/Admin.js';
 import ProtectedRoute from "./Components/ProtectedRoute.js"
 import TextReview from "./Components/TextReview/TextReview.js"
+import Text from "./Components/TextReview/Text.js"
 
 
 
@@ -135,6 +136,9 @@ const router = createHashRouter([
         path: "textreview",
         element:
           <TextReview />
+      },{
+        path:"textreview/:id",
+        element:<Text/>      
       }
     ]
   }
