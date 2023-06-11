@@ -330,13 +330,13 @@ const Profile = () => {
         {/* QUIZ GRAPHICS */}
         <Col md={6} sm={10} className='border border-4 shadow my-1'>
           <h1>Quiz Statistics</h1>
-          <PieChart width={500} height={400}>
+          <PieChart width={500} height={300}>
             <Pie
               activeIndex={activeIndex}
               activeShape={renderActiveShape}
               data={data}
               cx={230}
-              cy={200}
+              cy={150}
               innerRadius={60}
               outerRadius={100}
               fill="#8884d8"
@@ -348,13 +348,13 @@ const Profile = () => {
         {/* WORDS GRAPHICS */}
         <Col md={6} sm={10} className='border border-4 shadow my-1'>
           <h1>Words Statistics</h1>
-          <PieChart width={500} height={400}>
+          <PieChart width={500} height={300}>
             <Pie
               activeIndex={activeIndex2}
               activeShape={renderActiveShape2}
               data={dataWords}
               cx={230}
-              cy={200}
+              cy={150}
               innerRadius={60}
               outerRadius={100}
               fill="#8884d8"
@@ -369,7 +369,7 @@ const Profile = () => {
         <Col>
 
           <h1 className='text-center'>Individual Quiz Statistics</h1>
-          <ResponsiveContainer width="100%" height={500}>
+          <ResponsiveContainer width="100%" height={400}>
 
             <BarChart
               width={900}
@@ -388,9 +388,9 @@ const Profile = () => {
               <Tooltip />
               <Legend />
               <LabelList dataKey="name" content={renderCustomizedLabel} />
-              <Bar dataKey="Total" fill="#9c89b8" minPointSize={5} />
-              <Bar dataKey="Correct" fill="#77bfa3" minPointSize={5} />
-              <Bar dataKey="Wrong" fill="#ffbcaa" minPointSize={10} />
+              <Bar dataKey="Total" fill="#8884d8" minPointSize={5} />
+              <Bar dataKey="Correct" fill="#3dba44" minPointSize={5} />
+              <Bar dataKey="Wrong" fill="#ed2849" minPointSize={10} />
             </BarChart>
           </ResponsiveContainer>
 

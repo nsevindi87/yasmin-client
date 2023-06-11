@@ -31,7 +31,7 @@ const AddWord = () => {
       <Container className='bg-light' style={{height:"100vh"}}>
         <Row>
           <Col>
-            <h1 className='mt-5 text-center'>Add New Word</h1>
+            <h1 className='mt-5 text-center shadow mb-4 rounded'>Add New Word</h1>
 
             <FloatingLabel label="First Value">
               <Form.Control onChange={(e)=>setInputValue({...inputValue, [e.target.id]:e.target.value})} type="text" id='word' value={inputValue.word} />
@@ -59,8 +59,6 @@ const AddWord = () => {
               {showUpdate ? <Button onClick={handleUpdate} variant="warning w-100">Update</Button> : <Button onClick={handleNewWord} variant="primary w-100">Add</Button> }
               </Col>
             </Row>
-
-              
             </div><br />
             <hr />
             <h1 className='mt-2 text-center'>Recently Added</h1>

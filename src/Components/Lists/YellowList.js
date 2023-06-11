@@ -28,7 +28,7 @@ const YellowList = () => {
       <Container>
         <Row className='mt-5'>
           <Col>
-            <h1 className='text-center'>Yellow List</h1>
+            <h1 className='text-center shadow mb-4 rounded'>Yellow List</h1>
             <div className='mb-2 text-center'>
               <Button className='btn-dark text-warning mx-3'><Nav.Link as={Link} to="/practice-yellowList">Training</Nav.Link></Button>
               <Button className='btn-dark text-warning'><Nav.Link as={Link} to="/quiz">Test Yourself</Nav.Link></Button>

@@ -11,7 +11,7 @@ const Contact = () => {
       <Container>
         <Row>
           <Col>
-          <h1 className='text-center mt-5'>Contact Us</h1>
+          <h1 className='text-center mt-5 shadow mb-4 rounded'>Contact Us</h1>
             <ContactForm />
             <ContactCards />
           </Col>

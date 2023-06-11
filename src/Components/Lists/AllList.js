@@ -28,10 +28,10 @@ const GeneralList = () => {
       <Container>
         <Row className='mt-5' >
           <Col>
-            <h1 className='text-center'>All Word List</h1>
+            <h1 className='text-center shadow mb-4 rounded'>All Word List</h1>
             <div className='mb-2 text-center'>
-              <Button className='btn-dark text-warning mx-3'><Nav.Link as={Link} to="/practice">Training</Nav.Link></Button>
-              <Button className='btn-dark text-warning'><Nav.Link as={Link} to="/quiz" onClick={getQuizQuestions}>Test Yourself</Nav.Link></Button>
+              <Button className='btn-dark text-warning mx-3 shadow'><Nav.Link as={Link} to="/practice">Training</Nav.Link></Button>
+              <Button className='btn-dark text-warning shadow'><Nav.Link as={Link} to="/quiz" onClick={getQuizQuestions}>Test Yourself</Nav.Link></Button>
             </div>
             <Table striped bordered hover variant="dark">
               <thead>
