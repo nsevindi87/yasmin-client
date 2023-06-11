@@ -4,8 +4,7 @@ import { Container, Row, Col, Table, Button, Modal, Form, FloatingLabel,Nav } fr
 
 const Footer = () => {
   return (
-    function Footer() {
-        return (
+    
           <footer className="mt-auto py-3 bg-light">
             <Container>
               <Row>
@@ -16,8 +15,6 @@ const Footer = () => {
             </Container>
           </footer>
         );
-      }
-  )
 }
 
 export default Footer

@@ -5,6 +5,7 @@ import AsideComponent from "./Components/SideBar/AsideComponent.js"
 import { Col, Row } from 'react-bootstrap';
 import { UserContextProvider } from "./Context/UserContext.js";
 import { useAuth0 } from "@auth0/auth0-react";
+import Footer from './Components/Footer/Footer';
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
             <AsideComponent />
           </Col>
         </Row> }
-         
+        <Footer/>
         </WordsListContextProvider>
       </UserContextProvider>
 
