@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { NavLink } from 'react-router-dom';
 import ProtectedLink from "../ProtectedLink";
 import { UserContext } from '../../Context/UserContext.js';
+import logo from "../../Images/logo.png"
 
 const HeaderLoggedin = () => {
 
@@ -12,9 +13,9 @@ const HeaderLoggedin = () => {
 
 
     return (
-        <Navbar bg="dark" variant="dark" sticky="top">
+        <Navbar bg="light" variant="light" sticky="top">
             <Container>
-                <Navbar.Brand as={NavLink} to="/">Learning App</Navbar.Brand>
+                <Navbar.Brand as={NavLink} to="/"><img src={logo} alt="logo" style={{width:"5rem",}}/></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
 

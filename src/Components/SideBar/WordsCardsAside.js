@@ -34,7 +34,7 @@ function CardsAside() {
         key="danger"
         text="light"
         style={{ width: '20rem' }}
-        className="mb-2"
+        className="mb-2 sticky-component"
       >
         <Card.Header>Red List</Card.Header>
           <Card.Body>
@@ -49,7 +49,7 @@ function CardsAside() {
         key="warning"
         text="light"
         style={{ width: '20rem' }}
-        className="mb-2"
+        className="mb-2 sticky-component"
       >
         <Card.Header>Yellow List</Card.Header>
         <Card.Body>
@@ -64,7 +64,7 @@ function CardsAside() {
         key="success"
         text="light"
         style={{ width: '20rem' }}
-        className="mb-2"
+        className="mb-2 sticky-component"
       >
         <Card.Header>Green List</Card.Header>
         <Card.Body>
