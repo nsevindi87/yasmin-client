@@ -396,6 +396,7 @@ const Profile = () => {
 
         </Col>
       </Row>
+     
     </div>
   )
 }
