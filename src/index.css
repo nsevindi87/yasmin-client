@@ -1,20 +1,4 @@
-/* .option {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60px;
-    background-color: #eaeaea;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .option:hover {
-    background-color: #d1d1d1;
-  }
 
-  */
 
   .mainpage {
     position: relative;
@@ -58,15 +42,23 @@
   }
 
   .mainbutton:hover{
-
     box-shadow: 0 0px 20px rgba(255, 238, 0, 0.698);  
   }
+
+  .servicecard{
+    transition: 0.2s;
+  }
+
+  .servicecard:hover{
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.4);  
+  }
+
+  
   .offer{
     transition: 0.5s;
   }
 
   .offer:hover{
-
     box-shadow: 0 0px 20px rgba(255, 238, 0, 0.698);  
   }
 
