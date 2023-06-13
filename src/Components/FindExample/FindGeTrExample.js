@@ -28,7 +28,7 @@ const FindGeTrExample = () => {
 
   return (
     <Container>
-      <h1 className='text-center my-3'>Find Example Sentences</h1>
+      <h1 className='text-center my-4 p-2 shadow'>Find German or Turkish Example Sentences</h1>
       <Form.Group>
         <Form.Control
           type="text"
@@ -67,12 +67,12 @@ const FindGeTrExample = () => {
                 </td>
 
               </tr>
-            )).slice(0, 30)}
+            )).slice(0, 100)}
           </tbody>
         </Table>
       </div>
       <hr></hr>
-      <h4 className='text-center'> <span className='text-danger'>{searchResults.length} </span> sentences were found!</h4>
+      <h4 className='text-center'> There are currently <span className='text-danger'> 15209</span> sample sentences!</h4>
       <p className='text-center my-3'> * Double click the sentence you want to copy!</p>
       <hr></hr>
       <ToastContainer className="p-3 " position="bottom-start">

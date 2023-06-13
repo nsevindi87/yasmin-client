@@ -30,7 +30,7 @@ const FindEnTrExample = () => {
 
   return (
     <Container>
-      <h1 className='text-center my-3'>Find Example Sentences</h1>
+      <h1 className='text-center my-4 p-2 shadow'>Find English or Turkish Example Sentences</h1>
       <Form.Group>
         <Form.Control
           type="text"
@@ -74,7 +74,7 @@ const FindEnTrExample = () => {
         </Table>
       </div>
       <hr></hr>
-      <h4 className='text-center'> <span className='text-danger'>{searchResults.length} </span> sentences were found!</h4>
+      <h4 className='text-center'> There are currently <span className='text-danger'> 703425</span> sample sentences!</h4>
       <p className='text-center my-3'> * Double click the sentence you want to copy!</p>
       <hr></hr>
       <ToastContainer className="p-3 " position="bottom-start">
