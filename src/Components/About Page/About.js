@@ -9,15 +9,7 @@ const About = () => {
 
   return (
     <div>
-
-<Typist>
-  <span> First Sentence </span>
-  <Typist.Backspace count={8} delay={200} />
-  <span> Phrase </span>
-</Typist>
-<Typist className="MyTypist"> Animate this text. </Typist>
-
-      {/* <Container >
+      <Container >
         <Row >
           <Col style={{ marginTop: "7rem" }}>
             <h1>Hi I'm <span>Nizami SEVINDI</span></h1>
@@ -30,7 +22,7 @@ const About = () => {
             <img src={Foto} class="img-fluid" alt="Image" style={{ width: "23rem", borderRadius: "50px" }} />
           </Col>
         </Row>
-      </Container> */}
+      </Container>
       
     </div>
   )
