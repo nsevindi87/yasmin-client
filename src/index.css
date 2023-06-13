@@ -142,3 +142,13 @@
       border-color: orange;
     }
   }
+
+  @media (max-width: 991px) {
+    .aside{
+      display: none;
+    }
+    .usercard{
+      margin-bottom: 20px;
+    }
+
+  }

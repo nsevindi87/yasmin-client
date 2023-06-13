@@ -35,7 +35,7 @@ const AsideComponent = () => {
   },[])
   
   return (
-    <div>
+    <div className='aside'>
       <Form>
         <div className="d-flex">
           

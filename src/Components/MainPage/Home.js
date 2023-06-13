@@ -98,7 +98,7 @@ const Home = () => {
 
       {/* Services */}
       <div className='services'>
-        <Row className='servicesContent'>
+        <Row className='servicesContent mb-lg-3'>
           <h1 className='text-center py-2 mb-1 mb-3 offer'>SERVICES</h1>
           <Col className='pt-4 px-4 mx-5 mb-3 rounded servicecard'>
             <div className='d-flex'>
@@ -166,7 +166,7 @@ const Home = () => {
       <div >
         <Row className='px-3 mx-5 my-3'>
           <h1 className='text-center py-2 my-3 offer'>USER EXPERIENCES</h1>
-          <Col lg="5" className='pt-4 px-4 rounded usercard'>
+          <Col lg="5" className='p-4 rounded usercard'>
             <div className='d-flex'>
               <div className='w-25'>
                 <img src={user1} style={{ width: "100px" }} />
