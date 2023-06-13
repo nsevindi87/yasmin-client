@@ -91,7 +91,7 @@ const Footer = () => {
           <Col>
             {/* Alt bölüm */}
             <p className='text-center m-0'>
-              Bu site Ali tarafından yapılmıştır. Her hakkı saklıdır.
+            &#169; 2023 | by Nizami SEVINDI | All rights reserved.
             </p>
           </Col>
         </Row>

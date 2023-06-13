@@ -7,7 +7,7 @@ import { Button, Nav, Card, Row, Col } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { wordsContext } from "../../Context/wordsListContext.js";
 import { UserContext } from '../../Context/UserContext.js';
-import { FaStar,FaArrowRight } from 'react-icons/fa';
+import { FaStar, FaArrowRight } from 'react-icons/fa';
 
 
 const Home = () => {
@@ -32,7 +32,7 @@ const Home = () => {
         <div className=" d-flex flex-column justify-content-center align-items-center vh-100">
           <h1 >Y A S M I N </h1>
           <h1 style={{ fontSize: "60px" }}>Learning Platform </h1>
-          <p  className='m-0' style={{ fontSize: "20px" }}>“Give me six hours to chop down a tree and I will spend the first four sharpening the axe.”</p>
+          <p className='m-0' style={{ fontSize: "20px" }}>“Give me six hours to chop down a tree and I will spend the first four sharpening the axe.”</p>
           <p className='text-secondary ' style={{ fontStyle: 'italic' }}>— Abraham Lincoln — </p>
           {!isAuthenticated ? <Button className='btn btn-outline-dark py-3 bg-warning mainbutton' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Let's Startt</Nav.Link></Button> : <Button className='btn btn-outline-dark px-5 py-2 bg-warning mainbutton'><Nav.Link as={NavLink} to="/addword" >Let's Start</Nav.Link></Button>}
         </div>
@@ -77,7 +77,7 @@ const Home = () => {
         </div>
       </div>
 
-   
+
       {/* Services */}
       <div className='services'>
         <Row className='servicesContent'>
@@ -85,12 +85,12 @@ const Home = () => {
           <Col className='pt-4 px-4 mx-5 mb-3 rounded servicecard'>
             <div className='d-flex'>
               <div>
-                <img src={user1} style={{ width: "400px", marginRight:"150px", marginLeft:"100px" }} />
+                <img src={user1} style={{ width: "400px", marginRight: "150px", marginLeft: "100px" }} />
               </div>
               <div >
                 <h3>Practice Makes Perfect: Enhance Your Skills</h3>
                 <p className='pt-3'>In this section, you will have the opportunity to apply the knowledge you have gained. Through various activities, questions, and sample exercises, you can test, strengthen, and reinforce your skills. You will be able to practice at your own pace, making your learning process even more effective.</p>
-                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Make Practice <FaArrowRight/></Nav.Link></Button>
+                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Make Practice <FaArrowRight /></Nav.Link></Button>
               </div>
             </div>
           </Col>
@@ -102,10 +102,10 @@ const Home = () => {
               <div >
                 <h3>Take Quiz: Test Your Knowledge</h3>
                 <p className='pt-3'>Challenge yourself with our interactive quizzes covering various subjects. Each quiz consists of a set of randomly generated questions that will put your knowledge to the test. Your quiz results will be recorded, allowing you to track your progress and identify areas for improvement.</p>
-                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Take Quiz <FaArrowRight/></Nav.Link></Button>
+                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Take Quiz <FaArrowRight /></Nav.Link></Button>
               </div>
               <div>
-                <img src={user1} style={{ width: "400px", marginRight:"150px", marginLeft:"100px" }} />
+                <img src={user1} style={{ width: "400px", marginRight: "150px", marginLeft: "100px" }} />
               </div>
             </div>
           </Col>
@@ -115,12 +115,12 @@ const Home = () => {
           <Col className='pt-4 px-4 mx-5 my-3 rounded servicecard'>
             <div className='d-flex'>
               <div>
-                <img src={user1} style={{ width: "400px", marginRight:"150px", marginLeft:"100px" }} />
+                <img src={user1} style={{ width: "400px", marginRight: "150px", marginLeft: "100px" }} />
               </div>
               <div >
                 <h3>Text Review: Sharpen Your Language Understanding</h3>
                 <p className='pt-3'>Unlock the power of Text Review to expand your understanding and knowledge. Dive deep into texts, explore new concepts, and strengthen your grasp on various subjects. Elevate your learning experience and broaden your horizons with Text Review.</p>
-                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Review Text <FaArrowRight/></Nav.Link></Button>
+                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Review Text <FaArrowRight /></Nav.Link></Button>
               </div>
             </div>
           </Col>
@@ -132,10 +132,10 @@ const Home = () => {
               <div >
                 <h3>Harness the Power of Example Sentences</h3>
                 <p className='pt-3'>Example sentences are an essential resource for language learners. They provide practical and contextual usage of words and phrases, allowing you to grasp their meaning and usage in real-life scenarios. By incorporating example sentences into your study routine, you can improve your vocabulary, grammar, and overall language comprehension.</p>
-                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Find Example Sentences <FaArrowRight/></Nav.Link></Button>
+                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Find Example Sentences <FaArrowRight /></Nav.Link></Button>
               </div>
               <div>
-                <img src={user1} style={{ width: "400px", marginRight:"150px", marginLeft:"100px" }} />
+                <img src={user1} style={{ width: "400px", marginRight: "150px", marginLeft: "100px" }} />
               </div>
             </div>
           </Col>
@@ -143,8 +143,8 @@ const Home = () => {
         <hr></hr>
       </div>
 
-         {/* User Experiences */}
-         <div >
+      {/* User Experiences */}
+      <div >
         <Row className='px-3 mx-5 my-3'>
           <h1 className='text-center py-2 my-3 offer'>USER EXPERIENCES</h1>
           <Col lg="5" className='pt-4 px-4 rounded usercard'>
@@ -184,6 +184,33 @@ const Home = () => {
           </Col>
         </Row>
       </div>
+
+      {/* MOTIVATION  */}
+      <div className='motivation'>
+
+        <Row className="m-5  text-center p-5 ">
+              <blockquote className="blockquote mb-0">
+                <p>
+                  Bloggy is the ultimate blogging platform for anyone looking to express themselves in the digital world. Whether you're a seasoned writer or a novice blogger, Bloggy has everything you need to create and publish your content. With its intuitive interface and easy-to-use tools, Bloggy makes it simple to write, edit, and format your blog posts. Plus, with a wide range of customizable templates and themes, you can make your blog truly your own. So why wait? Sign up for Bloggy today and start sharing your thoughts, ideas, and experiences with the world!
+                </p>
+                <footer className="blockquote-footer">
+                  Someone famous in <cite title="Source Title">Source Title</cite>
+                </footer>
+              </blockquote>
+        </Row>
+
+        <Row className="m-5  text-center p-5 ">
+              <blockquote className="blockquote mb-0">
+                <p>
+                  Bloggy is the ultimate blogging platform for anyone looking to express themselves in the digital world. Whether you're a seasoned writer or a novice blogger, Bloggy has everything you need to create and publish your content. With its intuitive interface and easy-to-use tools, Bloggy makes it simple to write, edit, and format your blog posts. Plus, with a wide range of customizable templates and themes, you can make your blog truly your own. So why wait? Sign up for Bloggy today and start sharing your thoughts, ideas, and experiences with the world!
+                </p>
+                <footer className="blockquote-footer">
+                  Someone famous in <cite title="Source Title">Source Title</cite>
+                </footer>
+              </blockquote>
+        </Row>
+      </div>
+
 
     </div>
   )

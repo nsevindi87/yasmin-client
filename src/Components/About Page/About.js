@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import Foto from "../../Images/Foto.jpg"
-import Typist from 'react-typist';
+
 
 
 const About = () => {
