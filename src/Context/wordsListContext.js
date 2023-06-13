@@ -466,7 +466,7 @@ const WordsListContextProvider = ({ children }) => {
   //GET SELECTED SENTENCES
   const getSearchedSentences = async (pSearchTerm) => {
     try {
-      const response = await fetch(`${BASE_URL}/findExample?filter=${pSearchTerm}`);
+      const response = await fetch(`${BASE_URL}/findEnTrExample?filter=${pSearchTerm}`);
       if (!response.ok) {
         throw new Error("Failed to fetch posts");
       }
