@@ -65,7 +65,7 @@ const Home = () => {
             <Card.Body>
               <Card.Title>Create Your Archive</Card.Title>
               <Card.Text>
-
+                "Effortlessly organize and store your valuable content with our archive feature, ensuring easy access and retrieval of your files whenever you need them."
               </Card.Text>
             </Card.Body>
           </Card>
@@ -75,7 +75,7 @@ const Home = () => {
             <Card.Body>
               <Card.Title>List Data</Card.Title>
               <Card.Text>
-                Card 2 Açıklama
+                "Simplify data management with our powerful list feature, allowing you to efficiently organize, track, and manipulate your data in a structured and intuitive way."
               </Card.Text>
             </Card.Body>
           </Card>
@@ -84,8 +84,7 @@ const Home = () => {
             <Card.Img variant='top' src={image} style={{ height: '200px', objectFit: 'cover' }} />
             <Card.Body>
               <Card.Title>Concentrate on Lists</Card.Title>
-              <Card.Text>
-                Card 3 Açıklama
+              <Card.Text>"Streamline your focus and productivity by leveraging our list-centric approach, empowering you to prioritize, categorize, and efficiently handle your tasks, ideas, and projects."
               </Card.Text>
             </Card.Body>
           </Card>

@@ -25,35 +25,35 @@ const ContactCards = () => {
                             <Card.Body>
                                 <BsWhatsapp style={{ fontSize: "5rem" }} />
                             </Card.Body>
-                            <Button variant="primary">Whatsapp</Button>
+                            <Button variant="warning">Whatsapp</Button>
                         </Card>
 
                         <Card style={{ width: '6.4rem' }}>
                             <Card.Body>
                                 <BsTelegram style={{ fontSize: "5rem" }} />
                             </Card.Body>
-                            <Button variant="primary">Telegram</Button>
+                            <Button variant="warning">Telegram</Button>
                         </Card>
 
                         <Card style={{ width: '6.4rem' }}>
                             <Card.Body>
                                 <BsSignal style={{ fontSize: "5rem" }} />
                             </Card.Body>
-                            <Button variant="primary">E-Mail</Button>
+                            <Button variant="warning">E-Mail</Button>
                         </Card>
 
                         <Card style={{ width: '6.4rem' }}>
                             <Card.Body>
                                 <BsFillTelephoneFill style={{ fontSize: "5rem" }} />
                             </Card.Body>
-                            <Button variant="primary">Phone</Button>
+                            <Button variant="warning">Phone</Button>
                         </Card>
 
                         <Card style={{ width: '6.4rem' }}>
                             <Card.Body>
                                 <MdEmail style={{ fontSize: "5rem" }} />
                             </Card.Body>
-                            <Button variant="primary">Signal</Button>
+                            <Button variant="warning">Signal</Button>
                         </Card>
                     </div>
                 </div>

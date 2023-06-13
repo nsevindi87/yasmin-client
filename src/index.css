@@ -45,6 +45,15 @@
     box-shadow: 0 0px 20px rgba(255, 238, 0, 0.698);  
   }
 
+  .aboutPhoto{
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.698);
+    transition: 0.2s;
+  }
+
+  .aboutPhoto:hover{
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.698);  
+  }
+
   .servicecard{
     transition: 0.2s;
   }
