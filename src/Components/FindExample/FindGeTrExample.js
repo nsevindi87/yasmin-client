@@ -5,10 +5,8 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import { Toast, ToastContainer } from 'react-bootstrap';
 
 
-
-
-const FindExample = () => {
-  const { searchTerm, setSearchTerm, searchResults, setSearchResults, getSearchedSentences } = useContext(wordsContext)
+const FindGeTrExample = () => {
+  const { searchTerm, setSearchTerm, searchResults, setSearchResults, getSearchedSentencesGeTr } = useContext(wordsContext)
 
 
   const [showToast, setShowToast] = useState(false);
@@ -22,7 +20,7 @@ const FindExample = () => {
 
   const handleSearch = (e) => {
     const term = e.target.value;
-    getSearchedSentences(term)
+    getSearchedSentencesGeTr(term)
   }
 
   useEffect(() => {
@@ -44,7 +42,7 @@ const FindExample = () => {
           <thead style={{ position: 'sticky', top: 0, backgroundColor: 'red', overflowY: 'scroll' }}>
             <tr>
               <th style={{ width: '50px' }}>Order</th>
-              <th>English</th>
+              <th>German</th>
               <th>Turkish</th>
             </tr>
           </thead>
@@ -54,9 +52,9 @@ const FindExample = () => {
 
                 <td>{value + 1}</td>
                 <td>
-                  <CopyToClipboard text={item[1].english} onCopy={handleCopy}>
+                  <CopyToClipboard text={item[1].german} onCopy={handleCopy}>
                     <div>
-                      {item[1].english}
+                      {item[1].german}
                     </div>
                   </CopyToClipboard>
                 </td>
@@ -86,4 +84,4 @@ const FindExample = () => {
   );
 };
 
-export default FindExample;
+export default FindGeTrExample;

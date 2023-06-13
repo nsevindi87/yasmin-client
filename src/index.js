@@ -12,7 +12,9 @@ import Home from './Components/MainPage/Home';
 import About from './Components/About Page/About';
 import Contact from './Components/Contact Page/Contact';
 import Profile from './Components/ProfilePage/Profile';
-import FindExample from './Components/FindExample/FindExample';
+import FindEnTrExample from './Components/FindExample/FindEnTrExample.js';
+import FindEnGeExample from './Components/FindExample/FindEnGeExample.js';
+import FindGeTrExample from './Components/FindExample/FindGeTrExample.js';
 import AddWord from './Components/AddWordPage/AddWord';
 import Todo from "./Components/ToDoPage/ToDoMain"
 import AllList from './Components/Lists/AllList';
@@ -66,9 +68,21 @@ const router = createHashRouter([
           <Profile />
       },
       {
-        path: "findExample",
+        path: "findEnTrExample",
         element: <ProtectedRoute>
-          <FindExample />
+          <FindEnTrExample />
+        </ProtectedRoute>
+      },
+      {
+        path: "findEnGeExample",
+        element: <ProtectedRoute>
+          <FindEnGeExample />
+        </ProtectedRoute>
+      },
+      {
+        path: "findGeTrExample",
+        element: <ProtectedRoute>
+          <FindGeTrExample />
         </ProtectedRoute>
       },
       {

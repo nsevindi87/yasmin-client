@@ -464,9 +464,43 @@ const WordsListContextProvider = ({ children }) => {
   ===============================================================================================*/
 
   //GET SELECTED SENTENCES
-  const getSearchedSentences = async (pSearchTerm) => {
+  const getSearchedSentencesEnTr = async (pSearchTerm) => {
     try {
       const response = await fetch(`${BASE_URL}/findEnTrExample?filter=${pSearchTerm}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts");
+      }
+      const data = await response.json();
+      const searchedArr = Object.entries(data);
+      setSearchResults(searchedArr)
+
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch posts")
+    }
+  };
+
+  //GET SELECTED SENTENCES
+  const getSearchedSentencesEnGe = async (pSearchTerm) => {
+    try {
+      const response = await fetch(`${BASE_URL}/findEnGeExample?filter=${pSearchTerm}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts");
+      }
+      const data = await response.json();
+      const searchedArr = Object.entries(data);
+      setSearchResults(searchedArr)
+
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch posts")
+    }
+  };
+
+  //GET SELECTED SENTENCES
+  const getSearchedSentencesGeTr = async (pSearchTerm) => {
+    try {
+      const response = await fetch(`${BASE_URL}/findGeTrExample?filter=${pSearchTerm}`);
       if (!response.ok) {
         throw new Error("Failed to fetch posts");
       }
@@ -684,7 +718,8 @@ const WordsListContextProvider = ({ children }) => {
       handleNewQuestion, quizNewInputValue, setQuizNewInputValue, handleQuestionCancel,
       handleQuestionDelete,
       handleQuestionEdit, handleQuestionUpdate, showUpdateQuiz, setShowUpdateQuiz,
-      searchTerm, setSearchTerm, searchResults, setSearchResults, getSearchedSentences,
+      searchTerm, setSearchTerm, searchResults, setSearchResults,
+      getSearchedSentencesEnTr,getSearchedSentencesEnGe,getSearchedSentencesGeTr,
       todoValue, setTodoValue, todoList, setTodoList, getTodoList, handleNewTodo,
       handleTodoDelete, handleTodoEdit, handleTodoCancel, handleTodoUpdate, showTodoUpdate, setShowTodoUpdate, showUpdate,
       getAsideWordList, greenAsideList, yellowAsideList, redAsideList,
