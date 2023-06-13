@@ -65,9 +65,8 @@ const Home = () => {
             <Card.Body>
               <Card.Title>Create Your Archive</Card.Title>
               <Card.Text>
-                Card 1 Açıklama
+
               </Card.Text>
-              <Button variant='primary'>Detaylar</Button>
             </Card.Body>
           </Card>
 
@@ -78,7 +77,6 @@ const Home = () => {
               <Card.Text>
                 Card 2 Açıklama
               </Card.Text>
-              <Button variant='primary' >Detaylar</Button>
             </Card.Body>
           </Card>
 
@@ -89,7 +87,6 @@ const Home = () => {
               <Card.Text>
                 Card 3 Açıklama
               </Card.Text>
-              <Button variant='primary'>Detaylar</Button>
             </Card.Body>
           </Card>
         </div>
@@ -108,7 +105,7 @@ const Home = () => {
               <div >
                 <h3>Practice Makes Perfect: Enhance Your Skills</h3>
                 <p className='pt-3'>In this section, you will have the opportunity to apply the knowledge you have gained. Through various activities, questions, and sample exercises, you can test, strengthen, and reinforce your skills. You will be able to practice at your own pace, making your learning process even more effective.</p>
-               {/*  {!isAuthenticated ? <Button className='btn btn-outline-dark py-3 bg-warning mainbutton' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Let's Startt</Nav.Link></Button> : <Button className='btn btn-outline-dark px-5 py-2 bg-warning mainbutton'><Nav.Link as={NavLink} to="/addword" >Let's Start</Nav.Link></Button>} */}
+                {/*  {!isAuthenticated ? <Button className='btn btn-outline-dark py-3 bg-warning mainbutton' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Let's Startt</Nav.Link></Button> : <Button className='btn btn-outline-dark px-5 py-2 bg-warning mainbutton'><Nav.Link as={NavLink} to="/addword" >Let's Start</Nav.Link></Button>} */}
                 <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Make Practice <FaArrowRight /></Nav.Link></Button>
               </div>
             </div>
@@ -149,7 +146,7 @@ const Home = () => {
           <Col className='pt-4 px-4 mx-5 my-3 rounded servicecard'>
             <div className='d-flex'>
               <div >
-                <h3>Harness the Power of Example Sentences</h3>
+                <h3>Harness the Power of Example Sentences: 1.136.360 sentences pair</h3>
                 <p className='pt-3'>Example sentences are an essential resource for language learners. They provide practical and contextual usage of words and phrases, allowing you to grasp their meaning and usage in real-life scenarios. By incorporating example sentences into your study routine, you can improve your vocabulary, grammar, and overall language comprehension.</p>
                 <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Find Example Sentences <FaArrowRight /></Nav.Link></Button>
               </div>
@@ -206,9 +203,11 @@ const Home = () => {
 
       {/* MOTIVATION  */}
       <div className='motivation'>
-      <MotivationSentences initialText="Success is not final, failure is not fatal: It is the courage to continue that counts." hoverText="Der Erfolg ist nicht endgültig, der Misserfolg ist nicht tödlich: Es ist der Mut, weiterzumachen, der zählt."  citation="Winston Churchill"/>
-      <MotivationSentences initialText="The only way to do great work is to love what you do." hoverText="Der einzige Weg, grossartige Arbeit zu leisten, ist es, das zu lieben, was du tust." citation="Steve Jobs"/>
-      <MotivationSentences initialText="The only limit to our realization of tomorrow will be our doubts of today." hoverText="Die einzige Grenze für unsere Verwirklichung von morgen wird der Zweifel von heute sein." citation="Franklin D. Roosevelt"/>
+        <MotivationSentences initialText="Success is not final, failure is not fatal: It is the courage to continue that counts." hoverText="Der Erfolg ist nicht endgültig, der Misserfolg ist nicht tödlich: Es ist der Mut, weiterzumachen, der zählt." citation="Winston Churchill" />
+
+        <MotivationSentences initialText="The only way to do great work is to love what you do." hoverText="Der einzige Weg, grossartige Arbeit zu leisten, ist es, das zu lieben, was du tust." citation="Steve Jobs" />
+
+        <MotivationSentences initialText="The only limit to our realization of tomorrow will be our doubts of today." hoverText="Die einzige Grenze für unsere Verwirklichung von morgen wird der Zweifel von heute sein." citation="Franklin D. Roosevelt" />
       </div>
 
       {/* ANY QUESTION */}
