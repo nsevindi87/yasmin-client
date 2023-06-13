@@ -8,16 +8,30 @@ import { NavLink } from 'react-router-dom';
 import { wordsContext } from "../../Context/wordsListContext.js";
 import { UserContext } from '../../Context/UserContext.js';
 import { FaStar, FaArrowRight } from 'react-icons/fa';
+import MotivationSentences from "./MotivationSentences.js"
 
 
 const Home = () => {
   const { getWordsList, getAsideWordList } = useContext(wordsContext)
   const { profileInfo, getProfileInfo } = useContext(UserContext)
   const { loginWithRedirect, isAuthenticated } = useAuth0()
+
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleHover = () => {
-    setIsHovered(!isHovered);
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const renderText = () => {
+    if (isHovered) {
+      return "Die Zukunft hängt davon ab, was du heute tust.";
+    } else {
+      return "The future depends on what you do today.";
+    }
   };
 
   useEffect(() => {
@@ -25,6 +39,10 @@ const Home = () => {
     getWordsList(profileInfo?.id)
     getAsideWordList(profileInfo?.id)
   }, [isAuthenticated])
+
+
+
+
   return (
     <div className='position-relative'>
       {/* Main Section */}
@@ -90,6 +108,7 @@ const Home = () => {
               <div >
                 <h3>Practice Makes Perfect: Enhance Your Skills</h3>
                 <p className='pt-3'>In this section, you will have the opportunity to apply the knowledge you have gained. Through various activities, questions, and sample exercises, you can test, strengthen, and reinforce your skills. You will be able to practice at your own pace, making your learning process even more effective.</p>
+               {/*  {!isAuthenticated ? <Button className='btn btn-outline-dark py-3 bg-warning mainbutton' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Let's Startt</Nav.Link></Button> : <Button className='btn btn-outline-dark px-5 py-2 bg-warning mainbutton'><Nav.Link as={NavLink} to="/addword" >Let's Start</Nav.Link></Button>} */}
                 <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Make Practice <FaArrowRight /></Nav.Link></Button>
               </div>
             </div>
@@ -187,31 +206,17 @@ const Home = () => {
 
       {/* MOTIVATION  */}
       <div className='motivation'>
-
-        <Row className="m-5  text-center p-5 ">
-              <blockquote className="blockquote mb-0">
-                <p>
-                  Bloggy is the ultimate blogging platform for anyone looking to express themselves in the digital world. Whether you're a seasoned writer or a novice blogger, Bloggy has everything you need to create and publish your content. With its intuitive interface and easy-to-use tools, Bloggy makes it simple to write, edit, and format your blog posts. Plus, with a wide range of customizable templates and themes, you can make your blog truly your own. So why wait? Sign up for Bloggy today and start sharing your thoughts, ideas, and experiences with the world!
-                </p>
-                <footer className="blockquote-footer">
-                  Someone famous in <cite title="Source Title">Source Title</cite>
-                </footer>
-              </blockquote>
-        </Row>
-
-        <Row className="m-5  text-center p-5 ">
-              <blockquote className="blockquote mb-0">
-                <p>
-                  Bloggy is the ultimate blogging platform for anyone looking to express themselves in the digital world. Whether you're a seasoned writer or a novice blogger, Bloggy has everything you need to create and publish your content. With its intuitive interface and easy-to-use tools, Bloggy makes it simple to write, edit, and format your blog posts. Plus, with a wide range of customizable templates and themes, you can make your blog truly your own. So why wait? Sign up for Bloggy today and start sharing your thoughts, ideas, and experiences with the world!
-                </p>
-                <footer className="blockquote-footer">
-                  Someone famous in <cite title="Source Title">Source Title</cite>
-                </footer>
-              </blockquote>
-        </Row>
+      <MotivationSentences initialText="Success is not final, failure is not fatal: It is the courage to continue that counts." hoverText="Der Erfolg ist nicht endgültig, der Misserfolg ist nicht tödlich: Es ist der Mut, weiterzumachen, der zählt."  citation="Winston Churchill"/>
+      <MotivationSentences initialText="The only way to do great work is to love what you do." hoverText="Der einzige Weg, grossartige Arbeit zu leisten, ist es, das zu lieben, was du tust." citation="Steve Jobs"/>
+      <MotivationSentences initialText="The only limit to our realization of tomorrow will be our doubts of today." hoverText="Die einzige Grenze für unsere Verwirklichung von morgen wird der Zweifel von heute sein." citation="Franklin D. Roosevelt"/>
       </div>
 
-
+      {/* ANY QUESTION */}
+      <div className='bg-warning mt-0 py-5 text-center'>
+        <h2 >HAVE ANY QUESTIONS?</h2>
+        <p>Feel free to reach out to us if you have any inquiries or need further assistance. We are here to help!</p>
+        <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-25' style={{ padding: "60px" }}><Nav.Link as={NavLink} to="/contact" >Contact Us </Nav.Link></Button>
+      </div>
     </div>
   )
 }
