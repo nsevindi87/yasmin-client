@@ -1,5 +1,5 @@
 import React,{useContext,useEffect} from 'react';
-import image from "../../Images/error.png"
+import image from "../../Images/selectLang.png"
 import { NavLink } from 'react-router-dom';
 import { Container, Row, Col, Table, Button, Modal, Form, FloatingLabel,Nav } from 'react-bootstrap';
 import { wordsContext } from "../../Context/wordsListContext.js";
@@ -14,7 +14,7 @@ const TextReview = () => {
 
   return (
     <div className='text-center'>
-    <h1 className='shadow my-4'>List of texts</h1>
+    <h1 className='shadow my-4'>Please select the language you want to study in</h1>
     <Button className='btn-dark text-warning shadow ms-4'><Nav.Link as={NavLink} to="/textreview/english">English Texts</Nav.Link></Button>
     <Button className='btn-dark text-warning shadow ms-4'><Nav.Link as={NavLink} to="/textreview/german">Deutsche Texte</Nav.Link></Button>
     <Button className='btn-dark text-warning shadow ms-4'><Nav.Link as={NavLink} to="/textreview/turkish">Türkçe Metinler</Nav.Link></Button>

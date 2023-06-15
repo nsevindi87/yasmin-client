@@ -1,7 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { wordsContext } from "../../Context/wordsListContext.js";
 import { Button, Nav } from 'react-bootstrap';
-import {  NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import image from "../../Images/selectLang2.png"
+
 
 
 const GermanTexts = () => {
@@ -22,6 +24,11 @@ const GermanTexts = () => {
         </Button>
 
       ))}
+      <div className='d-flex justify-content-center align-item-center'>
+        <div className="col-6" style={{ paddingTop: "5rem", paddingLeft: "1rem" }}>
+          <img src={image} class="img-fluid" alt="Image" style={{ width: "100rem" }} />
+        </div>
+      </div>
     </div>
   )
 }
