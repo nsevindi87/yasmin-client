@@ -30,7 +30,9 @@ import WelcomePage from './Components/WelcomePage.js';
 import Admin from './Components/Admin/Admin.js';
 import ProtectedRoute from "./Components/ProtectedRoute.js"
 import TextReview from "./Components/TextReview/TextReview.js"
-import Text from "./Components/TextReview/Text.js"
+import TextEng from "./Components/TextReview/TextEng.js"
+import TextGer from "./Components/TextReview/TextGer.js"
+import TextTr from "./Components/TextReview/TextTr.js"
 import EnglishTexts from './Components/TextReview/EnglishTexts';
 import GermanTexts from './Components/TextReview/GermanTexts';
 import TurkishTexts from './Components/TextReview/TurkishTexts';
@@ -166,7 +168,7 @@ const router = createHashRouter([
         path:"textreview/german",
         element:<GermanTexts/>      
       },{
-        path:"textreview/turkce",
+        path:"textreview/turkish",
         element:<TurkishTexts/>      
       },{
         path:"textreview/english/:id",

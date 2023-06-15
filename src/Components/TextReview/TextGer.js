@@ -8,11 +8,11 @@ import { wordsContext } from "../../Context/wordsListContext.js";
 const Text = () => {
   const { getTextReviews, texts, getTextById, text } = useContext(wordsContext);
 
-  const [showGermanMeaning, setShowGermanMeaning] = useState(false);
+  const [showEnglishMeaning, setShowEnglishMeaning] = useState(false);
   const [showTurkishMeaning, setShowTurkishMeaning] = useState(false);
 
   const handleGermanMeaningClick = () => {
-    setShowGermanMeaning(!showGermanMeaning);
+    setShowEnglishMeaning(!showEnglishMeaning);
   };
 
   const handleTurkishMeaningClick = () => {
@@ -24,7 +24,7 @@ const Text = () => {
       <div className='text-center mt-5'>
 
       <Button className='btn-dark text-warning shadow ms-4' onClick={handleGermanMeaningClick}>
-        {showGermanMeaning ? 'Hide English Meaning' : 'Show English Meaning'}
+        {showEnglishMeaning ? 'Hide English Meaning' : 'Show English Meaning'}
       </Button>
       <Button className='btn-dark text-warning shadow ms-4' onClick={handleTurkishMeaningClick}>
         {showTurkishMeaning ? 'Hide Turkish Meaning' : 'Show Turkish Meaning'}
@@ -32,7 +32,7 @@ const Text = () => {
       </div>
       <div>
         <p className='m-4'>{text.german}</p>
-        {showGermanMeaning && <p className='m-4'><span style={{ fontWeight: 'bold' }}>English Meaning : </span>{text.english}</p>}
+        {showEnglishMeaning && <p className='m-4'><span style={{ fontWeight: 'bold' }}>English Meaning : </span>{text.english}</p>}
         {showTurkishMeaning && <p className='m-4'><span style={{ fontWeight: 'bold' }}>Turkish Meaning : </span>{text.turkish}</p>}
       </div>
       <Button className='btn-dark text-warning shadow ms-4'>
