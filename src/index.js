@@ -166,8 +166,11 @@ const router = createHashRouter([
         path:"textreview/german",
         element:<GermanTexts/>      
       },{
-        path:"textreview/turkish",
+        path:"textreview/turkce",
         element:<TurkishTexts/>      
+      },{
+        path:"textreview/english/:id",
+        element:<Text/>      
       }
     ]
   }

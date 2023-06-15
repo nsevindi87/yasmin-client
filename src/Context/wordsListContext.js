@@ -266,6 +266,46 @@ const WordsListContextProvider = ({ children }) => {
   }
 
   /*==============================================================================================
+  == //!    TEXT REVIEWS --------------------------------------------------------------------
+  ===============================================================================================*/
+
+  const [texts,setTexts] = useState("")
+
+ //GET TEXTS  =================================================
+ const getTextReviews = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/textReview`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch posts");
+    }
+    const data = await response.json();
+      const listArr = Object.entries(data);
+    setTexts(listArr)
+    return data
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch posts")
+  }
+};
+const [text, setText] = useState([]);
+
+//GET TEXT BY ID
+const getTextById = async (pId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/textreview/english/${pId}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch post");
+    }
+    const data = await response.json();
+    setText(data);
+   
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch post");
+  }
+};
+
+  /*==============================================================================================
   == //!    QUIZ QUESTIONS --------------------------------------------------------------------
   ===============================================================================================*/
 
@@ -375,7 +415,6 @@ const WordsListContextProvider = ({ children }) => {
       german_example: pPost.german_example
     })
   }
-  console.log(quizNewInputValue)
 
   const handleQuestionUpdate = async () => {
     try {
@@ -728,7 +767,8 @@ const WordsListContextProvider = ({ children }) => {
       getFiveQuizStatistics, fiveStatistics, setFiveStatistics,
       contactInputValue, setContactInputValue,handleNewMail, handleContactCancel,
       getAllContactMails,contactMails, setContactMails,
-      showContactToast, setShowContactToast
+      showContactToast, setShowContactToast,
+      getTextReviews,texts,setTexts,getTextById,text
 
     }}>
       {children}
