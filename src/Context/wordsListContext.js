@@ -368,13 +368,14 @@ const WordsListContextProvider = ({ children }) => {
     setShowUpdateQuiz(true)
     setQuizNewInputValue({
       id: pPost.id,
-      question_text: pPost,
+      question_text: pPost.question_text,
       options: pPost.options,
       correct_word: pPost.correct_word,
       english_example: pPost.english_example,
       german_example: pPost.german_example
     })
   }
+  console.log(quizNewInputValue)
 
   const handleQuestionUpdate = async () => {
     try {

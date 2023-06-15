@@ -59,13 +59,13 @@ const HeaderLoggedin = () => {
                                     </NavDropdown>
                                     <NavDropdown title="Library" id="navbarScrollingDropdown">
                                         <NavDropdown.Item as={NavLink} to="/findEnTrExample">
-                                        English-Turkish Examples
+                                        English-Turkish
                                         </NavDropdown.Item>
                                         <NavDropdown.Item as={NavLink} to="/findEnGeExample">
-                                        English-German Examples
+                                        English-German
                                         </NavDropdown.Item>
                                         <NavDropdown.Item as={NavLink} to="/findGeTrExample">
-                                        German-Turkish Examples
+                                        German-Turkish 
                                         </NavDropdown.Item>
                                         <NavDropdown.Item as={NavLink} to="/quiz">
                                         Make Practice

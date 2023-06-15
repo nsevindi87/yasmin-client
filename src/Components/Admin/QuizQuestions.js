@@ -19,7 +19,7 @@ const QuizQuestions = () => {
           <h1 className='my-4 text-center border-1 shadow'>Add New Question</h1>
 
           <FloatingLabel label="First Value">
-            <Form.Control onChange={(e) => setQuizNewInputValue({ ...quizNewInputValue, [e.target.id]: e.target.value })} type="text" id='question_text' value={quizNewInputValue.question_text.question_text} />
+            <Form.Control onChange={(e) => setQuizNewInputValue({ ...quizNewInputValue, [e.target.id]: e.target.value })} type="text" id='question_text' value={quizNewInputValue.question_text} />
           </FloatingLabel>
 
           <FloatingLabel label="Second Value">
@@ -48,7 +48,6 @@ const QuizQuestions = () => {
               {showUpdateQuiz ? <Button onClick={handleQuestionUpdate} variant="warning" className='w-100'>Update</Button> : <Button onClick={handleNewQuestion} variant="primary w-100">Add</Button>}
               </Col>
             </Row>
-            
           </div>
           <br />
           <hr />
