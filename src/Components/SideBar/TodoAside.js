@@ -33,7 +33,7 @@ function TodoAside() {
           style={{ width: '20rem' }}
           className="mb-2"
         >
-          <Card.Header>Your next plan! Don't forget!!!</Card.Header>
+          <Card.Header><h5 className='text-danger'>Your next plan! Don't forget!!!</h5></Card.Header>
           <Card.Body>
             <Card.Text> <p  className='text-light text-decoration-underline mb-0 bg-dark'>To do :</p><h4>{task?.task} </h4></Card.Text>
             <Card.Text><p  className='text-light text-decoration-underline mb-0 bg-dark'>Date:</p><h4>{new Intl.DateTimeFormat("en-US", {

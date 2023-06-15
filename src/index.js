@@ -31,6 +31,9 @@ import Admin from './Components/Admin/Admin.js';
 import ProtectedRoute from "./Components/ProtectedRoute.js"
 import TextReview from "./Components/TextReview/TextReview.js"
 import Text from "./Components/TextReview/Text.js"
+import EnglishTexts from './Components/TextReview/EnglishTexts';
+import GermanTexts from './Components/TextReview/GermanTexts';
+import TurkishTexts from './Components/TextReview/TurkishTexts';
 
 
 
@@ -66,6 +69,12 @@ const router = createHashRouter([
         path: "profile",
         element:
           <Profile />
+      },
+      {
+        path: "findExample",
+        element: <ProtectedRoute>
+          <FindEnTrExample />
+        </ProtectedRoute>
       },
       {
         path: "findEnTrExample",
@@ -151,8 +160,14 @@ const router = createHashRouter([
         element:
           <TextReview />
       },{
-        path:"textreview/:id",
-        element:<Text/>      
+        path:"textreview/english",
+        element:<EnglishTexts/>      
+      },{
+        path:"textreview/german",
+        element:<GermanTexts/>      
+      },{
+        path:"textreview/turkish",
+        element:<TurkishTexts/>      
       }
     ]
   }

@@ -53,7 +53,7 @@ const QuizQuestions = () => {
           <hr />
         </Col>
       </Row>
-      <Row className='mt-2' >
+      <Row className='my-5' >
         <Col>
           <h1 className=' border-1 text-center shadow'>All Quiz Questions</h1>
           <h4 className=' border-1 text-center shadow my-4'>Total <span style={{ color: 'red' }}>{allQuizQuestions.length}</span> questions are found!</h4>

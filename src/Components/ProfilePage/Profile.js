@@ -175,7 +175,7 @@ const Profile = () => {
   const dataWords = [
     { name: "Green List", value: Number(greenList.length) },
     { name: "Red List", value: Number(redList.length) },
-    { name: "Yellow List", value: Number(yellowList.length) },
+    { name: "Yellow", value: Number(yellowList.length) },
     { name: "All of Word List", value: Number(allWordsList.length) }
   ];
   const renderActiveShape2 = (props) => {
@@ -310,10 +310,10 @@ const Profile = () => {
               <div className="personal-info">
                 <div className="personal-info-details">
                   <p></p>
-                  <p><strong>Ad:</strong> {profileInfo?.firstName}</p>
-                  <p><strong>Soyad:</strong> {profileInfo?.lastName}</p>
-                  <p><strong>Adres:</strong> - </p>
-                  <p><strong>Doğum Tarihi:</strong> {profileInfo?.birthday}</p>
+                  <p><strong>Name:</strong> {profileInfo?.firstName}</p>
+                  <p><strong>Lastname:</strong> {profileInfo?.lastName}</p>
+                  <p><strong>Adress:</strong> - </p>
+                  <p><strong>Birthday:</strong> {profileInfo?.birthday}</p>
                 </div>
               </div>
             </Col>

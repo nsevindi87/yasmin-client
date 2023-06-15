@@ -81,7 +81,7 @@ const HeaderLoggedin = () => {
                                     <Nav.Link as={NavLink} to="/about">About</Nav.Link>
                                     <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
                                     <Nav.Link as={NavLink} to="/profile">Profile</Nav.Link>
-                                    <Nav.Link as={NavLink} to="logout" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} >Log out</Nav.Link>
+                                    <Nav.Link as={NavLink} to="/logout" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} >Log out</Nav.Link>
                                 </Nav>
                             </>
                     }

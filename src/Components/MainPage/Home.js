@@ -105,7 +105,7 @@ const Home = () => {
                 <h3>Practice Makes Perfect: Enhance Your Skills</h3>
                 <p className='pt-3'>In this section, you will have the opportunity to apply the knowledge you have gained. Through various activities, questions, and sample exercises, you can test, strengthen, and reinforce your skills. You will be able to practice at your own pace, making your learning process even more effective.</p>
                 {/*  {!isAuthenticated ? <Button className='btn btn-outline-dark py-3 bg-warning mainbutton' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Let's Startt</Nav.Link></Button> : <Button className='btn btn-outline-dark px-5 py-2 bg-warning mainbutton'><Nav.Link as={NavLink} to="/addword" >Let's Start</Nav.Link></Button>} */}
-                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Make Practice <FaArrowRight /></Nav.Link></Button>
+                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100 mb-3' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Make Practice <FaArrowRight /></Nav.Link></Button>
               </div>
             </div>
           </Col>
@@ -117,7 +117,7 @@ const Home = () => {
               <div >
                 <h3>Take Quiz: Test Your Knowledge</h3>
                 <p className='pt-3'>Challenge yourself with our interactive quizzes covering various subjects. Each quiz consists of a set of randomly generated questions that will put your knowledge to the test. Your quiz results will be recorded, allowing you to track your progress and identify areas for improvement.</p>
-                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Take Quiz <FaArrowRight /></Nav.Link></Button>
+                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100 mb-3' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Take Quiz <FaArrowRight /></Nav.Link></Button>
               </div>
               <div>
                 <img src={user1} style={{ width: "400px", marginRight: "150px", marginLeft: "100px" }} />
@@ -135,7 +135,7 @@ const Home = () => {
               <div >
                 <h3>Text Review: Sharpen Your Language Understanding</h3>
                 <p className='pt-3'>Unlock the power of Text Review to expand your understanding and knowledge. Dive deep into texts, explore new concepts, and strengthen your grasp on various subjects. Elevate your learning experience and broaden your horizons with Text Review.</p>
-                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Review Text <FaArrowRight /></Nav.Link></Button>
+                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100 mb-3' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Review Text <FaArrowRight /></Nav.Link></Button>
               </div>
             </div>
           </Col>
@@ -147,7 +147,7 @@ const Home = () => {
               <div >
                 <h3>Harness the Power of Example Sentences: 1.136.360 sentences pair</h3>
                 <p className='pt-3'>Example sentences are an essential resource for language learners. They provide practical and contextual usage of words and phrases, allowing you to grasp their meaning and usage in real-life scenarios. By incorporating example sentences into your study routine, you can improve your vocabulary, grammar, and overall language comprehension.</p>
-                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Find Example Sentences <FaArrowRight /></Nav.Link></Button>
+                <Button className='btn btn-outline-dark py-3 bg-warning mainbutton w-100 mb-3' style={{ border: 'none', padding: "60px" }}><Nav.Link to="logout" onClick={() => loginWithRedirect()}>Now Find Example Sentences <FaArrowRight /></Nav.Link></Button>
               </div>
               <div>
                 <img src={user1} style={{ width: "400px", marginRight: "150px", marginLeft: "100px" }} />
