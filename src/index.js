@@ -36,6 +36,7 @@ import TextTr from "./Components/TextReview/TextTr.js"
 import EnglishTexts from './Components/TextReview/EnglishTexts';
 import GermanTexts from './Components/TextReview/GermanTexts';
 import TurkishTexts from './Components/TextReview/TurkishTexts';
+import PersonalTexts from './Components/TextReview/PersonalTexts';
 
 
 
@@ -161,6 +162,11 @@ const router = createHashRouter([
         path: "textreview",
         element:
           <TextReview />
+      },
+      {
+        path: "textreview/personaltexts",
+        element:
+          <PersonalTexts />
       },{
         path:"textreview/english",
         element:<EnglishTexts/>      

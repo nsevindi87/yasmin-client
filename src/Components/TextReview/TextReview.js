@@ -14,10 +14,15 @@ const TextReview = () => {
 
   return (
     <div className='text-center'>
-    <h1 className='shadow my-4'>Please select the language you want to study in</h1>
-    <Button className='btn-dark text-warning shadow ms-4'><Nav.Link as={NavLink} to="/textreview/english">English Texts</Nav.Link></Button>
-    <Button className='btn-dark text-warning shadow ms-4'><Nav.Link as={NavLink} to="/textreview/german">Deutsche Texte</Nav.Link></Button>
-    <Button className='btn-dark text-warning shadow ms-4'><Nav.Link as={NavLink} to="/textreview/turkish">Türkçe Metinler</Nav.Link></Button>
+    <h1 className='shadow my-4'>Please select the option you want to study in</h1>
+    <div>
+    <Button className='btn-warning shadow w-50 mb-5'><Nav.Link as={NavLink} to="/textreview/personaltexts">Personal Texts</Nav.Link></Button>
+    </div>
+    <div>
+    <Button className='btn-dark text-warning shadow w-25'><Nav.Link as={NavLink} to="/textreview/english">English Texts</Nav.Link></Button>
+    <Button className='btn-dark text-warning shadow w-25 mx-3'><Nav.Link as={NavLink} to="/textreview/german">Deutsche Texte</Nav.Link></Button>
+    <Button className='btn-dark text-warning shadow w-25'><Nav.Link as={NavLink} to="/textreview/turkish">Türkçe Metinler</Nav.Link></Button>
+    </div>
 {/* metni okuyup tamam butonuna basinca butonun rengi degissin ve calisildi desin.
 tabi bunun icin metin tablosu lazim. ing almanca sutun lazim.  Status icin de ayri status ve userid lazim. bu sonraki is*/}
     <div className='d-flex justify-content-center align-item-center'>
