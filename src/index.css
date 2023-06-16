@@ -97,10 +97,7 @@
     text-decoration: none;
     color: rgb(255, 192, 8);
   }
-  .sticky-component {
-    position: sticky;
-    top: 0;
-  }
+
   .typewriter {
     display: inline-block;
     overflow: hidden;

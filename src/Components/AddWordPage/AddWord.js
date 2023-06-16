@@ -28,7 +28,7 @@ const AddWord = () => {
 
   return (
     <>
-      <Container className='bg-light' style={{height:"100vh"}}>
+      <Container className='bg-light'>
         <Row>
           <Col>
             <h1 className='mt-3 text-center shadow mb-4 rounded'>Add New Word</h1>

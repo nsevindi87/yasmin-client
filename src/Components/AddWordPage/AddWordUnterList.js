@@ -22,9 +22,9 @@ const AddWordUnterList = () => {
   return (
     <>
       <Container fluid>
-        <Row>
+        <Row >
           <Col lg="12">
-            <Table striped bordered hover variant="dark">
+            <Table striped bordered hover variant="dark" >
               <thead>
                 <tr>
                   <th>#</th>
@@ -64,7 +64,6 @@ const AddWordUnterList = () => {
               </tbody>
             </Table>
           </Col>
-          <Col lg="3"></Col>
         </Row>
       </Container>
     </>

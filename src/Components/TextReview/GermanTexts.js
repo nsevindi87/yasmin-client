@@ -17,7 +17,7 @@ const GermanTexts = () => {
 
   return (
     <div className='text-center'>
-      <h1>List of German Texts</h1>
+      <h1 className='shadow my-4'>List of German Texts</h1>
       {texts?.map((text, value) => (
         <Button className='btn-dark text-warning shadow ms-4' key={value}>
           <Nav.Link as={NavLink} onClick={() => getTextById(text[1].id)} to={`/textreview/german/${text[1].id}`} className='btn-dark text-warning shadow'>German Texts {value + 1}</Nav.Link>
