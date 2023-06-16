@@ -10,9 +10,7 @@ const AddWord = () => {
   const { inputValue,getWordsList, setInputValue, handleNewWord, handleCancel,
     showUpdate,handleUpdate } = useContext(wordsContext)
 
-    const { getProfileInfo,dene,profileInfo} = useContext(UserContext)
-
-    const {isAuthenticated } = useAuth0();
+    const { getProfileInfo} = useContext(UserContext)
 
     useEffect(()=>{
       const fetchData = async () => {
@@ -52,12 +50,12 @@ const AddWord = () => {
             <div className='mt-4'>
             <Row>
               <Col>
+              {showUpdate ? <Button onClick={handleUpdate} variant="warning w-100">Update</Button> : <Button onClick={handleNewWord} variant="primary w-100">Add</Button> }
+              </Col>
+              <Col>
               <Button onClick={handleCancel} variant="danger w-100">Cancel</Button>
               </Col>
               <div style={{ width: '10px' }}></div> {/* Ara boşluk */}
-              <Col>
-              {showUpdate ? <Button onClick={handleUpdate} variant="warning w-100">Update</Button> : <Button onClick={handleNewWord} variant="primary w-100">Add</Button> }
-              </Col>
             </Row>
             </div><br />
             <hr />

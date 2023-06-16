@@ -33,7 +33,7 @@ const AddWordUnterList = () => {
                   <th>Value 3</th>
                   <th>Notes</th>
                   <th>Actions </th>
-                  <th>List </th>
+                  <th>List</th>
                   <th>New List </th>
                 </tr>
               </thead>
@@ -45,14 +45,14 @@ const AddWordUnterList = () => {
                     <td>{word.wordMeaning}</td>
                     <td>{word.wordSecondMeaning}</td>
                     <td>{word.wordNote}</td>
-                    <td>
-                    <Button onClick={() => handleEdit(word)} variant="warning me-1" className='p-2'><PencilSquare/></Button>
+                    <td className='text-center'>
+                    <Button onClick={() => handleEdit(word)} variant="warning" className='p-2 mb-1'><PencilSquare/></Button>
                     <Button onClick={() => handleDelete(word.id, word.listGroup)} variant="danger" className='p-2'><Trash3Fill/></Button>
                     </td>
                     <td> {word.wordCategory ? <Button variant={word.wordCategory} onClick={()=> handleDeleteList(word.id)} className='p-2'></Button> : null}</td>
                     <td>
                       {word.wordCategory ? null :
-                        <div>
+                        <div className='text-center'>
                           <Button variant="success" onClick={() => handleEditList("success", word.id)} className='p-2'></Button>
                           <Button variant="warning" onClick={() => handleEditList("warning", word.id)} className='p-2 mx-1'></Button>
                           <Button variant="danger" onClick={() => handleEditList("danger", word.id)} className='p-2'></Button>
