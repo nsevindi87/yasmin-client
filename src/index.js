@@ -164,7 +164,7 @@ const router = createHashRouter([
           <TextReview />
       },
       {
-        path: "textreview/personaltexts",
+        path: "textreview/personal",
         element:
           <PersonalTexts />
       },{

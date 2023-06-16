@@ -306,31 +306,31 @@ const getTextById = async (pId) => {
   }
 };
 
-/* //!PERSONAL=================
+//!PERSONAL=================
 //GET ALL DATAS By USER ID==========================================================
 
 const [personalTexts, setPersonalTexts] = useState([])
 
 const getTextsListByUserId = async (pId) => {
   try {
-    const response = await fetch(`${BASE_URL}/personaltextreview/personaltexts/${pId}`);
+    const response = await fetch(`${BASE_URL}/textreview/personal/${pId}`);
     const data = await response.json();
     const listArr = Object.entries(data);
-
     setPersonalTexts(listArr)
-
+    console.log(personalTexts)
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch posts")
   }
 };
- */
-/* const [personalText, setPersonalText] = useState([]);
+ 
+
+const [personalText, setPersonalText] = useState([]);
 
 //GET TEXT BY ID to render
 const getpersonalTextById = async (pId) => {
   try {
-    const response = await fetch(`${BASE_URL}/textreview/personaltext/${pId}`);
+    const response = await fetch(`${BASE_URL}/textreview/personal/text/${pId}`);
     if (!response.ok) {
       throw new Error("Failed to fetch post");
     }
@@ -342,7 +342,7 @@ const getpersonalTextById = async (pId) => {
     console.error(error);
     throw new Error("Failed to fetch post");
   }
-}; */
+};
 
 
 
@@ -809,7 +809,8 @@ const getpersonalTextById = async (pId) => {
       contactInputValue, setContactInputValue,handleNewMail, handleContactCancel,
       getAllContactMails,contactMails, setContactMails,
       showContactToast, setShowContactToast,
-      getTextReviews,texts,setTexts,getTextById,text
+      getTextReviews,texts,setTexts,getTextById,text,
+      getTextsListByUserId,personalTexts, setPersonalTexts,getpersonalTextById,personalText, setPersonalText
 
     }}>
       {children}

@@ -16,7 +16,7 @@ const TextReview = () => {
     <div className='text-center'>
     <h1 className='shadow my-4'>Please select the option you want to study in</h1>
     <div>
-    <Button className='btn-warning shadow w-50 mb-5'><Nav.Link as={NavLink} to="/textreview/personaltexts">Personal Texts</Nav.Link></Button>
+    <Button className='btn-warning shadow w-50 mb-5'><Nav.Link as={NavLink} to="/textreview/personal">Personal Texts</Nav.Link></Button>
     </div>
     <div>
     <Button className='btn-dark text-warning shadow w-25'><Nav.Link as={NavLink} to="/textreview/english">English Texts</Nav.Link></Button>

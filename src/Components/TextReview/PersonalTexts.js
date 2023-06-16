@@ -1,26 +1,16 @@
-import React from 'react'
-
-const PersonalTexts = () => {
-  return (
-    <div>PersonalTexts</div>
-  )
-}
-
-export default PersonalTexts
-
-
-/* import React, { useContext, useEffect, useState } from 'react';
-import { wordsContext } from "../../Context/wordsListContext";
+import React, { useContext, useEffect, useState } from 'react';
+import { wordsContext } from "../../Context/wordsListContext.js";
 import { UserContext } from '../../Context/UserContext.js';
 import { Container, Row, Nav, Col, Tab, Form } from 'react-bootstrap';
+import AddNewPersonalText from './AddNewPersonalText.js';
 import PersonalText from './PersonalText';
-import AddNewPersonalText from './AddNewPersonalText';
+
 
 
 const PersonalTexts = () => {
-    const {getTextsListByUserId,getpersonalTextById,personalText, setPersonalText,personalTexts, setPersonalTexts } = useContext(wordsContext)
+    const {getTextsListByUserId,personalTexts, setPersonalTexts,getpersonalTextById,personalText, setPersonalText} = useContext(wordsContext)
 
-    const { profileInfo, getProfileInfo } = useContext(UserContext)
+    const { getProfileInfo } = useContext(UserContext)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,8 +24,8 @@ const PersonalTexts = () => {
         fetchData();
     }, [])
 
-    return (
-        <Container fluid className='shadow' style={{ backgroundColor: '#ededed' }}>
+  return (
+    <Container fluid className='shadow' style={{ backgroundColor: '#ededed' }}>
             <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
                 <Row >
                     <Col sm={2} style={{ height: "100vh" }}>
@@ -43,18 +33,18 @@ const PersonalTexts = () => {
                             <Nav.Item className='rounded my-2' style={{ backgroundColor: '#aff4cc' }}>
                                 <Nav.Link eventKey="newPersonalText">Add New Text</Nav.Link>
                             </Nav.Item>
-                            {personalTexts?.map((text, value) => (
+                             {personalTexts?.map((text, value) => (
                                 <Nav.Item key={value} className='rounded my-2' style={{ backgroundColor: '#bcc7cc' }}>
-                                    <Nav.Link eventKey={text.title} onClick={() => getpersonalTextById(text.id)} >{text.title}</Nav.Link>
+                                    <Nav.Link eventKey={text[1].title} onClick={() => getpersonalTextById(text[1].id)} >{text[1].title}</Nav.Link>
                                 </Nav.Item>
-                            ))}
+                            ))} 
 
                         </Nav>
                     </Col>
                     <Col sm={10}>
                         <Tab.Content>
                             {personalTexts?.map((text, value) => (
-                                <Tab.Pane eventKey={text.title}><PersonalText /></Tab.Pane>
+                                <Tab.Pane eventKey={text[1].title}><PersonalText /></Tab.Pane>
                                 ))}
                                 <Tab.Pane eventKey="newPersonalText"><AddNewPersonalText /></Tab.Pane>
                         </Tab.Content>
@@ -62,6 +52,21 @@ const PersonalTexts = () => {
                 </Row>
             </Tab.Container>
         </Container>
+  )
+}
+
+export default PersonalTexts
+
+/* 
+
+
+
+const PersonalTexts = () => {
+  
+    
+
+    return (
+        
     )
 }
 

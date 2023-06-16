@@ -23,12 +23,12 @@ const Text = () => {
     <div>
       <div className='text-center mt-5'>
 
-      <Button className='btn-dark text-warning shadow ms-4' onClick={handleGermanMeaningClick}>
-        {showGermanMeaning ? 'Hide German Meaning' : 'Show German Meaning'}
-      </Button>
-      <Button className='btn-dark text-warning shadow ms-4' onClick={handleTurkishMeaningClick}>
-        {showTurkishMeaning ? 'Hide Turkish Meaning' : 'Show Turkish Meaning'}
-      </Button>
+        <Button className='btn-dark text-warning shadow ms-4' onClick={handleGermanMeaningClick}>
+          {showGermanMeaning ? 'Hide German Meaning' : 'Show German Meaning'}
+        </Button>
+        <Button className='btn-dark text-warning shadow ms-4' onClick={handleTurkishMeaningClick}>
+          {showTurkishMeaning ? 'Hide Turkish Meaning' : 'Show Turkish Meaning'}
+        </Button>
       </div>
       <div>
         <p className='m-4'>{text.english}</p>
@@ -36,8 +36,8 @@ const Text = () => {
         {showTurkishMeaning && <p className='m-4'><span style={{ fontWeight: 'bold' }}>Turkish Meaning : </span>{text.turkish}</p>}
       </div>
       <Button className='btn-dark text-warning shadow ms-4'>
-          <Nav.Link as={NavLink} to={`/textreview/english`} className='btn-dark text-warning shadow ms-4'>Turn Back</Nav.Link>
-        </Button>
+        <Nav.Link as={NavLink} to={`/textreview/english`} className='btn-dark text-warning shadow ms-4'>Turn Back</Nav.Link>
+      </Button>
     </div>
   );
 };
