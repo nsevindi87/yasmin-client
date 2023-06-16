@@ -46,6 +46,13 @@ const WordsListContextProvider = ({ children }) => {
     german_example: ""
   })
 
+  const [textNewInputValue, setTextNewInputValue] = useState({
+    title: "",
+    english: "",
+    german: "",
+    turkish: ""
+  })
+
 
 
   const [todoList, setTodoList] = useState([]);
@@ -269,81 +276,117 @@ const WordsListContextProvider = ({ children }) => {
   == //!    TEXT REVIEWS --------------------------------------------------------------------
   ===============================================================================================*/
 
-  const [texts,setTexts] = useState("")
+  const [texts, setTexts] = useState("")
 
- //GET TEXTS  =================================================
- const getTextReviews = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/textReview`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch posts");
-    }
-    const data = await response.json();
+  //GET TEXTS  =================================================
+  const getTextReviews = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/textReview`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts");
+      }
+      const data = await response.json();
       const listArr = Object.entries(data);
-    setTexts(listArr)
-    return data
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch posts")
-  }
-};
+      setTexts(listArr)
+      return data
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch posts")
+    }
+  };
 
-const [text, setText] = useState([]);
+  const [text, setText] = useState([]);
 
-//GET TEXT BY ID to render
-const getTextById = async (pId) => {
-  try {
-    const response = await fetch(`${BASE_URL}/textreview/${pId}`);
-    if (!response.ok) {
+  //GET TEXT BY ID to render
+  const getTextById = async (pId) => {
+    try {
+      const response = await fetch(`${BASE_URL}/textreview/${pId}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch post");
+      }
+      const data = await response.json();
+      setText(data);
+
+    } catch (error) {
+      console.error(error);
       throw new Error("Failed to fetch post");
     }
-    const data = await response.json();
-    setText(data);
-    
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch post");
-  }
-};
+  };
 
-//!PERSONAL=================
-//GET ALL DATAS By USER ID==========================================================
+  //!PERSONAL=================
+  //GET ALL DATAS By USER ID==========================================================
 
-const [personalTexts, setPersonalTexts] = useState([])
+  const [personalTexts, setPersonalTexts] = useState([])
 
-const getTextsListByUserId = async (pId) => {
-  try {
-    const response = await fetch(`${BASE_URL}/textreview/personal/${pId}`);
-    const data = await response.json();
-    const listArr = Object.entries(data);
-    setPersonalTexts(listArr)
-    console.log(personalTexts)
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch posts")
-  }
-};
- 
+  const getTextsListByUserId = async (pId) => {
+    try {
+      const response = await fetch(`${BASE_URL}/textreview/personal/${pId}`);
+      const data = await response.json();
+      const listArr = Object.entries(data);
+      setPersonalTexts(listArr)
+      console.log(personalTexts)
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch posts")
+    }
+  };
 
-const [personalText, setPersonalText] = useState([]);
 
-//GET TEXT BY ID to render
-const getpersonalTextById = async (pId) => {
-  try {
-    const response = await fetch(`${BASE_URL}/textreview/personal/text/${pId}`);
-    if (!response.ok) {
+  const [personalText, setPersonalText] = useState([]);
+
+  //GET TEXT BY ID to render
+  const getpersonalTextById = async (pId) => {
+    try {
+      const response = await fetch(`${BASE_URL}/textreview/personal/text/${pId}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch post");
+      }
+      const data = await response.json();
+      setPersonalText(data);
+      console.log(personalText)
+
+    } catch (error) {
+      console.error(error);
       throw new Error("Failed to fetch post");
     }
-    const data = await response.json();
-    setPersonalText(data);
-    console.log(personalText)
-   
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch post");
-  }
-};
+  };
 
+  /* const [textNewInputValue, setTextNewInputValue] = useState({
+    title: "",
+    english: "",
+    german: "",
+    turkish: ""
+  })
+   */
+  //ADD NEW QUESTION
+  const handleNewText = async () => {
+    if (textNewInputValue.title.length === 0 && textNewInputValue.english.length === 0 && textNewInputValue.german.length === 0 && textNewInputValue.turkish.length === 0) {
+      alert("Please fill out the form correctly!")
+    } else {
+      try {
+        const response = await fetch(`${BASE_URL}/textreview/personal`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...textNewInputValue, userId: profileInfo?.id }),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to create post");
+        }
+        getTextsListByUserId(profileInfo?.id)
+        setTextNewInputValue({
+          title: "",
+          english: "",
+          german: "",
+          turkish: ""
+        })
+      } catch (error) {
+        console.error(error);
+      }
+
+    }
+  };
 
 
   /*==============================================================================================
@@ -756,7 +799,7 @@ const getpersonalTextById = async (pId) => {
   };
 
   //CONTACT FORM CANCEL
-   const handleContactCancel = () => {
+  const handleContactCancel = () => {
     setContactInputValue({
       name: "",
       email: "",
@@ -765,7 +808,7 @@ const getpersonalTextById = async (pId) => {
   }
 
   const [contactMails, setContactMails] = useState([])
-  
+
   //DELETE WORD  ==================================================
   const getAllContactMails = async () => {
     try {
@@ -800,17 +843,18 @@ const getpersonalTextById = async (pId) => {
       handleQuestionDelete,
       handleQuestionEdit, handleQuestionUpdate, showUpdateQuiz, setShowUpdateQuiz,
       searchTerm, setSearchTerm, searchResults, setSearchResults,
-      getSearchedSentencesEnTr,getSearchedSentencesEnGe,getSearchedSentencesGeTr,
+      getSearchedSentencesEnTr, getSearchedSentencesEnGe, getSearchedSentencesGeTr,
       todoValue, setTodoValue, todoList, setTodoList, getTodoList, handleNewTodo,
       handleTodoDelete, handleTodoEdit, handleTodoCancel, handleTodoUpdate, showTodoUpdate, setShowTodoUpdate, showUpdate,
       getAsideWordList, greenAsideList, yellowAsideList, redAsideList,
       getQuizStatistics, quizStatistics, setQuizStatistics,
       getFiveQuizStatistics, fiveStatistics, setFiveStatistics,
-      contactInputValue, setContactInputValue,handleNewMail, handleContactCancel,
-      getAllContactMails,contactMails, setContactMails,
+      contactInputValue, setContactInputValue, handleNewMail, handleContactCancel,
+      getAllContactMails, contactMails, setContactMails,
       showContactToast, setShowContactToast,
-      getTextReviews,texts,setTexts,getTextById,text,
-      getTextsListByUserId,personalTexts, setPersonalTexts,getpersonalTextById,personalText, setPersonalText
+      getTextReviews, texts, setTexts, getTextById, text,
+      getTextsListByUserId, personalTexts, setPersonalTexts, getpersonalTextById, personalText, setPersonalText,
+      textNewInputValue, setTextNewInputValue, handleNewText
 
     }}>
       {children}
