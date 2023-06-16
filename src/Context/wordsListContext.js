@@ -210,9 +210,6 @@ const WordsListContextProvider = ({ children }) => {
     })
   }
 
-
-
-
   /*==============================================================================================
   == //!    PRACTICE PAGE --------------------------------------------------------------------
   ===============================================================================================*/
@@ -351,13 +348,7 @@ const WordsListContextProvider = ({ children }) => {
     }
   };
 
-  /* const [textNewInputValue, setTextNewInputValue] = useState({
-    title: "",
-    english: "",
-    german: "",
-    turkish: ""
-  })
-   */
+
   //ADD NEW QUESTION
   const handleNewText = async () => {
     if (textNewInputValue.title.length === 0 && textNewInputValue.english.length === 0 && textNewInputValue.german.length === 0 && textNewInputValue.turkish.length === 0) {
@@ -387,6 +378,16 @@ const WordsListContextProvider = ({ children }) => {
 
     }
   };
+
+    //Soru FORMU SIFIRLA
+    const handleTextCancel = async () => {
+      setTextNewInputValue({
+        title: "",
+        english: "",
+        german: "",
+        turkish: ""
+      })
+    }
 
 
   /*==============================================================================================
@@ -459,6 +460,7 @@ const WordsListContextProvider = ({ children }) => {
 
     }
   };
+
 
   //Soru FORMU SIFIRLA
   const handleQuestionCancel = async () => {
@@ -854,7 +856,7 @@ const WordsListContextProvider = ({ children }) => {
       showContactToast, setShowContactToast,
       getTextReviews, texts, setTexts, getTextById, text,
       getTextsListByUserId, personalTexts, setPersonalTexts, getpersonalTextById, personalText, setPersonalText,
-      textNewInputValue, setTextNewInputValue, handleNewText
+      textNewInputValue, setTextNewInputValue, handleNewText,handleTextCancel
 
     }}>
       {children}
