@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { wordsContext } from "../../Context/wordsListContext.js";
 import { Button, Nav } from 'react-bootstrap';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import image from "../../Images/selectLang1.png"
 
 

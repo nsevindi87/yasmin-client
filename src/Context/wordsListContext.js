@@ -287,23 +287,64 @@ const WordsListContextProvider = ({ children }) => {
     throw new Error("Failed to fetch posts")
   }
 };
+
 const [text, setText] = useState([]);
 
-//GET TEXT BY ID
+//GET TEXT BY ID to render
 const getTextById = async (pId) => {
   try {
-    const response = await fetch(`${BASE_URL}/textreview/english/${pId}`);
+    const response = await fetch(`${BASE_URL}/textreview/${pId}`);
     if (!response.ok) {
       throw new Error("Failed to fetch post");
     }
     const data = await response.json();
     setText(data);
-   
+    
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch post");
   }
 };
+
+/* //!PERSONAL=================
+//GET ALL DATAS By USER ID==========================================================
+
+const [personalTexts, setPersonalTexts] = useState([])
+
+const getTextsListByUserId = async (pId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/personaltextreview/personaltexts/${pId}`);
+    const data = await response.json();
+    const listArr = Object.entries(data);
+
+    setPersonalTexts(listArr)
+
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch posts")
+  }
+};
+ */
+/* const [personalText, setPersonalText] = useState([]);
+
+//GET TEXT BY ID to render
+const getpersonalTextById = async (pId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/textreview/personaltext/${pId}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch post");
+    }
+    const data = await response.json();
+    setPersonalText(data);
+    console.log(personalText)
+   
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch post");
+  }
+}; */
+
+
 
   /*==============================================================================================
   == //!    QUIZ QUESTIONS --------------------------------------------------------------------

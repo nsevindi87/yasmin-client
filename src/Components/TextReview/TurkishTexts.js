@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { wordsContext } from "../../Context/wordsListContext.js";
 import { Button, Nav } from 'react-bootstrap';
 import {  NavLink } from 'react-router-dom';
-import image from "../../Images/selectLang3.png"
+import image from "../../Images/contentImg3.png"
 
 
 const TurkishTexts = () => {

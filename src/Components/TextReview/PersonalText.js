@@ -1,9 +1,20 @@
-import React from 'react'
+/* import React, { useContext, useEffect, useState } from 'react';
+import { wordsContext } from "../../Context/wordsListContext";
+
 
 const PersonalText = () => {
+  const {getTextsListByUserId,getpersonalTextById,personalText, setPersonalText,personalTexts, setPersonalTexts } = useContext(wordsContext)
+
+
+  useEffect(()=>{
+
+  },[])
   return (
-    <div>PersonalText</div>
+    <div>
+      <h1>Kisisel Yazilar</h1>
+      <h1>{personalText?.title}</h1>
+    </div>
   )
 }
 
-export default PersonalText
+export default PersonalText */
