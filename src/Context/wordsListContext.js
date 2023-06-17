@@ -420,7 +420,7 @@ const WordsListContextProvider = ({ children }) => {
       } catch (error) {
         console.log(error)
       }
-      setShow(false)
+      setTextModalShow(false)
       getTextsListByUserId(profileInfo.id)
   
   
