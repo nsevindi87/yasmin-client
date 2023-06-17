@@ -349,10 +349,10 @@ const WordsListContextProvider = ({ children }) => {
   };
 
 
-  //ADD NEW QUESTION
+  //ADD NEW TEXT
   const handleNewText = async () => {
-    if (textNewInputValue.title.length === 0 && textNewInputValue.english.length === 0 && textNewInputValue.german.length === 0 && textNewInputValue.turkish.length === 0) {
-      alert("Please fill out the form correctly!")
+    if (textNewInputValue.title.length === 0) {
+      alert("Please fill out the title!")
     } else {
       try {
         const response = await fetch(`${BASE_URL}/textreview/personal`, {
@@ -379,7 +379,7 @@ const WordsListContextProvider = ({ children }) => {
     }
   };
 
-    //Soru FORMU SIFIRLA
+    //TEXT FORMU SIFIRLA
     const handleTextCancel = async () => {
       setTextNewInputValue({
         title: "",
@@ -388,7 +388,50 @@ const WordsListContextProvider = ({ children }) => {
         turkish: ""
       })
     }
+//!UPDATE ISLEMLERI==========
+    const handleTextClose = () =>{
+      setTextModalShow(!textModalShow)
+    }
+    
+    const [textModalShow, setTextModalShow] = useState(false);
 
+    const handleTextEdit = async (pPost) => {
+      setTextModalShow(true)
+        setTextNewInputValue({
+         id: pPost.id,
+         title: pPost.title,
+         english: pPost.english,
+         german: pPost.german,
+         turkish: pPost.turkish
+       })
+    }
+  
+    //GUNCEL TEXT GONDER
+    const handleTextUpdate = async () => {
+      try {
+        await fetch(`${BASE_URL}/textreview/personal/text/${textNewInputValue.id}`, {
+          method: "PUT",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(textNewInputValue)
+        })
+      } catch (error) {
+        console.log(error)
+      }
+      setShow(false)
+      getTextsListByUserId(profileInfo.id)
+  
+  
+      setTextNewInputValue({
+        title: "",
+        english: "",
+        german: "",
+        turkish: ""
+      })
+    }
+    
 
   /*==============================================================================================
   == //!    QUIZ QUESTIONS --------------------------------------------------------------------
@@ -856,7 +899,9 @@ const WordsListContextProvider = ({ children }) => {
       showContactToast, setShowContactToast,
       getTextReviews, texts, setTexts, getTextById, text,
       getTextsListByUserId, personalTexts, setPersonalTexts, getpersonalTextById, personalText, setPersonalText,
-      textNewInputValue, setTextNewInputValue, handleNewText,handleTextCancel
+      textNewInputValue, setTextNewInputValue, handleNewText,handleTextCancel,
+      handleTextUpdate,handleTextClose,handleTextEdit,textModalShow, setTextModalShow
+
 
     }}>
       {children}
