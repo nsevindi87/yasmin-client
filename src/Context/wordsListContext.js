@@ -432,6 +432,17 @@ const WordsListContextProvider = ({ children }) => {
       })
     }
     
+    
+    const handleTextDelete = async (pId) => {
+      try {
+        await fetch(`${BASE_URL}/textreview/personal/text/${pId}`, {
+          method: "DELETE"
+        })
+        getTextsListByUserId(profileInfo.id)
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
   /*==============================================================================================
   == //!    QUIZ QUESTIONS --------------------------------------------------------------------
@@ -900,7 +911,7 @@ const WordsListContextProvider = ({ children }) => {
       getTextReviews, texts, setTexts, getTextById, text,
       getTextsListByUserId, personalTexts, setPersonalTexts, getpersonalTextById, personalText, setPersonalText,
       textNewInputValue, setTextNewInputValue, handleNewText,handleTextCancel,
-      handleTextUpdate,handleTextClose,handleTextEdit,textModalShow, setTextModalShow
+      handleTextUpdate,handleTextClose,handleTextEdit,textModalShow, setTextModalShow,handleTextDelete
 
 
     }}>

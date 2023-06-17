@@ -5,7 +5,7 @@ import { Container, Row, Col, Table, Button, Modal, Form, FloatingLabel,Nav } fr
 
 
 const PersonalText = () => {
-  const { handleTextEdit, textModalShow, setTextModalShow, handleTextClose, handleTextUpdate, personalText, setTextNewInputValue, textNewInputValue } = useContext(wordsContext)
+  const { handleTextEdit, textModalShow, setTextModalShow, handleTextDelete, handleTextClose, handleTextUpdate, personalText, setTextNewInputValue, textNewInputValue } = useContext(wordsContext)
 
   const [showGermanMeaning, setShowGermanMeaning] = useState(false);
   const [showTurkishMeaning, setShowTurkishMeaning] = useState(false);
@@ -35,6 +35,7 @@ const PersonalText = () => {
           {showTurkishMeaning ? 'Hide Turkish Meaning' : 'Show Turkish Meaning'}
         </Button>
         <Button onClick={() => handleTextEdit(personalText)} variant="warning me-1" className='p-2'>Edit Your Text</Button>
+        <Button onClick={() => handleTextDelete(personalText?.id)} variant="danger" className='p-2'>Delete Your Text</Button>
 
 
         <>
