@@ -7,7 +7,7 @@ import { UserContext } from '../../Context/UserContext.js';
 
 const GeneralList = () => {
   const { getWordsList, allWordsList, handleDelete, handleEdit, handleClose, show, setInputValue, inputValue, handleUpdate,
-    handleEditList,handleDeleteList,getQuizQuestions } = useContext(wordsContext)
+    handleEditList,handleDeleteList,getQuizQuestions,generatePdf} = useContext(wordsContext)
 
   const {profileInfo,getProfileInfo} = useContext(UserContext)
  
@@ -32,6 +32,7 @@ const GeneralList = () => {
             <div className='mb-2 text-center'>
               <Button className='btn-dark text-warning mx-3 shadow'><Nav.Link as={Link} to="/practice">Training</Nav.Link></Button>
               <Button className='btn-dark text-warning shadow'><Nav.Link as={Link} to="/quiz" onClick={getQuizQuestions}>Test Yourself</Nav.Link></Button>
+              <Button className='btn-dark text-warning mx-3 shadow' onClick={() => generatePdf("alllist")}>Download PDF</Button>
             </div>
             <Table striped bordered hover variant="dark">
               <thead>
