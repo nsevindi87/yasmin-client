@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col, Table, Button, Modal, Form, FloatingLabel, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { UserContext } from '../../Context/UserContext.js';
 
 
@@ -14,9 +13,8 @@ const UserStatistics = () => {
   return (
     <Container>
       <Row className='mt-5' >
+      <Button variant='warning' className='py-4 mb-2 text-center' >User List</Button>
         <Col>
-          <h1 className='text-center'>User List</h1>
-
           <Table striped bordered hover variant="dark">
             <thead>
               <tr className='text-center'>

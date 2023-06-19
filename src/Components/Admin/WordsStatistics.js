@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect,useCallback } from 'react';
 import { wordsContext } from "../../Context/wordsListContext.js";
 import { UserContext } from '../../Context/UserContext.js';
-import { Container, Row, Col, Table } from 'react-bootstrap';
+import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 import { useAuth0 } from '@auth0/auth0-react';
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, PieChart, Pie, Sector } from "recharts";
+import {  PieChart, Pie, Sector } from "recharts";
 
 
 const WordsStatistics = () => {
@@ -146,18 +146,11 @@ const WordsStatistics = () => {
 
   }, [dataLoaded, allUsers, allWordsList2]);
 
-
-
-
-
-
-
   return (
     <Container>
       <Row className='mt-5' >
+      <Button variant='warning' className='py-4 mb-2 text-center' >Words Statistics</Button>
         <Col>
-          <h1 className='text-center'>Words Statistics</h1>
-
           <Table striped bordered hover variant="dark">
             <thead>
               <tr className='text-center'>
@@ -188,9 +181,10 @@ const WordsStatistics = () => {
       </Row>
       <hr></hr>
       <Row className='d-flex justify-content-center'>
-        <Col lg="10" className='border border-4 shadow my-3 d-flex flex-column justify-content-center ' >
+      <Button variant='warning' className='py-4 mt-3 mb-2 text-center' >The Ratio of All Words In The List</Button>
+
+        <Col lg="10" className='border border-4 shadow mb-3 d-flex flex-column justify-content-center ' >
           <div>
-          <h2 className='text-center'>The Ratio of All Words In The List</h2>
           <PieChart width={700} height={400}>
             <Pie
               activeIndex={activeIndex}

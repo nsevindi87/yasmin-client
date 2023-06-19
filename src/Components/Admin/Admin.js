@@ -9,6 +9,7 @@ import WordsStatistics from './WordsStatistics';
 import QuizQuestions from './QuizQuestions';
 import ContactMails from './ContactMails';
 import Versions from "./Versions.js"
+import TextStatistics from './TextStatistics';
 
 const Admin = () => {
 
@@ -25,33 +26,37 @@ const Admin = () => {
     <Container fluid  className='shadow' style={{ backgroundColor: '#ededed'  }}>
       <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
         <Row >
-          <Col sm={2} style={{height:"100vh"  }}>
-            <Nav variant="pills" className="flex-column" style={{ position: 'sticky', top: 50}}>
-              <Nav.Item  className='rounded my-2' style={{backgroundColor: '#bcc7cc'}}>
+          <Col sm={12} md={3} lg={3} style={{height:"100vh"  }}>
+            <Nav variant="pills" className="flex-column admin-nav" style={{ position: 'sticky', top: 70}}>
+              <Nav.Item  className='rounded my-2' >
                 <Nav.Link eventKey="user">User Statistics</Nav.Link>
               </Nav.Item>
-              <Nav.Item className='rounded' style={{backgroundColor: '#bcc7cc'}}>
+              <Nav.Item className='rounded'>
                 <Nav.Link eventKey="words">Words Statistics</Nav.Link>
               </Nav.Item>
-              <Nav.Item className='rounded my-2' style={{backgroundColor: '#bcc7cc'}}>
+              <Nav.Item className='rounded my-2'>
                 <Nav.Link eventKey="quiz">Quiz Questions</Nav.Link>
               </Nav.Item>
-              <Nav.Item className='rounded' style={{backgroundColor: '#bcc7cc'}}>
+              <Nav.Item className='rounded'>
                 <Nav.Link eventKey="mail">Contact Mails</Nav.Link>
               </Nav.Item>
-              <Nav.Item className='rounded' style={{backgroundColor: '#bcc7cc'}}>
+              <Nav.Item className='rounded my-2'>
+                <Nav.Link eventKey="texts">All Texts</Nav.Link>
+              </Nav.Item>
+              <Nav.Item className='rounded mb-5'>
                 <Nav.Link eventKey="version">App Versions</Nav.Link>
               </Nav.Item>
               
             </Nav>
           </Col>
-          <Col sm={10}>
+          <Col sm={12} md={9} lg={9}>
             <Tab.Content>
               <Tab.Pane eventKey="user"><UserStatistics /></Tab.Pane>
               <Tab.Pane eventKey="words"><WordsStatistics /> </Tab.Pane>
               <Tab.Pane eventKey="quiz"><QuizQuestions /></Tab.Pane>
               <Tab.Pane eventKey="quizquestions"><QuizQuestions /></Tab.Pane>{/* quiz soru ara bul */}
               <Tab.Pane eventKey="mail"><ContactMails/></Tab.Pane>
+              <Tab.Pane eventKey="texts"><TextStatistics/></Tab.Pane>
               <Tab.Pane eventKey="version"><Versions/></Tab.Pane>
             </Tab.Content>
           </Col>

@@ -1,12 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { Button} from 'react-bootstrap';
+
 
 const Versions = () => {
     return (
         <div>
-            <h1>App Version-1 01.08.2023</h1>
+            <h1></h1>
+            <Button variant='warning' className='py-4 mb-2 text-center w-100'>App Version-1 01.08.2023</Button>
+
             <list>
                 <ol>
-                    <h3>Now what er offer?</h3>
+                    <h3>What we have</h3>
                     <li>You can check website without login.</li>
                     <li>You can log in.</li>
                     <li>You can add word with 2 different meaning and notes.</li>
@@ -17,7 +21,7 @@ const Versions = () => {
                 </ol>
             </list>
 
-            <h1>App Version-2 ...2023</h1>
+            <Button variant='warning' className='py-4 mb-2 text-center w-100'>App Version-2 ...2023</Button>
             <list>
                 <ol>
                     <h3>What are we planing?</h3>

@@ -7,6 +7,11 @@ import { PencilSquare, Trash3Fill } from 'react-bootstrap-icons'
 
 const QuizQuestions = () => {
   const { getAllQuizQuestions, allQuizQuestions, handleNewQuestion, quizNewInputValue, setQuizNewInputValue, handleQuestionCancel, handleQuestionDelete, handleQuestionEdit, handleQuestionUpdate, showUpdateQuiz, setShowUpdateQuiz } = useContext(wordsContext)
+  const [showForm, setShowForm] = useState(true);
+
+  const handleShowForm = () => {
+    setShowForm(!showForm);
+  };
 
   useEffect(() => {
     getAllQuizQuestions()
@@ -15,26 +20,28 @@ const QuizQuestions = () => {
   return (
     <Container>
       <Row>
-        <Col>
-          <h1 className='my-4 text-center border-1 shadow'>Add New Question</h1>
 
-          <FloatingLabel label="First Value">
+          <Button variant='warning' className='py-4  mt-3 mb-2 text-center'  onClick={handleShowForm}>Click to Add New Question</Button>
+
+        <Col className={`form-container ${showForm ? 'show' : ''}`}>
+
+          <FloatingLabel label="Question">
             <Form.Control onChange={(e) => setQuizNewInputValue({ ...quizNewInputValue, [e.target.id]: e.target.value })} type="text" id='question_text' value={quizNewInputValue.question_text} />
           </FloatingLabel>
 
-          <FloatingLabel label="Second Value">
-            <Form.Control className='mt-4' onChange={(e) => setQuizNewInputValue({ ...quizNewInputValue, [e.target.id]: e.target.value })} type="text" id='options' value={quizNewInputValue.options} />
+          <FloatingLabel label="Options">
+            <Form.Control className='mt-4' onChange={(e) => setQuizNewInputValue({ ...quizNewInputValue, [e.target.id]: e.target.value })} type="text" id='options' value={quizNewInputValue.options}/>
           </FloatingLabel>
 
-          <FloatingLabel className='my-4' label="Third Value" >
+          <FloatingLabel className='my-4' label="Correct Word" >
             <Form.Control onChange={(e) => setQuizNewInputValue({ ...quizNewInputValue, [e.target.id]: e.target.value })} type="text" id='correct_word' value={quizNewInputValue.correct_word} />
           </FloatingLabel>
 
-          <FloatingLabel label="Notes">
+          <FloatingLabel label="English Example">
             <Form.Control onChange={(e) => setQuizNewInputValue({ ...quizNewInputValue, [e.target.id]: e.target.value })} as="textarea" id='english_example' value={quizNewInputValue.english_example} style={{ height: '100px' }} />
           </FloatingLabel>
 
-          <FloatingLabel className='my-4' label="Notes">
+          <FloatingLabel className='my-4' label="German Example">
             <Form.Control onChange={(e) => setQuizNewInputValue({ ...quizNewInputValue, [e.target.id]: e.target.value })} as="textarea" id='german_example' value={quizNewInputValue.german_example} style={{ height: '100px' }} />
           </FloatingLabel>
 
@@ -54,8 +61,8 @@ const QuizQuestions = () => {
         </Col>
       </Row>
       <Row className='my-5' >
+        <Button variant='warning' className='py-4 mt-3 mb-2 text-center' >All Quiz Questions</Button>
         <Col>
-          <h1 className=' border-1 text-center shadow'>All Quiz Questions</h1>
           <h4 className=' border-1 text-center shadow my-4'>Total <span style={{ color: 'red' }}>{allQuizQuestions.length}</span> questions are found!</h4>
           <div style={{ height: '500px', overflowY: 'scroll' }}>
             <Table striped bordered hover variant="dark" style={{ maxWidth: '100%' }}>
