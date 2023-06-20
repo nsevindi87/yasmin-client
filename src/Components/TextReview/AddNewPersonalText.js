@@ -14,7 +14,7 @@ const AddNewPersonalText = () => {
           <Col>
             <h1 className='my-4 text-center border-1 shadow'>Add New Text</h1>
 
-            <FloatingLabel label="Text Titile">
+            <FloatingLabel label="Text Title">
               <Form.Control onChange={(e) => setTextNewInputValue({ ...textNewInputValue, [e.target.id]: e.target.value })} type="textarea" id='title' value={textNewInputValue.title} />
             </FloatingLabel>
 

@@ -34,8 +34,11 @@ const PersonalText = () => {
         <Button className='btn-dark text-warning shadow ms-4' onClick={handleTurkishMeaningClick}>
           {showTurkishMeaning ? 'Hide Turkish Meaning' : 'Show Turkish Meaning'}
         </Button>
-        <Button onClick={() => handleTextEdit(personalText)} variant="warning me-1" className='p-2'>Edit Your Text</Button>
+        <div className='mt-3'>
+
+        <Button onClick={() => handleTextEdit(personalText)} variant="warning me-4" className='p-2'>Edit Your Text</Button>
         <Button onClick={() => handleTextDelete(personalText?.id)} variant="danger" className='p-2'>Delete Your Text</Button>
+        </div>
 
 
         <>

@@ -44,7 +44,7 @@ export default function WelcomePage() {
 
     return (
         <>
-            <Container className='bg-light' style={{ height: "100vh" }}>
+            <Container className='bg-light mb-5'>
                 <Row>
                     <Col>
                         <h1 className='mt-5 text-center'>Register Page</h1>

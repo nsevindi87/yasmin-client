@@ -8,12 +8,6 @@ import image from "../../Images/selectLang1.png"
 const EnglishTexts = () => {
   const { getTextReviews, texts, getTextById, text } = useContext(wordsContext)
 
-  useEffect(() => {
-    console.log(texts)
-    console.log(text)
-  }, [])
-
-
   return (
     <div className='text-center'>
       <h1 className='shadow my-4'>List of English Texts</h1>

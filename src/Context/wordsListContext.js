@@ -70,33 +70,6 @@ const WordsListContextProvider = ({ children }) => {
   == //!    WORDS  --------------------------------------------------------------------
   ===============================================================================================*/
 
-  //words/pdf/:listName
-  const generatePdf = async (id) => {
-    try {
-      const response = await fetch(`/words/pdf/${id}`, {
-        headers: {
-          'Content-Type': 'application/pdf',
-        },
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to generate PDF');
-      }
-  
-      const blob = await response.blob();
-  
-      const downloadLink = document.createElement('a');
-      downloadLink.href = window.URL.createObjectURL(blob);
-      downloadLink.download = `list_${id}.pdf`;
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-    } catch (error) {
-      console.error('Failed to generate PDF:', error);
-    }
-  };
-  
-
   //GET ALL DATAS ==========================================================
   const getAllWords = async () => {
     try {
@@ -300,7 +273,7 @@ const WordsListContextProvider = ({ children }) => {
   == //!    TEXT REVIEWS --------------------------------------------------------------------
   ===============================================================================================*/
 
-  const [texts, setTexts] = useState("")
+  const [texts, setTexts] = useState([])
 
   //GET TEXTS  =================================================
   const getTextReviews = async () => {
@@ -319,9 +292,10 @@ const WordsListContextProvider = ({ children }) => {
     }
   };
 
-  const [text, setText] = useState([]);
 
+  
   //GET TEXT BY ID to render
+  const [text, setText] = useState([]);
   const getTextById = async (pId) => {
     try {
       const response = await fetch(`${BASE_URL}/textreview/${pId}`);
@@ -939,7 +913,7 @@ const WordsListContextProvider = ({ children }) => {
       getTextsListByUserId, personalTexts, setPersonalTexts, getpersonalTextById, personalText, setPersonalText,
       textNewInputValue, setTextNewInputValue, handleNewText,handleTextCancel,
       handleTextUpdate,handleTextClose,handleTextEdit,textModalShow, setTextModalShow,handleTextDelete,
-      generatePdf
+
 
 
     }}>

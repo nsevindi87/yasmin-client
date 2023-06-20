@@ -7,7 +7,8 @@ import { PencilSquare, Trash3Fill } from 'react-bootstrap-icons'
 
 const QuizQuestions = () => {
   const { getAllQuizQuestions, allQuizQuestions, handleNewQuestion, quizNewInputValue, setQuizNewInputValue, handleQuestionCancel, handleQuestionDelete, handleQuestionEdit, handleQuestionUpdate, showUpdateQuiz, setShowUpdateQuiz } = useContext(wordsContext)
-  const [showForm, setShowForm] = useState(true);
+
+  const [showForm, setShowForm] = useState(false);
 
   const handleShowForm = () => {
     setShowForm(!showForm);
@@ -20,9 +21,7 @@ const QuizQuestions = () => {
   return (
     <Container>
       <Row>
-
-          <Button variant='warning' className='py-4  mt-3 mb-2 text-center'  onClick={handleShowForm}>Click to Add New Question</Button>
-
+        <Button variant='warning' className='py-4  mt-3 mb-2 text-center' onClick={handleShowForm}>Click to Add New Question</Button>
         <Col className={`form-container ${showForm ? 'show' : ''}`}>
 
           <FloatingLabel label="Question">
@@ -30,7 +29,7 @@ const QuizQuestions = () => {
           </FloatingLabel>
 
           <FloatingLabel label="Options">
-            <Form.Control className='mt-4' onChange={(e) => setQuizNewInputValue({ ...quizNewInputValue, [e.target.id]: e.target.value })} type="text" id='options' value={quizNewInputValue.options}/>
+            <Form.Control className='mt-4' onChange={(e) => setQuizNewInputValue({ ...quizNewInputValue, [e.target.id]: e.target.value })} type="text" id='options' value={quizNewInputValue.options} />
           </FloatingLabel>
 
           <FloatingLabel className='my-4' label="Correct Word" >
@@ -48,11 +47,11 @@ const QuizQuestions = () => {
           <div className='mt-4'>
             <Row>
               <Col>
-              <Button onClick={handleQuestionCancel} variant="danger" className=' w-100'>Cancel</Button>
+                <Button onClick={handleQuestionCancel} variant="danger" className=' w-100'>Cancel</Button>
               </Col>
               <div style={{ width: '10px' }}></div> {/* Ara boşluk */}
               <Col>
-              {showUpdateQuiz ? <Button onClick={handleQuestionUpdate} variant="warning" className='w-100'>Update</Button> : <Button onClick={handleNewQuestion} variant="primary w-100">Add</Button>}
+                {showUpdateQuiz ? <Button onClick={handleQuestionUpdate} variant="warning" className='w-100'>Update</Button> : <Button onClick={handleNewQuestion} variant="primary w-100">Add</Button>}
               </Col>
             </Row>
           </div>

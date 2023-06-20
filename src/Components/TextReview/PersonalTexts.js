@@ -29,7 +29,7 @@ const PersonalTexts = () => {
             <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
                 <Row >
                     <Col sm={2} style={{ height: "100vh" }}>
-                        <Nav variant="pills" className="flex-column" style={{ position: 'sticky', top: 50 }}>
+                        <Nav variant="pills" className="flex-column admin-nav" style={{ position: 'sticky', top: 50 }}>
                             <Nav.Item className='rounded my-2' style={{ backgroundColor: '#aff4cc' }}>
                                 <Nav.Link eventKey="newPersonalText">Add New Text</Nav.Link>
                             </Nav.Item>

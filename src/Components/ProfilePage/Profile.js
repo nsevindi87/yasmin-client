@@ -298,7 +298,7 @@ const Profile = () => {
           <Row className='shadow'>
             <Col md={3}>
               <div className="profile-picture d-flex justify-content-center">
-                <img src={user?.picture} className="rounded" alt="Profile Picture" />
+                <img src={user?.picture} className="rounded w-50" alt="Profile Picture" />
               </div>
               <div className="profile-info">
                 <h4 className='text-center'>{profileInfo?.role}</h4>

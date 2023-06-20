@@ -30,9 +30,8 @@ const GeneralList = () => {
           <Col>
             <h1 className='text-center shadow mb-4 rounded'>All Word List</h1>
             <div className='mb-2 text-center'>
-              <Button className='btn-dark text-warning mx-3 shadow'><Nav.Link as={Link} to="/practice">Training</Nav.Link></Button>
+              <Button className='btn-dark text-warning me-3 shadow'><Nav.Link as={Link} to="/practice">Training</Nav.Link></Button>
               <Button className='btn-dark text-warning shadow'><Nav.Link as={Link} to="/quiz" onClick={getQuizQuestions}>Test Yourself</Nav.Link></Button>
-              <Button className='btn-dark text-warning mx-3 shadow' onClick={() => generatePdf("alllist")}>Download PDF</Button>
             </div>
             <Table striped bordered hover variant="dark">
               <thead>
