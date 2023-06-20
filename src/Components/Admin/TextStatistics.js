@@ -7,7 +7,7 @@ import { PencilSquare, Trash3Fill } from 'react-bootstrap-icons'
 function TextStatistics() {
 
 
-  const { getTextReviews, texts, newTextForAdmin, setNewTextForAdmin, handleNewAdminText, handleAdminTextCancel, handleAdminTextEdit, showUpdateText, setShowUpdateText, handleTextDelete,handleAdminTextUpdate } = useContext(wordsContext)
+  const { getTextReviews, texts, newTextForAdmin, setNewTextForAdmin, handleNewAdminText, handleAdminTextCancel, handleAdminTextEdit, showUpdateText, setShowUpdateText, handleAdminTextDelete,handleAdminTextUpdate } = useContext(wordsContext)
 
   const [showTextForm, setShowTextForm] = useState(true);
 
@@ -69,7 +69,7 @@ function TextStatistics() {
             <Accordion.Header>
               {text[1].title}
               <Button onClick={() => handleAdminTextEdit(text[1])} variant="warning me-1" className='mb-1 p-0'><PencilSquare /></Button>
-              <Button onClick={() => handleTextDelete(text[1].id)} variant="danger" className='mb-1 p-0'><Trash3Fill /> </Button>
+              <Button onClick={() => handleAdminTextDelete(text[1].id)} variant="danger" className='mb-1 p-0'><Trash3Fill /> </Button>
 
             </Accordion.Header>
             <Accordion.Body>

@@ -525,14 +525,14 @@ const handleAdminTextUpdate = async () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(textNewInputValue)
+      body: JSON.stringify(newTextForAdmin)
     })
   } catch (error) {
     console.log(error)
   }
   setShowUpdateText(false)
   getTextReviews()
-  setTextNewInputValue({
+  setNewTextForAdmin({
     title: "",
     english: "",
     german: "",
