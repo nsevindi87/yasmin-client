@@ -17,6 +17,7 @@ const WordsListContextProvider = ({ children }) => {
   const [show, setShow] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
   const [showUpdateQuiz, setShowUpdateQuiz] = useState(false);
+  const [showUpdateText, setShowUpdateText] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
   const [quizQuestions, setQuizquestions] = useState([]);
@@ -310,8 +311,10 @@ const WordsListContextProvider = ({ children }) => {
       throw new Error("Failed to fetch post");
     }
   };
+ /*==============================================================================================
+  == //! PERSONAL TEXT REVIEWS================= --------------------------------------------------------------------
+  ===============================================================================================*/
 
-  //!PERSONAL=================
   //GET ALL DATAS By USER ID==========================================================
 
   const [personalTexts, setPersonalTexts] = useState([])
@@ -330,9 +333,8 @@ const WordsListContextProvider = ({ children }) => {
   };
 
 
+  //GET Personal TEXT BY ID to render
   const [personalText, setPersonalText] = useState([]);
-
-  //GET TEXT BY ID to render
   const getpersonalTextById = async (pId) => {
     try {
       const response = await fetch(`${BASE_URL}/textreview/personal/text/${pId}`);
@@ -350,7 +352,7 @@ const WordsListContextProvider = ({ children }) => {
   };
 
 
-  //ADD NEW TEXT
+  //ADD NEW Personal TEXT
   const handleNewText = async () => {
     if (textNewInputValue.title.length === 0) {
       alert("Please fill out the title!")
@@ -389,6 +391,7 @@ const WordsListContextProvider = ({ children }) => {
         turkish: ""
       })
     }
+   
 //!UPDATE ISLEMLERI==========
     const handleTextClose = () =>{
       setTextModalShow(!textModalShow)
@@ -432,6 +435,8 @@ const WordsListContextProvider = ({ children }) => {
         turkish: ""
       })
     }
+
+    
     
     
     const handleTextDelete = async (pId) => {
@@ -444,6 +449,111 @@ const WordsListContextProvider = ({ children }) => {
         console.log(error);
       }
     }
+
+  /*==============================================================================================
+  == //!    ADD TEXT in ADMIN PANEL --------------------------------------------------------------------
+  ===============================================================================================*/
+
+  //ADD NEW ADMIN TEXT
+  const [newTextForAdmin, setNewTextForAdmin] = useState({
+    title: "",
+    english: "",
+    german: "",
+    turkish: ""
+  })
+
+  const handleNewAdminText = async () => {
+    if (newTextForAdmin.title.length === 0) {
+      alert("Please fill out the title!")
+    } else {
+      try {
+        const response = await fetch(`${BASE_URL}/textreview`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newTextForAdmin),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to create post");
+        }
+        getTextReviews()
+        setNewTextForAdmin({
+          title: "",
+          english: "",
+          german: "",
+          turkish: ""
+        })
+      } catch (error) {
+        console.error(error);
+      }
+
+    }
+  };
+
+ //ADMIN TEXT FORMU SIFIRLA
+ const handleAdminTextCancel = async () => {
+  setShowUpdateText(false)
+
+  setNewTextForAdmin({
+    title: "",
+    english: "",
+    german: "",
+    turkish: ""
+  })
+}
+
+
+//!UPDATE ISLEMLERI
+const handleAdminTextEdit = async (pPost) => {
+  setShowUpdateText(true)
+  setNewTextForAdmin({
+    id: pPost.id,
+    title: pPost.title,
+    english: pPost.english,
+    german: pPost.german,
+    turkish: pPost.turkish,
+  })
+}
+
+//GUNCEL ADMIN TEXT GONDER
+const handleAdminTextUpdate = async () => {
+  try {
+    await fetch(`${BASE_URL}/textreview/${newTextForAdmin.id}`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(textNewInputValue)
+    })
+  } catch (error) {
+    console.log(error)
+  }
+  setShowUpdateText(false)
+  getTextReviews()
+  setTextNewInputValue({
+    title: "",
+    english: "",
+    german: "",
+    turkish: ""
+  })
+}
+
+
+
+  //DELETE TEXT  ==================================================
+  const handleAdminTextDelete = async (pId) => {
+    try {
+      await fetch(`${BASE_URL}/textreview/${pId}`, {
+        method: "DELETE"
+      })
+      getTextReviews()
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   /*==============================================================================================
   == //!    QUIZ QUESTIONS --------------------------------------------------------------------
@@ -913,8 +1023,9 @@ const WordsListContextProvider = ({ children }) => {
       getTextsListByUserId, personalTexts, setPersonalTexts, getpersonalTextById, personalText, setPersonalText,
       textNewInputValue, setTextNewInputValue, handleNewText,handleTextCancel,
       handleTextUpdate,handleTextClose,handleTextEdit,textModalShow, setTextModalShow,handleTextDelete,
-
-
+      handleNewAdminText,newTextForAdmin, setNewTextForAdmin,handleAdminTextCancel,
+      handleAdminTextEdit,showUpdateText, setShowUpdateText,handleAdminTextDelete,
+      handleAdminTextUpdate
 
     }}>
       {children}
