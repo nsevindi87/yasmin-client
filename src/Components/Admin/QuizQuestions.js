@@ -6,9 +6,7 @@ import { PencilSquare, Trash3Fill } from 'react-bootstrap-icons'
 
 
 const QuizQuestions = () => {
-  const { getAllQuizQuestions, allQuizQuestions, handleNewQuestion, quizNewInputValue, setQuizNewInputValue, handleQuestionCancel, handleQuestionDelete, handleQuestionEdit, handleQuestionUpdate, showUpdateQuiz, setShowUpdateQuiz } = useContext(wordsContext)
-
-  const [showForm, setShowForm] = useState(false);
+  const { getAllQuizQuestions, allQuizQuestions, handleNewQuestion, quizNewInputValue, setQuizNewInputValue, handleQuestionCancel, handleQuestionDelete, handleQuestionEdit, handleQuestionUpdate, showUpdateQuiz, setShowUpdateQuiz,showForm, setShowForm } = useContext(wordsContext)
 
   const handleShowForm = () => {
     setShowForm(!showForm);
@@ -20,8 +18,8 @@ const QuizQuestions = () => {
 
   return (
     <Container>
-      <Row>
-        <Button variant='warning' className='py-4  mt-3 mb-2 text-center' onClick={handleShowForm}>Click to Add New Question</Button>
+      <Row className='mt-5'>
+        <Button variant='warning' className='py-4 mb-2 text-center' onClick={handleShowForm}>Click to Add New Question</Button>
         <Col className={`form-container ${showForm ? 'show' : ''}`}>
 
           <FloatingLabel label="Question">
@@ -59,21 +57,21 @@ const QuizQuestions = () => {
           <hr />
         </Col>
       </Row>
-      <Row className='my-5' >
-        <Button variant='warning' className='py-4 mt-3 mb-2 text-center' >All Quiz Questions</Button>
+      <Row className='my-1' >
+        <Button variant='warning' className='py-4 mt-1 mb-2 text-center' >All Quiz Questions</Button>
         <Col>
-          <h4 className=' border-1 text-center shadow my-4'>Total <span style={{ color: 'red' }}>{allQuizQuestions.length}</span> questions are found!</h4>
+          <h4 className=' border-1 text-center shadow my-4 py-3'>Total <span style={{ color: 'red' }}>{allQuizQuestions.length}</span> questions are found!</h4>
           <div style={{ height: '500px', overflowY: 'scroll' }}>
             <Table striped bordered hover variant="dark" style={{ maxWidth: '100%' }}>
               <thead style={{ position: 'sticky', top: 0, overflowY: 'scroll' }}>
                 <tr className='text-center'>
-                  <th style={{ backgroundColor: '#bcc7cc' }}>#</th>
-                  <th style={{ backgroundColor: '#bcc7cc' }}>Actions</th>
-                  <th style={{ backgroundColor: '#bcc7cc' }}>Question</th>
-                  <th style={{ backgroundColor: '#bcc7cc' }}>Options</th>
-                  <th style={{ backgroundColor: '#bcc7cc' }}>Correct</th>
-                  <th style={{ backgroundColor: '#bcc7cc' }}>English Example</th>
-                  <th style={{ backgroundColor: '#bcc7cc' }}>German Example</th>
+                  <th >#</th>
+                  <th>Actions</th>
+                  <th>Question</th>
+                  <th>Options</th>
+                  <th>Correct</th>
+                  <th>English Example</th>
+                  <th>German Example</th>
                 </tr>
               </thead>
               <tbody>
@@ -81,8 +79,8 @@ const QuizQuestions = () => {
                   <tr key={value} className='text-center'>
                     <td>{value + 1}</td>
                     <td>
-                      <Button onClick={() => handleQuestionEdit(question[1])} variant="warning me-1" className='mb-1 p-0'><PencilSquare /></Button>
-                      <Button onClick={() => handleQuestionDelete(question[1].id)} variant="danger" className='mb-1 p-0'><Trash3Fill /> </Button>
+                      <Button onClick={() => handleQuestionEdit(question[1])} variant="warning me-1 px-1" className='mb-1 p-0'><PencilSquare /></Button>
+                      <Button onClick={() => handleQuestionDelete(question[1].id)} variant="danger px-1" className='mb-1 p-0'><Trash3Fill /> </Button>
                     </td>
                     <td>{question[1].question_text}</td>
                     <td>{question[1].options}</td>

@@ -598,6 +598,8 @@ const handleAdminTextUpdate = async () => {
     }
   };
 
+  const [showForm, setShowForm] = useState(false);
+
   //ADD NEW QUESTION
   const handleNewQuestion = async () => {
     if (quizNewInputValue.question_text.length === 0 && quizNewInputValue.options.length === 0 && quizNewInputValue.correct_word.length === 0) {
@@ -615,6 +617,7 @@ const handleAdminTextUpdate = async () => {
         if (!response.ok) {
           throw new Error("Failed to create post");
         }
+        setShowForm(false)
         setQuizNewInputValue({
           question_text: "",
           options: "",
@@ -633,7 +636,7 @@ const handleAdminTextUpdate = async () => {
   //Soru FORMU SIFIRLA
   const handleQuestionCancel = async () => {
     setShowUpdateQuiz(false)
-
+    setShowForm(false)
     setQuizNewInputValue({
       question_text: "",
       options: "",
@@ -660,6 +663,7 @@ const handleAdminTextUpdate = async () => {
 
   const handleQuestionEdit = async (pPost) => {
     setShowUpdateQuiz(true)
+    setShowForm(true)
     setQuizNewInputValue({
       id: pPost.id,
       question_text: pPost.question_text,
@@ -685,7 +689,7 @@ const handleAdminTextUpdate = async () => {
     }
     setShowUpdateQuiz(false)
     getAllQuizQuestions()
-
+    setShowForm(false)
     setQuizNewInputValue({
       question_text: "",
       options: "",
@@ -1028,7 +1032,7 @@ const handleAdminTextUpdate = async () => {
       handleTextUpdate,handleTextClose,handleTextEdit,textModalShow, setTextModalShow,handleTextDelete,
       handleNewAdminText,newTextForAdmin, setNewTextForAdmin,handleAdminTextCancel,
       handleAdminTextEdit,showUpdateText, setShowUpdateText,handleAdminTextDelete,
-      handleAdminTextUpdate,showTextForm, setShowTextForm
+      handleAdminTextUpdate,showTextForm, setShowTextForm,showForm, setShowForm
 
     }}>
       {children}

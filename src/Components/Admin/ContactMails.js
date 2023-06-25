@@ -20,11 +20,11 @@ const ContactMails = () => {
     }, [])
 
     return (
-        <div>
+        <div className='mt-5'>
             <Button variant='warning' className='py-4 mb-2 text-center w-100'>Contact Emails</Button>
             {contactMails?.map((mail, index) => (
                 <Card key={index} className="mb-4">
-                    <Card.Header>{mail[1].name} - {mail[1].email}
+                    <Card.Header className='bg-warning'>{mail[1].name} - {mail[1].email}
                         <MdCheckCircle
                             className={`float-end ${selected ? 'text-success' : 'text-danger'}`}
                             onClick={handleToggleSelection}

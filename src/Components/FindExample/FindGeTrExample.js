@@ -37,7 +37,7 @@ const FindGeTrExample = () => {
           className="my-3"
         />
       </Form.Group>
-      <div style={{ height: '300px', overflowY: 'scroll' }}>
+      <div style={{ height: '450px', overflowY: 'scroll' }}>
         <Table hover variant="dark">
           <thead style={{ position: 'sticky', top: 0, backgroundColor: 'red', overflowY: 'scroll' }}>
             <tr>

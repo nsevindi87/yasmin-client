@@ -22,8 +22,8 @@ function TextStatistics() {
 
   return (
     <>
-      <Row>
-        <Button variant='warning' className='py-4  mt-3 mb-2 text-center' onClick={handleShowForm}>Click to Add New Text</Button>
+      <Row className='mt-5'>
+        <Button variant='warning' className='py-4 mb-2 text-center' onClick={handleShowForm}>Click to Add New Text</Button>
         <Col className={`form-container ${showTextForm ? 'show' : ''}`}>
           <Form.Group>
             <Form.Label htmlFor="title" >Title</Form.Label>

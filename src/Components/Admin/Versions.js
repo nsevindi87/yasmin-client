@@ -4,7 +4,7 @@ import { Button} from 'react-bootstrap';
 
 const Versions = () => {
     return (
-        <div>
+        <div className='mt-5'>
             <h1></h1>
             <Button variant='warning' className='py-4 mb-2 text-center w-100'>App Version-1 01.08.2023</Button>
 
