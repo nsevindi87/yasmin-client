@@ -5,13 +5,13 @@ import logo from "../../Images/logo-2.png"
 
 const Footer = () => {
   return (
-    <footer className='bg-dark text-light pt-4'>
+    <footer className='bg-dark text-light pt-4 mt-3'>
       <Container>
         <Row className='footer'>
-          <Col xs={12} sm={6} md={3} className='mb-3'>
+          <Col className='mb-3'>
             <img src={logo} alt="logo" style={{width:"15rem",}}/>
           </Col>
-          <Col xs={12} sm={6} md={3} className='mb-3' >
+          <Col className='mb-3' >
             {/* İkinci sütun */}
             <h5>Company</h5>
             <ul className='list-unstyled'>
@@ -33,7 +33,7 @@ const Footer = () => {
               </li>
             </ul>
           </Col>
-          <Col xs={12} sm={6} md={3} className='mb-3'>
+          <Col className='mb-3'>
             {/* Dördüncü sütun */}
             <h5>Connections</h5>
             <ul className='list-unstyled'>
@@ -55,7 +55,7 @@ const Footer = () => {
               </li>
             </ul>
           </Col>
-          <Col xs={12} sm={6} md={3} className='mb-3'>
+          <Col className='mb-3'>
             {/* Üçüncü sütun */}
             <h5>Social Media - Contact</h5>
             <ul className='list-unstyled d-flex'>

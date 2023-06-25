@@ -13,7 +13,7 @@ const HeaderLoggedin = () => {
 
 
     return (
-        <Navbar bg="light" variant="light" sticky="top">
+        <Navbar bg="light" variant="light" sticky="top" expand="lg">
             <Container>
                 <Navbar.Brand as={NavLink} to="/"><img src={logo} alt="logo" style={{width:"5rem",}}/></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />

@@ -56,8 +56,8 @@ const GreenList = () => {
                     <td>{word?.wordSecondMeaning}</td>
                     <td>{word?.wordNote}</td>
                     <td>
-                      <Button onClick={() => handleEdit(word)} variant="warning me-1" className='p-2'><PencilSquare/></Button>
-                      <Button onClick={() => handleDelete(word.id)} variant="danger" className='p-2'><Trash3Fill/></Button>
+                      <Button onClick={() => handleEdit(word)} variant="warning mx-1 mb-1" className='p-2'><PencilSquare/></Button>
+                      <Button onClick={() => handleDelete(word.id)} variant="danger mx-1" className='p-2'><Trash3Fill/></Button>
                     </td>
                     <td> {word.wordCategory ? <Button variant={word.wordCategory} onClick={()=> handleDeleteList(word.id)} className='p-2'></Button> : null}</td>
                     

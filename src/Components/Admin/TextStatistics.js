@@ -7,9 +7,8 @@ import { PencilSquare, Trash3Fill } from 'react-bootstrap-icons'
 function TextStatistics() {
 
 
-  const { getTextReviews, texts, newTextForAdmin, setNewTextForAdmin, handleNewAdminText, handleAdminTextCancel, handleAdminTextEdit, showUpdateText, setShowUpdateText, handleAdminTextDelete,handleAdminTextUpdate } = useContext(wordsContext)
+  const { getTextReviews, texts, newTextForAdmin, setNewTextForAdmin, handleNewAdminText, handleAdminTextCancel, handleAdminTextEdit, showUpdateText, setShowUpdateText, handleAdminTextDelete,handleAdminTextUpdate,showTextForm, setShowTextForm } = useContext(wordsContext)
 
-  const [showTextForm, setShowTextForm] = useState(true);
 
   const handleShowForm = () => {
     setShowTextForm(!showTextForm);
@@ -60,17 +59,15 @@ function TextStatistics() {
         </Col>
       </Row>
 
-
-
-
       <Accordion className='mb-5' >
         {texts?.map((text, value) => (
-          <Accordion.Item key={value} eventKey={value}>
-            <Accordion.Header>
+          <Accordion.Item key={value} eventKey={value} >
+            <Accordion.Header >
+              <div className='me-1'>
+              <Button onClick={() => handleAdminTextEdit(text[1])} variant="warning me-1" className='mb-1 py-1'><PencilSquare /></Button>
+              <Button onClick={() => handleAdminTextDelete(text[1].id)} variant="danger" className='mb-1 py-1 me-2'><Trash3Fill /> </Button>
+              </div>
               {text[1].title}
-              <Button onClick={() => handleAdminTextEdit(text[1])} variant="warning me-1" className='mb-1 p-0'><PencilSquare /></Button>
-              <Button onClick={() => handleAdminTextDelete(text[1].id)} variant="danger" className='mb-1 p-0'><Trash3Fill /> </Button>
-
             </Accordion.Header>
             <Accordion.Body>
               {text[1].english}

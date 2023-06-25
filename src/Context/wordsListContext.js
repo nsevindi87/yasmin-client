@@ -494,7 +494,7 @@ const WordsListContextProvider = ({ children }) => {
  //ADMIN TEXT FORMU SIFIRLA
  const handleAdminTextCancel = async () => {
   setShowUpdateText(false)
-
+  setShowTextForm(false)
   setNewTextForAdmin({
     title: "",
     english: "",
@@ -505,6 +505,8 @@ const WordsListContextProvider = ({ children }) => {
 
 
 //!UPDATE ISLEMLERI
+const [showTextForm, setShowTextForm] = useState(false);
+
 const handleAdminTextEdit = async (pPost) => {
   setShowUpdateText(true)
   setNewTextForAdmin({
@@ -514,6 +516,7 @@ const handleAdminTextEdit = async (pPost) => {
     german: pPost.german,
     turkish: pPost.turkish,
   })
+  setShowTextForm(true)
 }
 
 //GUNCEL ADMIN TEXT GONDER
@@ -1025,7 +1028,7 @@ const handleAdminTextUpdate = async () => {
       handleTextUpdate,handleTextClose,handleTextEdit,textModalShow, setTextModalShow,handleTextDelete,
       handleNewAdminText,newTextForAdmin, setNewTextForAdmin,handleAdminTextCancel,
       handleAdminTextEdit,showUpdateText, setShowUpdateText,handleAdminTextDelete,
-      handleAdminTextUpdate
+      handleAdminTextUpdate,showTextForm, setShowTextForm
 
     }}>
       {children}

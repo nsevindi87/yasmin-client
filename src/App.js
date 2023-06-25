@@ -1,4 +1,4 @@
-import Header from "./Components/Header-Footer/Header.js"
+import Header from "./Components/Header/Header.js"
 import { Outlet } from 'react-router-dom';
 import WordsListContextProvider from './Context/wordsListContext';
 import AsideComponent from "./Components/SideBar/AsideComponent.js"
@@ -10,7 +10,6 @@ import Footer from './Components/Footer/Footer';
 
 function App() {
   const { isAuthenticated } = useAuth0();
-
 
   return (
     <div >
