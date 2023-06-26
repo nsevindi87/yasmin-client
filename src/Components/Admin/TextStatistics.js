@@ -72,6 +72,12 @@ function TextStatistics() {
             <Accordion.Body>
               {text[1].english}
             </Accordion.Body>
+            <Accordion.Body>
+              {text[1].german}
+            </Accordion.Body>
+            <Accordion.Body>
+              {text[1].turkish}
+            </Accordion.Body>
           </Accordion.Item>
         ))}
 

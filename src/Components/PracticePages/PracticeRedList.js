@@ -43,7 +43,7 @@ const Practice = () => {
                         <Card.Header className='py-3 bg-danger p-2 text-dark bg-opacity-75' />
                         <Card.Body>
                             <Button className="bg-danger w-100 text-dark bg-opacity-25 border-0" onClick={() => handleModalOpen(word)}>
-                                {word.wordSecondMeaning}
+                                {word.wordMeaning}
                             </Button>
                         </Card.Body>
                     </Card>
