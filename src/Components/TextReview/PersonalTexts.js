@@ -16,7 +16,7 @@ const PersonalTexts = () => {
         const fetchData = async () => {
             try {
                 const profileData = await getProfileInfo();
-                await getTextsListByUserId(profileData.id);
+                await getTextsListByUserId(profileData?.id);
             } catch (error) {
                 //HATA MESAJI
             }

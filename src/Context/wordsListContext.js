@@ -425,9 +425,7 @@ const WordsListContextProvider = ({ children }) => {
         console.log(error)
       }
       setTextModalShow(false)
-      getTextsListByUserId(profileInfo.id)
-  
-  
+      getTextsListByUserId(profileInfo?.id)
       setTextNewInputValue({
         title: "",
         english: "",

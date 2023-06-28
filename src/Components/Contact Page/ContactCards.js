@@ -21,35 +21,35 @@ const ContactCards = () => {
             <Container>
                 <div >
                     <div className='d-flex justify-content-between mt-5'>
-                        <Card style={{ width: '6.4rem', padding: "0" }}>
+                        <Card style={{ width: '7rem', padding: "0" }}>
                             <Card.Body>
                                 <BsWhatsapp style={{ fontSize: "5rem" }} />
                             </Card.Body>
                             <Button variant="warning">Whatsapp</Button>
                         </Card>
 
-                        <Card style={{ width: '6.4rem' }}>
+                        <Card style={{ width: '7rem' }}>
                             <Card.Body>
                                 <BsTelegram style={{ fontSize: "5rem" }} />
                             </Card.Body>
                             <Button variant="warning">Telegram</Button>
                         </Card>
 
-                        <Card style={{ width: '6.4rem' }}>
+                        <Card style={{ width: '7rem' }}>
                             <Card.Body>
                                 <BsSignal style={{ fontSize: "5rem" }} />
                             </Card.Body>
                             <Button variant="warning">E-Mail</Button>
                         </Card>
 
-                        <Card style={{ width: '6.4rem' }}>
+                        <Card style={{ width: '7rem' }}>
                             <Card.Body>
                                 <BsFillTelephoneFill style={{ fontSize: "5rem" }} />
                             </Card.Body>
                             <Button variant="warning">Phone</Button>
                         </Card>
 
-                        <Card style={{ width: '6.4rem' }}>
+                        <Card style={{ width: '7rem' }}>
                             <Card.Body>
                                 <MdEmail style={{ fontSize: "5rem" }} />
                             </Card.Body>
