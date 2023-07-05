@@ -13,22 +13,26 @@ const AddNewPersonalText = () => {
         <Row>
           <Col>
             <h1 className='my-4 text-center border-1 shadow'>Add New Text</h1>
-
-            <FloatingLabel label="Text Title">
+            
+            <Form.Group className='mb-3'>
+              <Form.Label>Text Title</Form.Label>
               <Form.Control onChange={(e) => setTextNewInputValue({ ...textNewInputValue, [e.target.id]: e.target.value })} type="textarea" id='title' value={textNewInputValue.title} />
-            </FloatingLabel>
+            </Form.Group>
 
-            <FloatingLabel label="English">
-              <Form.Control className='mt-4' onChange={(e) => setTextNewInputValue({ ...textNewInputValue, [e.target.id]: e.target.value })} as="textarea" id='english' value={textNewInputValue.english}  style={{ height: 'auto', minHeight: '3em' }}  />
-            </FloatingLabel>
+            <Form.Group >
+              <Form.Label>English</Form.Label>
+              <Form.Control  onChange={(e) => setTextNewInputValue({ ...textNewInputValue, [e.target.id]: e.target.value })} as="textarea" id='english' value={textNewInputValue.english} style={{ height: '100px' }}/>
+            </Form.Group>
 
-            <FloatingLabel className='my-4' label="German" >
-              <Form.Control onChange={(e) => setTextNewInputValue({ ...textNewInputValue, [e.target.id]: e.target.value })} as="textarea" id='german' value={textNewInputValue.german} style={{ height: '100px' }} />
-            </FloatingLabel>
+            <Form.Group className='my-4' >
+              <Form.Label>German</Form.Label>
+              <Form.Control onChange={(e) => setTextNewInputValue({ ...textNewInputValue, [e.target.id]: e.target.value })} as="textarea" id='german' value={textNewInputValue.german} style={{ height: '100px' }}/>
+            </Form.Group>
 
-            <FloatingLabel label="Turkish">
-              <Form.Control onChange={(e) => setTextNewInputValue({ ...textNewInputValue, [e.target.id]: e.target.value })} as="textarea" id='turkish' value={textNewInputValue.turkish} style={{ height: '100px' }} />
-            </FloatingLabel>
+            <Form.Group>
+              <Form.Label>Turkish</Form.Label>
+              <Form.Control onChange={(e) => setTextNewInputValue({ ...textNewInputValue, [e.target.id]: e.target.value })} as="textarea" id='turkish' value={textNewInputValue.turkish} style={{ height: '100px' }}/>
+            </Form.Group>
 
             <div className='mt-4'>
               <Row>

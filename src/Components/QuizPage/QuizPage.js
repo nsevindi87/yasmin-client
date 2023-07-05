@@ -106,7 +106,7 @@ const QuizPage = () => {
       setWrongAnswers(0)
       setScore(0)
       setTimeout(() => {
-        navigate('/addword');
+        navigate('/profile');
       }, 2000);
     } catch (error) {
       console.error(error);
@@ -170,7 +170,7 @@ const QuizPage = () => {
             </div>
             <ToastContainer className="p-3 " position="bottom-start">
                 <Toast show={showToast} onClose={() => setShowToast(false)} delay={4000} autohide >
-                  <Toast.Body style={{ background: 'black', color: 'white' }}>Your Statistics are saved!</Toast.Body>
+                  <Toast.Body style={{ background: 'green', color: 'white' }}>Your Statistics are saved!</Toast.Body>
                 </Toast>
               </ToastContainer>
           </div>

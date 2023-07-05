@@ -395,6 +395,12 @@ const WordsListContextProvider = ({ children }) => {
 //!UPDATE ISLEMLERI==========
     const handleTextClose = () =>{
       setTextModalShow(!textModalShow)
+      setTextNewInputValue({
+        title: "",
+        english: "",
+        german: "",
+        turkish: ""
+      })
     }
     
     const [textModalShow, setTextModalShow] = useState(false);
