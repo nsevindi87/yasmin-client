@@ -82,7 +82,9 @@ const PersonalText = () => {
         <p>{ex}.</p>
         )}</p>
         {showGermanMeaning && <p className='m-4'><span style={{ fontWeight: 'bold' }}>German Meaning : </span>{personalText?.german}</p>}
-        {showTurkishMeaning && <p className='m-4'><span style={{ fontWeight: 'bold' }}>Turkish Meaning : </span>{personalText?.turkish}</p>}
+        {showTurkishMeaning && <p className='m-4'><span style={{ fontWeight: 'bold' }}>Turkish Meaning : </span>{personalText?.turkish?.split(". ").map((ex)=>
+        <p>{ex}.</p>
+        )}</p>}
       </div>
     </div>
   )
